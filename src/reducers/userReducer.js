@@ -1,34 +1,36 @@
-import consts from '../actions/ActionTypes';
+import ActionTypes from '../actions/ActionTypes';
 
-const nameInitialState = {
+const initialState = {
   isLogged: false,
   isLoading: false,
   token: null,
-  info: {},
+  user: {},
   error: null,
 };
 
-const userReducer = (state = nameInitialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case consts.LOGIN:
+    case ActionTypes.LOGIN:
       return {
         ...state,
         isLoading: true,
       };
-    case consts.LOGIN_SUCCESS:
+    case ActionTypes.LOGIN_SUCCESS:
       return {
         ...state,
         isLogged: true,
         isLoading: true,
         token: action.token,
-        info: action.user,
+        user: action.user,
       };
-    case consts.LOGIN_ERROR:
+    case ActionTypes.LOGIN_ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.error,
       };
+    case ActionTypes.LOGOUT:
+      return initialState;
     default:
       return state;
   }
