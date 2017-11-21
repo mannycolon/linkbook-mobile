@@ -3,6 +3,7 @@ import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import Navigator from './Navigator';
+import { LoginScreen } from '../screens';
 
 class AppNavigator extends Component {
   render() {
@@ -11,7 +12,10 @@ class AppNavigator extends Component {
       state: this.props.navigationReducer,
     });
 
-    return <Navigator navigation={navigation} />;
+    if (this.props.userReducer.isLogged) {
+      return <Navigator navigation={navigation} />;
+    }
+    return <LoginScreen />;
   }
 }
 
