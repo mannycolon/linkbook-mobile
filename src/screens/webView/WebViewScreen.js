@@ -4,14 +4,14 @@ import { LoadingScreen } from '../../commons';
 
 export default class WebViewScreen extends Component {
   render() {
-    const { uri } = this.props.navigation.state.params;
+    const { articleUrl } = this.props.navigation.state.params;
 
     return (
       <View style={styles.container}>
         <WebView
           style={{ flex: 1 }}
           source={{
-            uri,
+            uri: articleUrl,
             method: 'GET',
           }}
           renderLoading={() => <LoadingScreen />}
