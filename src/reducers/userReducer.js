@@ -4,7 +4,12 @@ const initialState = {
   isLogged: false,
   isLoading: false,
   token: null,
-  user: {},
+  user: {
+    email: '',
+    fullName: '',
+    id: '',
+    avatar: '',
+  },
   error: null,
 };
 
