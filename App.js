@@ -26,7 +26,7 @@ export default class App extends React.Component {
       {
         storage: AsyncStorage,
         whitelist: [
-          'user',
+          'userReducer',
         ],
       },
       () => this.setState({ ready: true })
