@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 import HomeNavigator from './HomeNavigator';
 
 import {
-  AddNewLinkScreen,
+  AddNewArticleScreen,
   WebViewScreen,
 } from '../screens';
 
@@ -17,10 +17,10 @@ const CloseButton = styled(TouchableOpacity)`
 
 export default StackNavigator({
   Home: { screen: HomeNavigator },
-  AddNewLink: {
-    screen: AddNewLinkScreen,
+  AddNewArticle: {
+    screen: AddNewArticleScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Add a new link',
+      title: 'Add New Article',
       headerStyle: {
         backgroundColor: '#bd0826',
         height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),

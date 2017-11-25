@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 
 import {
   HomeScreen,
-  NotificationsScreen,
+  PublicArticlesScreen,
   ProfileScreen,
 } from '../screens';
 
@@ -25,7 +25,7 @@ export default TabNavigator({
         paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
       },
       headerRight: (
-        <AddButton onPress={() => navigation.navigate('AddNewLink')}>
+        <AddButton onPress={() => navigation.navigate('AddNewArticle')}>
           <MaterialIcons
             name='add-circle'
             size={30}
@@ -42,17 +42,21 @@ export default TabNavigator({
       ),
     }),
   },
-  Notifications: {
-    screen: NotificationsScreen,
+  PublicArticles: {
+    screen: PublicArticlesScreen,
     navigationOptions: () => ({
+      title: 'Articles from other users',
       headerStyle: {
         backgroundColor: '#bd0826',
         height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
         paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
       },
+      headerTitleStyle: {
+        color: '#ffffff',
+      },
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
-          name='notifications'
+          name='library-books'
           size={25}
           color={tintColor}
         />
@@ -62,10 +66,14 @@ export default TabNavigator({
   Profile: {
     screen: ProfileScreen,
     navigationOptions: () => ({
+      title: 'Profile',
       headerStyle: {
         backgroundColor: '#bd0826',
         height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
         paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
