@@ -13,10 +13,34 @@ if (Platform.OS !== 'ios') {
 
 axios.defaults.baseURL = url;
 
-// class LinkBookAPI {
-//   constructor() {
-//   }
-// }
+class LinkBook {
+  async fetchAllPublicArticles() {
+    try {
+      const { data } = await axios.get('/articles');
+      return data.articles;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async fetchMyArticles(userId) {
+    try {
+      const { data } = await axios.get(`/users/${userId}/articles`);
+      return data.articles;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async addArticle(articleUrl, userId, isPublic, collectionName) {
+    try {
+      const res = await axios.post(`/users/${userId}/articles/new`, { articleUrl, isPublic, collectionName });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+}
 
 class UserApi {
   constructor() {
@@ -33,4 +57,10 @@ class UserApi {
   }
 }
 
-export const User = new UserApi();
+const User = new UserApi();
+const LinkBookAPI = new LinkBook();
+
+export {
+  User,
+  LinkBookAPI,
+};
