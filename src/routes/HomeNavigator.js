@@ -54,6 +54,7 @@ export default TabNavigator({
       },
       headerTitleStyle: {
         color: '#ffffff',
+        alignSelf: 'center',
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
@@ -75,6 +76,7 @@ export default TabNavigator({
       },
       headerTitleStyle: {
         color: '#ffffff',
+        alignSelf: 'center',
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
@@ -96,6 +98,7 @@ export default TabNavigator({
       },
       headerTitleStyle: {
         color: '#ffffff',
+        alignSelf: 'center',
       },
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
