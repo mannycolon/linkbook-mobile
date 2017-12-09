@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "linkbook-mobile",
-    "description": "An empty new project",
-    "slug": "linkbook-mobile",
+    "name": "linkBook",
+    "description": "linkBook is a mobile app that allows you to manage your reading list of articles quickly and efficiently",
+    "slug": "linkBook",
     "privacy": "public",
     "sdkVersion": "20.0.0",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
+    "primaryColor": "#bd0826",
     "icon": "./assets/icons/app-icon.png",
     "loading": {
       "icon": "./assets/icons/loading-icon.png",
@@ -17,7 +17,17 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fornixsystems.linkbook"
+    },
+    "android": {
+      "package": "com.fornixsystems.linkbook",
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyB8nJrN7vNE92663m20BiiTrMV9am5wusY",
+          "certificateHash": "8BE4079DDEB291CAAEA920F332CB069D485E909F"
+        }
+      }
     }
   }
 }
