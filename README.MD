@@ -1,6 +1,7 @@
 
   ## Todo List
   - Share article urls from other apps into link-book.
+  - Add pull down refresh feature.
   - Add ability to delete a collection.
   - Add ability to remove article from a collection.
   - Add ability to add an article to a collection.
