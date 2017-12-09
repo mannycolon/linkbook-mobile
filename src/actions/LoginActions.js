@@ -1,3 +1,4 @@
+import { NavigationActions } from 'react-navigation';
 import ActionTypes from './ActionTypes';
 import { User } from '../constants/api';
 
@@ -30,7 +31,14 @@ export function login(token, provider) {
 }
 
 export function logout() {
-  return {
-    type: ActionTypes.LOGOUT,
-  };
+  return (dispatch => {
+    // reset react-naviation state
+    dispatch(
+      NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Home' })],
+      })
+    );
+    dispatch({ type: ActionTypes.LOGOUT });
+  });
 }
