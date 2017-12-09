@@ -10,7 +10,7 @@ import * as LoginActions from '../../actions/LoginActions';
 
 const TopContainer = styled.View`
   display: flex;
-  flex: 0.6;
+  flex: 0.5;
   justify-content: center;
   align-items: center;
   background-color: ${Colors.redColor};
@@ -23,7 +23,7 @@ const TopContainer = styled.View`
 
 const BottomContainer = styled.View`
   display: flex;
-  flex: 0.4;
+  flex: 0.3;
   margin-top: 6;
 `;
 
@@ -43,17 +43,6 @@ const ProfileScreen = ({
     </TopContainer>
     <BottomContainer>
       <List>
-        <ListItem icon>
-          <Left>
-            <MaterialIcons size={23} name='collections-bookmark' />
-          </Left>
-          <Body>
-            <Text>Collections</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
         <ListItem icon>
           <Left>
             <MaterialCommunityIcons size={23} name='read' />
