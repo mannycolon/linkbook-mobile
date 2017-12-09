@@ -1,23 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components/native';
 import { View, ScrollView, Image, Text, StyleSheet } from 'react-native';
 import LoadingScreen from '../../commons/LoadingScreen';
-
-const BoxShadow = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100px;
-  background-color: #FFFFFF;
-  shadow-color: #000000;
-  shadow-opacity: 0.5;
-  shadow-radius: 2;
-  shadow-offset: 0px 2px;
-  margin-vertical: 2.5;
-  elevation: 1;
-`;
+import BoxShadow from '../../commons/BoxShadow';
 
 export default class MyArticlesList extends Component {
   componentDidMount() {
@@ -75,7 +61,7 @@ export default class MyArticlesList extends Component {
 
 MyArticlesList.propTypes = {
   articles:	PropTypes.arrayOf(PropTypes.object),
-  navigation: PropTypes.object.isRequired,
+  navigation: PropTypes.shape(),
 };
 
 const styles = StyleSheet.create({
