@@ -21,6 +21,7 @@ const AddNewArticle = ({
 }) => (
   <View style={{ flex: 1, width: '100%' }}>
     <Field
+      autoFocus
       component={TextInputWithValidations}
       name="articleUrl"
       label="Article's URL"
