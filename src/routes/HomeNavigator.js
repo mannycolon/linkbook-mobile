@@ -9,6 +9,7 @@ import {
   HomeScreen,
   PublicArticlesScreen,
   ProfileScreen,
+  CollectionsScreen,
 } from '../screens';
 
 const AddButton = styled(TouchableOpacity)`
@@ -57,6 +58,27 @@ export default TabNavigator({
       tabBarIcon: ({ tintColor }) => (
         <MaterialIcons
           name='library-books'
+          size={25}
+          color={tintColor}
+        />
+      ),
+    }),
+  },
+  Collections: {
+    screen: CollectionsScreen,
+    navigationOptions: () => ({
+      title: 'Collections',
+      headerStyle: {
+        backgroundColor: '#bd0826',
+        height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
+        paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
+      },
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialIcons
+          name='collections-bookmark'
           size={25}
           color={tintColor}
         />
