@@ -7,12 +7,13 @@ import Colors from '../constants/Colors';
 const TextInputWithValidations = ({
   input,
   containerStyle,
+  labelStyle,
   label,
   meta: { touched, error },
   ...custom
 }) => (
   <View style={containerStyle}>
-    <FormLabel fontFamily="montserrat" labelStyle={{ color: Colors.blackBlueColor }}>
+    <FormLabel fontFamily="montserrat" labelStyle={{ color: Colors.blackBlueColor, ...labelStyle }}>
       {label}
     </FormLabel>
     <FormInput
