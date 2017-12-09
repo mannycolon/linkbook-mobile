@@ -6,7 +6,15 @@ const INITIAL_STATE = {
     isFetched: false,
     error: {
       on: false,
-      message: null,
+      message: '',
+    },
+  },
+  publicArticles: {
+    articles: [],
+    isFetched: false,
+    error: {
+      on: false,
+      message: '',
     },
   },
 };
@@ -17,17 +25,19 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case `${ActionTypes.FETCH_MY_ARTICLES}_FULFILLED`:
       return {
+        ...state,
         myArticles: {
           articles: action.payload,
           isFetched: true,
           error: {
             on: false,
-            message: null,
+            message: '',
           },
         },
       };
     case `${ActionTypes.FETCH_MY_ARTICLES}_REJECTED`:
       return {
+        ...state,
         myMeetups: {
           articles: [],
           isFetched: true,
@@ -37,6 +47,34 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
           },
         },
       };
+    case `${ActionTypes.FETCH_PUBLIC_ARTICLES}_PENDING`:
+      return INITIAL_STATE;
+    case `${ActionTypes.FETCH_PUBLIC_ARTICLES}_FULFILLED`:
+      return {
+        ...state,
+        publicArticles: {
+          articles: action.payload,
+          isFetched: true,
+          error: {
+            on: false,
+            message: '',
+          },
+        },
+      };
+    case `${ActionTypes.FETCH_PUBLIC_ARTICLES}_REJECTED`:
+      return {
+        ...state,
+        publicArticles: {
+          articles: [],
+          isFetched: true,
+          error: {
+            on: true,
+            message: 'Error when fetching my public articles',
+          },
+        },
+      };
+    case ActionTypes.LOGOUT:
+      return INITIAL_STATE;
     default:
       return state;
   }
