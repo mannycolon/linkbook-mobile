@@ -12,30 +12,30 @@ import fbConfig from '../../constants/fbConfig';
 import googleConfig from '../../constants/googleConfig';
 
 const FlexContainer = styled.View`
-	flex: 1;
-	justify-content: center;
-	align-items: center;
-	align-self: stretch;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
 `;
 
 const MeetupText = styled.Text`
-	color: ${Colors.redColor};
-	font-size: 18;
-	font-family: montserratBold;
+  color: ${Colors.redColor};
+  font-size: 18;
+  font-family: montserratBold;
 `;
 
 const BottomButtonWrapper = styled.View`
-	flex: 0.2;
-	flex-direction: row;
+  flex: 0.2;
+  flex-direction: row;
 `;
 
 const Button = styled.TouchableOpacity`
-	flex: 1;
-	justify-content: space-around;
-	align-items: center;
-	background-color: ${({ color }) => color};
-	flex-direction: row;
-	padding-horizontal: 10;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  background-color: ${({ color }) => color};
+  flex-direction: row;
+  padding-horizontal: 10;
 `;
 
 class LoginScreen extends Component {
@@ -52,7 +52,7 @@ class LoginScreen extends Component {
       const { type, token } = await Facebook.logInWithReadPermissionsAsync(fbConfig.APP_ID, {
         permissions: ['public_profile', 'email'],
       });
-  
+      
       if (type === 'success') {
         this.props.login(token, 'facebook');
       } else {
@@ -66,8 +66,11 @@ class LoginScreen extends Component {
   async loginWithGoogle() {
     try {
       const result = await Google.logInAsync({
+        androidClientId: googleConfig.CLIENT_ID_ANDROID,
+        androidStandaloneAppClientId: googleConfig.CLIENT_ID_ANDROID_STANDALONE_APP,
         iosClientId: googleConfig.CLIENT_ID_IOS,
         scopes: ['profile', 'email'],
+        behavior: 'web',
       });
 
       if (result.type === 'success') {
