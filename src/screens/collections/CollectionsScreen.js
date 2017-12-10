@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Dimensions, RefreshControl } from 'react-native';
+import { View, Dimensions, RefreshControl, Platform } from 'react-native';
 import { Tile } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
 // actions
@@ -52,7 +52,7 @@ class CollectionsScreen extends Component {
         }
         itemDimension={150}
         items={collections}
-        style={{ paddingTop: 10, flex: 1 }}
+        style={{ paddingTop: 10, flex: 1, marginTop: Platform.OS === 'ios' ? 0 : 5 }}
         renderItem={collection => (
           <View>
             <Tile
