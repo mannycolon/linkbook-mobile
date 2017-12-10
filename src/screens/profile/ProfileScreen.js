@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ScrollView, View, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { Thumbnail, List, ListItem, Left, Right, Body, Icon } from 'native-base';
 import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
@@ -15,7 +15,7 @@ const TopContainer = styled.View`
   align-items: center;
   background-color: ${Colors.redColor};
   shadow-color: #000000;
-  shadow-opacity: 0.5;
+  shadow-opacity: 0.6;
   shadow-radius: 2;
   shadow-offset: 0px 4px;
   elevation: 1;
