@@ -35,7 +35,7 @@ const ModalBodyContent = ({
           </TouchableOpacity>
           {
             collections.map((collection, index) => (
-              <TouchableOpacity key={index} onPress={() => selectCollectionName(collection.name)}>
+              <TouchableOpacity key={index.toString()} onPress={() => selectCollectionName(collection.name)}>
                 <Image source={{ uri: collection.articles[0].imageURL }} style={{ height: 80, width: 80, padding: 0, margin: 10 }} />
                 <Text style={{ alignSelf: 'center' }}>{collection.name}</Text>
               </TouchableOpacity>
