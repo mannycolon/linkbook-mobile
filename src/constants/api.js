@@ -1,15 +1,15 @@
 import axios from 'axios';
 // import { Platform } from 'react-native';
+// // Because of genymotion we need to change the url here
+// // http://stackoverflow.com/questions/5528850/how-to-connect-localhost-in-android-emulator
+// let url;
+// if (Platform.OS !== 'ios') {
+//   url = 'http://10.0.3.2:5000/api';
+// } else {
+//   url = 'http://localhost:5000/api';
+// }
 
 const url = 'https://link-book-app.herokuapp.com/api';
-
-// Because of genymotion we need to change the url here
-// http://stackoverflow.com/questions/5528850/how-to-connect-localhost-in-android-emulator
-// if (Platform.OS !== 'ios') {
-//   url = 'http://10.0.3.2:3000/api';
-// } else {
-//   url = 'http://localhost:3000/api';
-// }
 
 axios.defaults.baseURL = url;
 
