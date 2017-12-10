@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView, Image, Text, StyleSheet, RefreshControl } from 'react-native';
+import { View, FlatList, Image, Text, StyleSheet } from 'react-native';
 import LoadingScreen from '../../commons/LoadingScreen';
 import BoxShadow from '../../commons/BoxShadow';
 
@@ -51,28 +51,24 @@ export default class MyArticlesList extends Component {
     }
 
     return (
-      <ScrollView
-        style={styles.container}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-        }
-      >
-        {
-          articles.map((article, index) => (
-            <BoxShadow key={index} onPress={() => navigate('WebView', article)}>
-              <Image source={{ uri: article.imageURL }} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
-              <View style={{ width: 0, flexGrow: 1 }}>
-                <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={4}>
-                  {article.title}
-                </Text>
-              </View>
-            </BoxShadow>
-          ))
-        }
-      </ScrollView>
+      <FlatList
+        key={'flatlistexample'}
+        style={{ flex: 1 }}
+        data={articles}
+        keyExtractor={(item, index) => index}
+        renderItem={({ item, index }) => (
+          <BoxShadow key={index} onPress={() => navigate('WebView', item)}>
+            <Image source={{ uri: item.imageURL }} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
+            <View style={{ width: 0, flexGrow: 1 }}>
+              <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={4}>
+                {item.title}
+              </Text>
+            </View>
+          </BoxShadow>
+        )}
+        refreshing={this.state.refreshing}
+        onRefresh={() => this._onRefresh}
+      />
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ScrollView, View, Text, Image, RefreshControl } from 'react-native';// components
+import { FlatList, View, Text, Image } from 'react-native';// components
 import BoxShadow from '../../commons/BoxShadow';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
@@ -31,32 +31,33 @@ class PublicArticlesScreen extends Component {
 
   render() {
     const {
-      articles,
-    } = this.props.publicArticles;
+      publicArticles: {
+        articles,
+      },
+      navigation: {
+        navigate,
+      },
+    } = this.props;
 
     return (
-      <ScrollView
+      <FlatList
+        key={'flatlistexample'}
         style={{ flex: 1 }}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
-          />
-        }
-      >
-        {
-          articles.map((article, index) => (
-            <BoxShadow key={index.toString()} onPress={() => this.props.navigation.navigate('WebView', article)}>
-              <Image source={{ uri: article.imageURL }} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
-              <View style={{ width: 0, flexGrow: 1 }}>
-                <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={4}>
-                  {article.title}
-                </Text>
-              </View>
-            </BoxShadow>
-          ))
-        }
-      </ScrollView>
+        data={articles}
+        keyExtractor={(item, index) => index}
+        renderItem={({ item, index }) => (
+          <BoxShadow key={index} onPress={() => navigate('WebView', item)}>
+            <Image source={{ uri: item.imageURL }} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
+            <View style={{ width: 0, flexGrow: 1 }}>
+              <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={4}>
+                {item.title}
+              </Text>
+            </View>
+          </BoxShadow>
+        )}
+        refreshing={this.state.refreshing}
+        onRefresh={() => this._onRefresh}
+      />
     );
   }
 }
