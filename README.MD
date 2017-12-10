@@ -15,4 +15,5 @@
   - Share article urls from other apps into link-book
     - https://github.com/alinz/react-native-share-extension
   - Share articles from link-book to other apps
+    - http://codingmiles.com/react-native-inbuilt-share-library/
     - https://github.com/EstebanFuentealba/react-native-share
