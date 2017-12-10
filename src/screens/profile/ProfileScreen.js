@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { Thumbnail, List, ListItem, Left, Right, Body, Icon } from 'native-base';
 import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
@@ -35,7 +35,7 @@ const ProfileScreen = ({
   },
   logout,
 }) => (
-  <View style={{ flex: 1 }}>
+  <ScrollView style={{ flex: 1 }}>
     <TopContainer>
       <Thumbnail large source={{ uri: avatar }} style={{ margin: 10, borderColor: Colors.whiteColor, borderWidth: 2 }} />
       <Text style={{ fontWeight: 'bold', margin: 10, color: Colors.whiteColor }}>{fullName}</Text>
@@ -89,7 +89,7 @@ const ProfileScreen = ({
         </ListItem>
       </List>
     </BottomContainer>
-  </View>
+  </ScrollView>
 );
 
 ProfileScreen.propTypes = {

@@ -9,9 +9,9 @@
   #### Frontend
   - Add screen scrolling to profile screen and the add article screen when app is resized.
   - Share articles from link-book to other apps
+  - <ScrollView> vs <FlatList> 
   #### Last
   - Share article urls from other apps into link-book.
-
 
   # Modules that could be use for future features:
   - Share article urls from other apps into link-book

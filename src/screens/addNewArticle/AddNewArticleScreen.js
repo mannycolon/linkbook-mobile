@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 // components
 import AddNewArticle from './components/AddNewArticle';
 import SelectCollectionNameModal from './components/CollectionNameModal';
@@ -49,7 +49,7 @@ class AddNewArticleScreen extends Component {
       selectCollectionName,
     } = this.props;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <AddNewArticle
           addNewArticle={this._addNewArticle}
           isPublic={this.state.isPublic}
@@ -69,7 +69,7 @@ class AddNewArticleScreen extends Component {
           tempCollectionName={tempCollectionName}
           selectCollectionName={selectCollectionName}
         />
-      </View>
+      </ScrollView>
     );
   }
 }
