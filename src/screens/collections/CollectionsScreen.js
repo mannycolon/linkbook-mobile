@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, RefreshControl } from 'react-native';
 import { Tile } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
 // actions
 import * as CollectionsActions from '../../actions/collectionsActions';
 
 class CollectionsScreen extends Component {
+  state = {
+    refreshing: true,
+  }
+
   componentDidMount() {
     this.props.fetchMyCollections();
   }
@@ -18,6 +22,12 @@ class CollectionsScreen extends Component {
     if (currentScreenIndex !== 2 && newScreenIndex === 2) {
       this.props.fetchMyCollections();
     }
+    this.setState({ refreshing: false });
+  }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.props.fetchMyCollections();
   }
 
   render() {
@@ -34,6 +44,12 @@ class CollectionsScreen extends Component {
 
     return (
       <GridView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
         itemDimension={150}
         items={collections}
         style={{ paddingTop: 10, flex: 1 }}

@@ -1,11 +1,15 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, ScrollView, Image, Text, StyleSheet } from 'react-native';
+import { View, ScrollView, Image, Text, StyleSheet, RefreshControl } from 'react-native';
 import LoadingScreen from '../../commons/LoadingScreen';
 import BoxShadow from '../../commons/BoxShadow';
 
 export default class MyArticlesList extends Component {
+  state = {
+    refreshing: false,
+  }
+
   componentDidMount() {
     this.props.fetchMyArticles();
   }
@@ -16,8 +20,14 @@ export default class MyArticlesList extends Component {
     if (currentScreenIndex !== 0 && newScreenIndex === 0) {
       this.props.fetchMyArticles();
     }
+    this.setState({ refreshing: false });
   }
-  
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.props.fetchMyArticles();
+  }
+
   render() {
     const {
       myArticles: {
@@ -41,7 +51,15 @@ export default class MyArticlesList extends Component {
     }
 
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+      >
         {
           articles.map((article, index) => (
             <BoxShadow key={index} onPress={() => navigate('WebView', article)}>

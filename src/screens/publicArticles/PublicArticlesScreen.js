@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ScrollView, View, Text, Image } from 'react-native';// components
+import { ScrollView, View, Text, Image, RefreshControl } from 'react-native';// components
 import BoxShadow from '../../commons/BoxShadow';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
 
 class PublicArticlesScreen extends Component {
+  state = {
+    refreshing: false,
+  }
+
   componentDidMount() {
     this.props.fetchPublicArticles();
   }
@@ -17,6 +21,12 @@ class PublicArticlesScreen extends Component {
     if (currentScreenIndex !== 1 && newScreenIndex === 1) {
       this.props.fetchPublicArticles();
     }
+    this.setState({ refreshing: false });
+  }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true });
+    this.props.fetchPublicArticles();
   }
 
   render() {
@@ -25,7 +35,15 @@ class PublicArticlesScreen extends Component {
     } = this.props.publicArticles;
 
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView
+        style={{ flex: 1 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh}
+          />
+        }
+      >
         {
           articles.map((article, index) => (
             <BoxShadow key={index.toString()} onPress={() => this.props.navigation.navigate('WebView', article)}>
