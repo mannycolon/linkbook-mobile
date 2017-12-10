@@ -17,6 +17,7 @@ const INITIAL_STATE = {
       message: '',
     },
   },
+  addArticleErrorMessage: '',
 };
 
 const articlesReducer = (state = INITIAL_STATE, action) => {
@@ -72,6 +73,11 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
             message: 'Error when fetching my public articles',
           },
         },
+      };
+    case ActionTypes.ADD_NEW_ARTICLE_ERROR:
+      return {
+        ...state,
+        addArticleErrorMessage: action.message,
       };
     case ActionTypes.LOGOUT:
       return INITIAL_STATE;

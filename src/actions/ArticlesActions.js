@@ -26,10 +26,15 @@ export const addNewArticle = (articleUrl, isPublic) => async (dispatch, getState
   try {
     await LinkBookAPI.addArticle(articleUrl, userId, isPublic, collectionName || 'none');
     dispatch({ type: ActionTypes.ADD_NEW_ARTICLE_SUCCESS });
-  } catch (err) {
-    console.log(err);
-    return dispatch({ type: ActionTypes.ADD_NEW_ARTICLE_ERROR });
+  } catch (error) {
+    const { message } = error.response.data;
+    return dispatch({ type: ActionTypes.ADD_NEW_ARTICLE_ERROR, message });
   }
   dispatch({ type: ActionTypes.CLEAR_COLLECTIONS_REDUCER });
   return await dispatch(fetchMyArticles());
 };
+
+export const clearAddArticleErrorMessage = () => ({
+  type: ActionTypes.ADD_NEW_ARTICLE_ERROR,
+  message: '',
+});
