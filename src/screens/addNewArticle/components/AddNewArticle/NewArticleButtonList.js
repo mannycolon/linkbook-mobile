@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { ActionSheet, List, ListItem, Left, Right, Body, Icon } from 'native-base';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Colors from '../../../../constants/Colors';
@@ -19,52 +19,54 @@ const NewArticleButtonList = ({
   isPublic,
   newCollectionName,
 }) => (
-  <List style={{ marginRight: 20, marginTop: 40 }}>
-    <ListItem
-      style={{ margin: 10 }}
-      icon
-      onPress={() =>
-        ActionSheet.show(
-          {
-            options: BUTTONS,
-            cancelButtonIndex: CANCEL_INDEX,
-            destructiveButtonIndex: DESTRUCTIVE_INDEX,
-            title: 'Select the privacy setting for your article',
-          },
-          buttonIndex => {
-            onPrivacyChange(BUTTONS[buttonIndex].text);
-          }
-        )
-      }
-    >
-      <Left>
-        <Ionicons size={28} name='md-globe' />
-      </Left>
-      <Body>
-        <Text style={{ fontSize: 16 }}>Article's Privacy Setting</Text>
-      </Body>
-      <Right>
-        <Text style={{ color: Colors.greyColor }}>{isPublic}</Text>
-        <Icon name="arrow-forward" />
-      </Right>
-    </ListItem>
-    <ListItem
-      style={{ margin: 10 }}
-      icon
-      onPress={() => showModal()}
-    >
-      <Left>
-        <MaterialIcons size={23} name='collections-bookmark' />
-      </Left>
-      <Body>
-        <Text style={{ fontSize: 16 }}>Collections</Text>
-      </Body>
-      <Right>
-        <Text style={{ color: Colors.greyColor }}>{newCollectionName}</Text>
-        <Icon name="arrow-forward" />
-      </Right>
-    </ListItem>
-  </List>
+  <ScrollView>
+    <List style={{ marginRight: 20, marginTop: 40 }}>
+      <ListItem
+        style={{ margin: 10 }}
+        icon
+        onPress={() =>
+          ActionSheet.show(
+            {
+              options: BUTTONS,
+              cancelButtonIndex: CANCEL_INDEX,
+              destructiveButtonIndex: DESTRUCTIVE_INDEX,
+              title: 'Select the privacy setting for your article',
+            },
+            buttonIndex => {
+              onPrivacyChange(BUTTONS[buttonIndex].text);
+            }
+          )
+        }
+      >
+        <Left>
+          <Ionicons size={28} name='md-globe' />
+        </Left>
+        <Body>
+          <Text style={{ fontSize: 16 }}>Article's Privacy Setting</Text>
+        </Body>
+        <Right>
+          <Text style={{ color: Colors.greyColor }}>{isPublic}</Text>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
+      <ListItem
+        style={{ margin: 10 }}
+        icon
+        onPress={() => showModal()}
+      >
+        <Left>
+          <MaterialIcons size={23} name='collections-bookmark' />
+        </Left>
+        <Body>
+          <Text style={{ fontSize: 16 }}>Collections</Text>
+        </Body>
+        <Right>
+          <Text style={{ color: Colors.greyColor }}>{newCollectionName}</Text>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
+    </List>
+  </ScrollView>
 );
 
 NewArticleButtonList.propTypes = {
