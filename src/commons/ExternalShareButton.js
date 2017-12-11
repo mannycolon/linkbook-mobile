@@ -29,8 +29,8 @@ export default class ExternalShareButton extends Component {
 
 ExternalShareButton.propTypes = {
   contentToBeShared: PropTypes.string.isRequired,
-  iconColor: PropTypes.string.isRequired,
-  iconSize: PropTypes.number.isRequired,
+  iconColor: PropTypes.string,
+  iconSize: PropTypes.number,
 };
 
 const styles = StyleSheet.create({
