@@ -44,6 +44,7 @@ class CollectionsScreen extends Component {
 
     return (
       <GridView
+        enableEmptySections
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
