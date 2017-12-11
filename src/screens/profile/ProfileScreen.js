@@ -8,6 +8,8 @@ import styled from 'styled-components/native';
 import Colors from '../../constants/Colors';
 // actions
 import * as LoginActions from '../../actions/LoginActions';
+// constants
+const pkg = require('../../../package.json');
 
 const TopContainer = styled.View`
   display: flex;
@@ -90,6 +92,9 @@ const ProfileScreen = ({
         </ListItem>
       </List>
     </BottomContainer>
+    <Text style={{ textAlign: 'center', fontWeight: 'bold', padding: 5 }}>
+      LinkBook version: {pkg.version}
+    </Text>
   </ScrollView>
 );
 
