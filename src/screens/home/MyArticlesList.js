@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Image, Text, TouchableOpacity, Share } from 'react-native';
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { View, FlatList, Image, Text } from 'react-native';
+// components
 import LoadingScreen from '../../commons/LoadingScreen';
 import BoxShadow from '../../commons/BoxShadow';
+import ExternalShareButton from '../../commons/ExternalShareButton';
 // helpers
 import * as stringHelpers from '../../helpers/stringHelpers';
 
@@ -29,18 +30,6 @@ export default class MyArticlesList extends Component {
   _onRefresh = () => {
     this.setState({ refreshing: true });
     this.props.fetchMyArticles();
-  }
-
-  _shareText(text) {
-    Share.share({
-      message: text,
-    })
-      .then(this._showResult)
-      .catch(err => console.log(err));
-  }
-
-  _showResult = (result) => {
-    console.log(result);
   }
 
   render() {
@@ -81,12 +70,7 @@ export default class MyArticlesList extends Component {
                 <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={3}>
                   {item.title}
                 </Text>
-                <TouchableOpacity
-                  style={{ alignSelf: 'flex-end', marginHorizontal: 5, position: 'absolute', right: 0, bottom: '2%' }}
-                  onPress={() => this._shareText(item.articleUrl)}
-                >
-                  <SimpleLineIcons size={23} name='share' />
-                </TouchableOpacity>
+                <ExternalShareButton contentToBeShared={item.articleUrl} />
               </View>
             </BoxShadow>
           );

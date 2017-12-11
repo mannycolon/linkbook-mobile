@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FlatList, View, Text, Image, Share, TouchableOpacity } from 'react-native';// components
-import { SimpleLineIcons } from '@expo/vector-icons';
+import { FlatList, View, Text, Image } from 'react-native';
+// components
 import BoxShadow from '../../commons/BoxShadow';
+import ExternalShareButton from '../../commons/ExternalShareButton';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
 // helpers
@@ -33,18 +34,6 @@ class PublicArticlesScreen extends Component {
     this.props.fetchPublicArticles();
   }
 
-  _shareText(text) {
-    Share.share({
-      message: text,
-    })
-      .then(this._showResult)
-      .catch(err => console.log(err));
-  }
-
-  _showResult = (result) => {
-    console.log(result);
-  }
-
   render() {
     const {
       publicArticles: {
@@ -71,12 +60,7 @@ class PublicArticlesScreen extends Component {
                 <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={3}>
                   {item.title}
                 </Text>
-                <TouchableOpacity
-                  style={{ alignSelf: 'flex-end', marginHorizontal: 5, position: 'absolute', right: 0, bottom: '2%' }}
-                  onPress={() => this._shareText(item.articleUrl)}
-                >
-                  <SimpleLineIcons size={23} name='share' />
-                </TouchableOpacity>
+                <ExternalShareButton contentToBeShared={item.articleUrl} />
               </View>
             </BoxShadow>
           );

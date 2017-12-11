@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import styled from 'styled-components/native';
 import HomeNavigator from './HomeNavigator';
-
+import ExternalShareButton from '../commons/ExternalShareButton';
 import {
   AddNewArticleScreen,
   WebViewScreen,
@@ -82,6 +82,12 @@ export default StackNavigator({
             color="#ffffff"
           />
         </CloseButton>,
+      headerRight:
+        <ExternalShareButton
+          iconColor="#ffffff"
+          iconSize={26}
+          contentToBeShared={navigation.state.params.articleUrl}
+        />,
     }),
   },
 }, {

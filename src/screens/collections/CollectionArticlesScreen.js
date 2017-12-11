@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, Image } from 'react-native';// components
+import { ScrollView, View, Text, Image } from 'react-native';
+// components
+import ExternalShareButton from '../../commons/ExternalShareButton';
 import BoxShadow from '../../commons/BoxShadow';
 // helpers
 import * as stringHelpers from '../../helpers/stringHelpers';
@@ -24,6 +26,7 @@ export default class CollectionArticlesScreen extends Component {
                   <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={4}>
                     {article.title}
                   </Text>
+                  <ExternalShareButton contentToBeShared={article.articleUrl} />
                 </View>
               </BoxShadow>
             );
