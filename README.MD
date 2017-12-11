@@ -1,16 +1,17 @@
 
   # Todo List
   #### Backend
-  - Add ability to delete a collection.
-  - Add ability to remove article from a collection.
-  - Add ability to add an article to a collection.
-  - Add ability to change an article's privacy setting.
-  - Add ability to edit and change a collection name.
+  - Update (edit)
+    - Add ability to change an article's privacy setting. (backend & frontend)
+    - Add ability to edit and change a collection name. (backend & frontend)
+
+  ### Frontend
+   - Add ability to delete a collection. (Frontend)
+   - Add ability to remove article from a collection. (Frontend)
+   - Add ability to add an article to a collection. (Frontend)
 
   #### Last
   - Share article urls from other apps into link-book.
-  # Modules that could be use for future features:
-  - Share article urls from other apps into link-book
     - https://github.com/alinz/react-native-share-extension
 
   # Done
@@ -20,3 +21,6 @@
    - Add screen scrolling to profile screen and the add article screen when app is resized.
    - Replaced <ScrollView> with <FlatList> where appropiately.
    - Share articles from link-book to other apps
+   - Added ability to delete a collection. (Backend)
+   - Added ability to remove article from a collection. (Backend)
+   - Added ability to add an article to a collection. (Backend)
