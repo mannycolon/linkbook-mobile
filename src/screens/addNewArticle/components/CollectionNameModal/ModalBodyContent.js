@@ -14,13 +14,16 @@ const ModalBodyContent = ({
     {
       isNewCollectionScreenVisible ?
         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <Image source={{ uri: 'https://cdn.patricktriest.com/blog/images/posts/async-await/async_await_header.png' }} style={{ height: 60, width: 60, padding: 0, marginTop: 10 }} />
+          <Image
+            source={require('../../../../../assets/images/new-collection-placeholder.jpg')}
+            style={{ height: 60, width: 60, padding: 0, marginTop: 10 }}
+          />
           <FormInput
             autoFocus
             onChangeText={createAndValidateNewCollectionName}
             style={{ width: 120, textAlign: 'center', margin: 5, padding: 5 }}
           />
-          { 
+          {
             newCollectionNameIsDuplicate &&
             <FormValidationMessage>
               {'Collection name already exists'}
