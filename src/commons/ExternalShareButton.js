@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, StyleSheet, Share } from 'react-native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 
-export default class ExternalShare extends Component {
+export default class ExternalShareButton extends Component {
   _shareText(text) {
     Share.share({
       message: text,
@@ -18,16 +18,16 @@ export default class ExternalShare extends Component {
   }
 
   render() {
-    const { contentToBeShared } = this.props;
+    const { contentToBeShared, iconColor, iconSize } = this.props;
     return (
       <TouchableOpacity style={styles.container} onPress={() => this._shareText(contentToBeShared)}>
-        <SimpleLineIcons size={23} name='share' />
+        <SimpleLineIcons size={iconSize || 23} name='share' color={iconColor || '#000000'} />
       </TouchableOpacity>
     );
   }
 }
 
-ExternalShare.propTypes = {
+ExternalShareButton.propTypes = {
   contentToBeShared:	PropTypes.string.isRequired,
 };
 
