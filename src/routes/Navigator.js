@@ -1,7 +1,7 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import { TouchableOpacity, Platform } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import styled from 'styled-components/native';
 import HomeNavigator from './HomeNavigator';
@@ -60,6 +60,15 @@ export default StackNavigator({
             color="#ffffff"
           />
         </CloseButton>,
+      headerRight:
+        <TouchableOpacity>
+          <MaterialCommunityIcons
+            name="dots-vertical"
+            size={30}
+            color="#ffffff"
+          />
+        </TouchableOpacity>,
+
     }),
   },
   WebView: {
