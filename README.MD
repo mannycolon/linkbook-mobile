@@ -3,7 +3,7 @@
   #### Backend
   - Update (edit)
     - Add ability to change an article's privacy setting. (backend & frontend)
-    - Add ability to edit and change a collection name. (backend & frontend)
+    - Add ability to edit a collection name in its settings. (backend & frontend)
 
   ### Frontend
    - Add ability to delete a collection. (Frontend)
