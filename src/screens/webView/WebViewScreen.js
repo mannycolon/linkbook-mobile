@@ -17,6 +17,7 @@ export default class WebViewScreen extends Component {
           renderLoading={() => <LoadingScreen />}
           javaScriptEnabledAndroid
           startInLoadingState
+          thirdPartyCookiesEnabled
         />
       </View>
     );
