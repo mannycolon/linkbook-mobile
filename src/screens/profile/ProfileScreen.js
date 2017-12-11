@@ -6,6 +6,7 @@ import { Thumbnail, List, ListItem, Left, Right, Body, Icon } from 'native-base'
 import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import Colors from '../../constants/Colors';
+// actions
 import * as LoginActions from '../../actions/LoginActions';
 
 const TopContainer = styled.View`
@@ -42,7 +43,7 @@ const ProfileScreen = ({
       <Text style={{ fontWeight: 'bold', margin: 10, color: Colors.whiteColor }}>{email}</Text>
     </TopContainer>
     <BottomContainer>
-      <List>
+      <List style={{ backgroundColor: '#ffffff' }}>
         <ListItem icon>
           <Left>
             <MaterialCommunityIcons size={23} name='read' />
