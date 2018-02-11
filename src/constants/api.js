@@ -32,9 +32,9 @@ class LinkBook {
     }
   }
 
-  async addArticle(articleUrl, userId, isPublic, collectionName) {
+  async addArticle(articleUrl, userId, isPublic, collectionNames) {
     try {
-      const res = await axios.post(`/users/${userId}/articles/new`, { articleUrl, isPublic, collectionName });
+      const res = await axios.post(`/users/${userId}/articles/new`, { articleUrl, isPublic, collectionNames });
       return res;
     } catch (error) {
       throw error;
@@ -45,6 +45,33 @@ class LinkBook {
     try {
       const { data } = await axios.get(`/users/${userId}/collections`);
       return data.collections;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async deleteCollection(userId, collectionName) {
+    try {
+      const res = await axios.post(`/collections/${userId}/delete`, { collectionName });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async updateArticleCollectionNames(userId, collectionNames, articleId) {
+    try {
+      const res = await axios.post(`/collections/${userId}/update`, { collectionNames, articleId });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async changeArticlePrivacy(isPublic, userId, articleId) {
+    try {
+      const res = await axios.post(`/articles/${userId}/update/privacy`, { articleId, isPublic });
+      return res;
     } catch (error) {
       throw error;
     }

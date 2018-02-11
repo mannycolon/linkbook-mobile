@@ -1,17 +1,18 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, FlatList, Image, Text } from 'react-native';
+import { View, Text } from 'react-native';
 // components
 import LoadingScreen from '../../commons/LoadingScreen';
-import BoxShadow from '../../commons/BoxShadow';
-import ExternalShareButton from '../../commons/ExternalShareButton';
-// helpers
-import * as stringHelpers from '../../helpers/stringHelpers';
+import ArticleCards from '../../commons/ArticleCards';
+import CollectionNameModal from '../addNewArticle/components/CollectionNameModal';
 
 export default class MyArticlesList extends Component {
   state = {
     refreshing: false,
+    articleId: '',
+    actionType: '',
+    currentArticleCollectionNames: [],
   }
 
   componentDidMount() {
@@ -32,6 +33,17 @@ export default class MyArticlesList extends Component {
     this.props.fetchMyArticles();
   }
 
+  _onCollectionIconClick = (actionType, articleId, currentArticleCollectionNames) => {
+    this.setState({ articleId, actionType, currentArticleCollectionNames });
+    this.props.updateSelectedCollectionNames(currentArticleCollectionNames);
+    this.props.showModal();
+  }
+
+  _submitAction = () => {
+    const articleId = this.state.articleId;
+    this.props.updateArticleCollectionNames(articleId);
+  }
+
   render() {
     const {
       myArticles: {
@@ -42,7 +54,23 @@ export default class MyArticlesList extends Component {
       navigation: {
         navigate,
       },
+      hideModal,
+      showNewCollectionScreen,
+      hideNewCollectionScreen,
+      createAndValidateNewCollectionName,
+      fetchMyCollections,
+      onCollectionNameSelected,
+      changeArticlePrivacy,
     } = this.props;
+
+    const {
+      collections,
+      newCollectionNameIsDuplicate,
+      tempCollectionName,
+      isModalVisible,
+      isNewCollectionScreenVisible,
+      selectedCollectionNames,
+    } = this.props.collectionsReducer;
 
     if (!isFetched) {
       return <LoadingScreen />;
@@ -55,29 +83,32 @@ export default class MyArticlesList extends Component {
     }
 
     return (
-      <FlatList
-        key={'flatlistexample'}
-        style={{ flex: 1 }}
-        data={articles}
-        keyExtractor={(item, index) => index}
-        renderItem={({ item, index }) => {
-          const validImageType = stringHelpers.isPathAImageExtension(item.imageURL);
-          const imageSrc = item.imageURL && validImageType ? { uri: item.imageURL } : require('../../../assets/images/no-image.jpg');
-          return (
-            <BoxShadow key={index.toString()} onPress={() => navigate('WebView', item)}>
-              <Image source={imageSrc} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
-              <View style={{ width: 0, flexGrow: 1 }}>
-                <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={3}>
-                  {item.title}
-                </Text>
-                <ExternalShareButton contentToBeShared={item.articleUrl} />
-              </View>
-            </BoxShadow>
-          );
-        }}
-        refreshing={this.state.refreshing}
-        onRefresh={() => this._onRefresh}
-      />
+      <View style={{ flex: 1 }}>
+        <ArticleCards
+          articles={articles}
+          navigate={navigate}
+          refreshing={this.state.refreshing}
+          onRefresh={this._onRefresh}
+          onCollectionIconClick={this._onCollectionIconClick}
+          changeArticlePrivacy={changeArticlePrivacy}
+        />
+        <CollectionNameModal
+          collections={collections}
+          isModalVisible={isModalVisible}
+          isNewCollectionScreenVisible={isNewCollectionScreenVisible}
+          hideModal={hideModal}
+          showNewCollectionScreen={showNewCollectionScreen}
+          hideNewCollectionScreen={hideNewCollectionScreen}
+          createAndValidateNewCollectionName={createAndValidateNewCollectionName}
+          newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
+          tempCollectionName={tempCollectionName}
+          onCollectionNameSelected={onCollectionNameSelected}
+          submitAction={() => this._submitAction()}
+          fetchMyCollections={fetchMyCollections}
+          selectedCollectionNames={selectedCollectionNames}
+          currentArticleCollectionNames={this.state.currentArticleCollectionNames}
+        />
+      </View>
     );
   }
 }

@@ -1,14 +1,10 @@
 
   # Todo List
-  #### Backend
-  - Update (edit)
-    - Add ability to change an article's privacy setting. (backend & frontend)
-    - Add ability to edit a collection name in its settings. (backend & frontend)
-
-  ### Frontend
-   - Add ability to delete a collection. (Frontend)
+   ### Frontend
    - Add ability to remove article from a collection. (Frontend)
    - Add ability to add an article to a collection. (Frontend)
+   - Add ability to change an article's privacy setting. (frontend)
+   - Fix bug with article collection selection. (Frontend)
 
   #### Last
   - Share article urls from other apps into link-book.
@@ -24,3 +20,5 @@
    - Added ability to delete a collection. (Backend)
    - Added ability to remove article from a collection. (Backend)
    - Added ability to add an article to a collection. (Backend)
+   - Add ability to delete a collection. (Frontend)
+   - Add ability to edit a collection name in its settings. (Backend and Frontend)

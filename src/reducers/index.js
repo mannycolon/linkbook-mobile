@@ -5,6 +5,7 @@ import userReducer from './userReducer';
 import navigationReducer from './navigationReducer';
 import articlesReducer from './articlesReducer';
 import collectionsReducer from './collectionsReducer';
+import ModalReducer from './ModalReducer';
 
 export default combineReducers({
   userReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   form,
   articlesReducer,
   collectionsReducer,
+  ModalReducer,
 });

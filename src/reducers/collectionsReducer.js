@@ -2,11 +2,13 @@ import ActionTypes from '../actions/ActionTypes';
 
 const INITIAL_STATE = {
   collections: [],
+  fetchingCollections: false,
   isModalVisible: false,
   isNewCollectionScreenVisible: false,
   tempCollectionName: '',
   newCollectionName: '',
   newCollectionNameIsDuplicate: false,
+  selectedCollectionNames: [],
 };
 
 const collectionsReducer = (state = INITIAL_STATE, action) => {
@@ -17,10 +19,16 @@ const collectionsReducer = (state = INITIAL_STATE, action) => {
         tempCollectionName: action.tempCollectionName,
         newCollectionNameIsDuplicate: action.newCollectionNameIsDuplicate,
       };
+    case ActionTypes.FETCHING_MY_COLLECTIONS:
+      return {
+        ...state,
+        fetchingCollections: true,
+      };
     case ActionTypes.FETCH_MY_COLLECTIONS:
       return {
         ...state,
         collections: action.collections,
+        fetchingCollections: false,
       };
     case ActionTypes.SHOW_NEW_COLLECTION_MODAL:
       return {
@@ -53,6 +61,11 @@ const collectionsReducer = (state = INITIAL_STATE, action) => {
         tempCollectionName: '',
         isNewCollectionScreenVisible: false,
         isModalVisible: false,
+      };
+    case ActionTypes.UPDATE_SELECTED_COLLECTION_NAMES:
+      return {
+        ...state,
+        selectedCollectionNames: action.selectedCollectionNames,
       };
     case ActionTypes.CLEAR_COLLECTIONS_REDUCER:
       return INITIAL_STATE;

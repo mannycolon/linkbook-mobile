@@ -4,7 +4,7 @@ import { TabNavigator } from 'react-navigation';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import styled from 'styled-components/native';
-
+import Colors from '../constants/Colors';
 import {
   HomeScreen,
   PublicArticlesScreen,
@@ -116,7 +116,7 @@ export default TabNavigator({
   tabBarOptions: {
     showLabel: false,
     showIcon: true, // android doesn't show it automatically.
-    inactiveTintColor: '#D3D3D3',
+    inactiveTintColor: Colors.lightGreyColor,
     activeTintColor: '#000000',
     pressColor: '#bd0826',
     indicatorStyle: {

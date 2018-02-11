@@ -7,6 +7,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 export default class ExternalShareButton extends Component {
   _shareText(text) {
     Share.share({
+      title: 'Share This Article',
       message: text,
     })
       .then(this._showResult)

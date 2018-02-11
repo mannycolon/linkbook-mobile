@@ -2,14 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FlatList, View, Text, Image } from 'react-native';
 // components
-import BoxShadow from '../../commons/BoxShadow';
-import ExternalShareButton from '../../commons/ExternalShareButton';
+import ArticleCards from '../../commons/ArticleCards';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
-// helpers
-import * as stringHelpers from '../../helpers/stringHelpers';
 
 class PublicArticlesScreen extends Component {
   state = {
@@ -45,28 +41,12 @@ class PublicArticlesScreen extends Component {
     } = this.props;
 
     return (
-      <FlatList
-        key={'flatlistexample'}
-        style={{ flex: 1 }}
-        data={articles}
-        keyExtractor={(item, index) => index}
-        renderItem={({ item, index }) => {
-          const validImageType = stringHelpers.isPathAImageExtension(item.imageURL);
-          const imageSrc = item.imageURL && validImageType ? { uri: item.imageURL } : require('../../../assets/images/no-image.jpg');
-          return (
-            <BoxShadow key={index} onPress={() => navigate('WebView', item)}>
-              <Image source={imageSrc} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
-              <View style={{ width: 0, flexGrow: 1 }}>
-                <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={3}>
-                  {item.title}
-                </Text>
-                <ExternalShareButton contentToBeShared={item.articleUrl} />
-              </View>
-            </BoxShadow>
-          );
-        }}
+      <ArticleCards
+        articles={articles}
+        navigate={navigate}
         refreshing={this.state.refreshing}
-        onRefresh={() => this._onRefresh}
+        onRefresh={this._onRefresh}
+        onCollectionIconClick={() => console.log('misisng func')}
       />
     );
   }

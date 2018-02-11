@@ -8,10 +8,6 @@ import GridView from 'react-native-super-grid';
 import * as CollectionsActions from '../../actions/collectionsActions';
 
 class CollectionsScreen extends Component {
-  state = {
-    refreshing: true,
-  }
-
   componentDidMount() {
     this.props.fetchMyCollections();
   }
@@ -22,12 +18,6 @@ class CollectionsScreen extends Component {
     if (currentScreenIndex !== 2 && newScreenIndex === 2) {
       this.props.fetchMyCollections();
     }
-    this.setState({ refreshing: false });
-  }
-
-  _onRefresh = () => {
-    this.setState({ refreshing: true });
-    this.props.fetchMyCollections();
   }
 
   render() {
@@ -37,7 +27,9 @@ class CollectionsScreen extends Component {
       },
       collectionsReducer: {
         collections,
+        fetchingCollections,
       },
+      fetchMyCollections,
     } = this.props;
     const { width } = Dimensions.get('window');
     const tileWidth = (width - 20) / 2;
@@ -47,28 +39,31 @@ class CollectionsScreen extends Component {
         enableEmptySections
         refreshControl={
           <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this._onRefresh}
+            refreshing={fetchingCollections}
+            onRefresh={() => fetchMyCollections()}
           />
         }
         itemDimension={150}
         items={collections}
         style={{ paddingTop: 10, flex: 1, marginTop: Platform.OS === 'ios' ? 0 : 5 }}
-        renderItem={collection => (
-          <View>
-            <Tile
-              onPress={() => navigate('CollectionArticles', { title: collection.name, collection })}
-              imageSrc={{ uri: collection.articles[0].imageURL }}
-              title={collection.name}
-              featured
-              height={160}
-              width={tileWidth}
-              containerStyle={{ marginTop: -5 }}
-              imageContainerStyle={{ borderRadius: 5 }}
-              titleStyle={{ fontWeight: 'bold', opacity: 1 }}
-            />
-          </View>
-        )}
+        renderItem={collection => {
+          const imageSource = collection.articles[0] && collection.articles[0].imageURL ? { uri: collection.articles[0].imageURL } : require('../../../assets/images/new-collection-placeholder.jpg');
+          return (
+            <View>
+              <Tile
+                onPress={() => navigate('CollectionArticles', { title: collection.name, collection })}
+                imageSrc={imageSource}
+                title={collection.name}
+                featured
+                height={160}
+                width={tileWidth}
+                containerStyle={{ marginTop: -5 }}
+                imageContainerStyle={{ borderRadius: 5 }}
+                titleStyle={{ fontWeight: 'bold', opacity: 1 }}
+              />
+            </View>
+          );
+        }}
       />
     );
   }

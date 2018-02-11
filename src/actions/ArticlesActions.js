@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import ActionTypes from './ActionTypes';
 import { LinkBookAPI } from '../constants/api';
+// actions
+import * as collectionsActions from './collectionsActions';
 
 export const fetchMyArticles = () => ((dispatch, getState) => {
   const { id } = getState().userReducer.user;
@@ -20,11 +22,11 @@ export const fetchPublicArticles = () => ((dispatch, getState) => {
 
 export const addNewArticle = (articleUrl, isPublic) => async (dispatch, getState) => {
   const userId = getState().userReducer.user.id;
-  const collectionName = getState().collectionsReducer.newCollectionName;
+  const { selectedCollectionNames } = getState().collectionsReducer;
 
   dispatch({ type: ActionTypes.ADD_NEW_ARTICLE });
   try {
-    await LinkBookAPI.addArticle(articleUrl, userId, isPublic, collectionName || 'none');
+    await LinkBookAPI.addArticle(articleUrl, userId, isPublic, selectedCollectionNames);
     dispatch({ type: ActionTypes.ADD_NEW_ARTICLE_SUCCESS });
     await dispatch(fetchMyArticles());
   } catch (error) {
@@ -38,3 +40,14 @@ export const clearAddArticleErrorMessage = () => ({
   type: ActionTypes.ADD_NEW_ARTICLE_ERROR,
   message: '',
 });
+
+export const changeArticlePrivacy = (isPublic, userId, articleId) => async (dispatch) => {
+  try {
+    await LinkBookAPI.changeArticlePrivacy(isPublic, userId, articleId);
+    dispatch(collectionsActions.fetchMyArticles());
+    dispatch(collectionsActions.fetchMyCollections());
+  } catch (error) {
+    // TODO: create a component to render error messages.
+    console.error(error);
+  }
+};

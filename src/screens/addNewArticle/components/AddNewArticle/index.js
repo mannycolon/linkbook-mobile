@@ -14,7 +14,7 @@ const AddNewArticle = ({
   onPrivacyChange,
   isPublic,
   showModal,
-  newCollectionName,
+  selectedCollectionNames,
   handleSubmit, // comes from reduxForm
   invalid, // comes from reduxForm
   submitting, // comes from reduxForm
@@ -33,7 +33,7 @@ const AddNewArticle = ({
       onPrivacyChange={onPrivacyChange}
       showModal={showModal}
       isPublic={isPublic}
-      newCollectionName={newCollectionName}
+      selectedCollectionNames={selectedCollectionNames}
     />
     <View style={{ position: 'absolute', left: 0, right: 0, bottom: '0%' }}>
       <Button
@@ -54,7 +54,7 @@ AddNewArticle.propTypes = {
   addNewArticle: PropTypes.func.isRequired,
   onPrivacyChange: PropTypes.func.isRequired,
   isPublic: PropTypes.string.isRequired,
-  newCollectionName: PropTypes.string.isRequired,
+  selectedCollectionNames: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleSubmit: PropTypes.func.isRequired, // comes from reduxForm
   invalid: PropTypes.bool.isRequired, // comes from reduxForm
   submitting: PropTypes.bool.isRequired, // comes from reduxForm

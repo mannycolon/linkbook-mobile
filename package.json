@@ -10,8 +10,10 @@
     "cheerio": "^1.0.0-rc.2",
     "expo": "^20.0.0",
     "native-base": "^2.3.1",
+    "prop-types": "^15.6.0",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-20.0.0.tar.gz",
+    "react-native-check-box": "^2.0.2",
     "react-native-elements": "^0.16.0",
     "react-native-hr": "git://github.com/Riglerr/react-native-hr.git#7c17c3ec47e14782db4c56b8cb0c35abd1d4b761",
     "react-native-modal": "^4.1.1",
@@ -25,7 +27,7 @@
     "redux-persist": "^4.8.3",
     "redux-promise-middleware": "^4.3.0",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.2.4"
   },
   "devDependencies": {
     "eslint": "^4.5.0",

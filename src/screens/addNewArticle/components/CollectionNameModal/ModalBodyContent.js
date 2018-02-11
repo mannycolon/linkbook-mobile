@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { FormInput, FormValidationMessage } from 'react-native-elements';
+import CheckBox from 'react-native-check-box';
+import Colors from '../../../../constants/Colors';
 
 const ModalBodyContent = ({
   collections,
   isNewCollectionScreenVisible,
   createAndValidateNewCollectionName,
   newCollectionNameIsDuplicate,
-  selectCollectionName,
+  onCollectionNameSelected,
+  selectedCollectionNames,
 }) => (
   <View style={{ flex: 1 }}>
     {
@@ -32,17 +35,39 @@ const ModalBodyContent = ({
         </View>
         :
         <ScrollView horizontal contentContainerStyle={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-          <TouchableOpacity key={'none'} onPress={() => selectCollectionName('none')}>
-            <Image source={require('../../../../../assets/images/none.png')} style={{ height: 80, width: 80, padding: 0, margin: 10 }} />
-            <Text style={{ alignSelf: 'center' }}>None</Text>
-          </TouchableOpacity>
           {
-            collections.map((collection, index) => (
-              <TouchableOpacity key={index.toString()} onPress={() => selectCollectionName(collection.name)}>
-                <Image source={{ uri: collection.articles[0].imageURL }} style={{ height: 80, width: 80, padding: 0, margin: 10 }} />
-                <Text style={{ alignSelf: 'center' }}>{collection.name}</Text>
-              </TouchableOpacity>
-            ))
+            collections.map((collection, index) => {
+              const imageSource = collection.articles[0] && collection.articles[0].imageURL ?
+                { uri: collection.articles[0].imageURL }
+                : require('../../../../../assets/images/new-collection-placeholder.jpg');
+              const isSelected = selectedCollectionNames.includes(collection.name);
+
+              return (
+                <TouchableOpacity
+                  key={index.toString()}
+                  style={{ margin: 10 }}
+                  onPress={() => onCollectionNameSelected(collection.name)}
+                >
+                  <Image source={imageSource} style={{ height: 80, width: 80, padding: 0 }}>
+                    <View style={{ flex: 1, backgroundColor: isSelected ? 'rgba(0,0,0,.4)' : 'transparent' }}>
+                      {
+                        isSelected &&
+                        <CheckBox
+                          isChecked
+                          checkBoxColor={Colors.whiteColor}
+                          style={{
+                            position: 'absolute',
+                            padding: 5,
+                          }}
+                          onClick={() => {}}
+                        />
+                      }
+                    </View>
+                  </Image>
+                  <Text style={{ alignSelf: 'center' }}>{collection.name}</Text>
+                </TouchableOpacity>
+              );
+            })
           }
         </ScrollView>
     }
@@ -54,7 +79,7 @@ ModalBodyContent.propTypes = {
   isNewCollectionScreenVisible: PropTypes.bool.isRequired,
   createAndValidateNewCollectionName: PropTypes.func.isRequired,
   newCollectionNameIsDuplicate: PropTypes.bool.isRequired,
-  selectCollectionName: PropTypes.func.isRequired,
+  selectedCollectionNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ModalBodyContent;

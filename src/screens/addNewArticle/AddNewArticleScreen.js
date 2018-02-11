@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet } from 'react-native';
 // components
 import AddNewArticle from './components/AddNewArticle';
-import SelectCollectionNameModal from './components/CollectionNameModal';
+import CollectionNameModal from './components/CollectionNameModal';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
 import * as CollectionsActions from '../../actions/collectionsActions';
@@ -11,10 +11,6 @@ import * as CollectionsActions from '../../actions/collectionsActions';
 class AddNewArticleScreen extends Component {
   state = {
     isPublic: '',
-  }
-
-  componentWillMount() {
-    this.props.fetchMyCollections();
   }
 
   _onPrivacyChange = value => {
@@ -35,10 +31,10 @@ class AddNewArticleScreen extends Component {
     const {
       collections,
       newCollectionNameIsDuplicate,
-      newCollectionName,
       tempCollectionName,
       isModalVisible,
       isNewCollectionScreenVisible,
+      selectedCollectionNames,
     } = this.props.collectionsReducer;
     const {
       showModal,
@@ -46,7 +42,8 @@ class AddNewArticleScreen extends Component {
       showNewCollectionScreen,
       hideNewCollectionScreen,
       createAndValidateNewCollectionName,
-      selectCollectionName,
+      fetchMyCollections,
+      onCollectionNameSelected,
     } = this.props;
     return (
       <View style={styles.container}>
@@ -55,9 +52,12 @@ class AddNewArticleScreen extends Component {
           isPublic={this.state.isPublic}
           onPrivacyChange={this._onPrivacyChange}
           showModal={showModal}
-          newCollectionName={newCollectionName}
+          selectedCollectionNames={selectedCollectionNames}
         />
-        <SelectCollectionNameModal
+        <CollectionNameModal
+          inAddNewArticle
+          onCollectionNameSelected={onCollectionNameSelected}
+          selectedCollectionNames={selectedCollectionNames}
           collections={collections}
           isModalVisible={isModalVisible}
           isNewCollectionScreenVisible={isNewCollectionScreenVisible}
@@ -67,7 +67,8 @@ class AddNewArticleScreen extends Component {
           createAndValidateNewCollectionName={createAndValidateNewCollectionName}
           newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
           tempCollectionName={tempCollectionName}
-          selectCollectionName={selectCollectionName}
+          submitAction={() => hideModal()}
+          fetchMyCollections={fetchMyCollections}
         />
       </View>
     );
@@ -95,6 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   hideNewCollectionScreen: () => dispatch(CollectionsActions.hideNewCollectionScreen()),
   selectCollectionName: (collectionName) => dispatch(CollectionsActions.selectCollectionName(collectionName)),
   fetchMyCollections: () => dispatch(CollectionsActions.fetchMyCollections()),
+  onCollectionNameSelected: (collectionName) => dispatch(CollectionsActions.onCollectionNameSelected(collectionName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewArticleScreen);
