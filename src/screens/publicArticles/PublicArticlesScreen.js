@@ -38,6 +38,7 @@ class PublicArticlesScreen extends Component {
       navigation: {
         navigate,
       },
+      changeArticlePrivacy,
     } = this.props;
 
     return (
@@ -47,6 +48,8 @@ class PublicArticlesScreen extends Component {
         refreshing={this.state.refreshing}
         onRefresh={this._onRefresh}
         onCollectionIconClick={() => console.log('misisng func')}
+        changeArticlePrivacy={changeArticlePrivacy}
+        noCardButtons
       />
     );
   }
@@ -69,9 +72,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPublicArticles: () => {
-    dispatch(ArticlesActions.fetchPublicArticles());
-  },
+  fetchPublicArticles: () => dispatch(ArticlesActions.fetchPublicArticles()),
+  changeArticlePrivacy: () => dispatch(ArticlesActions.changeArticlePrivacy()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicArticlesScreen);

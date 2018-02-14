@@ -43,8 +43,9 @@ export const clearAddArticleErrorMessage = () => ({
 
 export const changeArticlePrivacy = (isPublic, userId, articleId) => async (dispatch) => {
   try {
-    await LinkBookAPI.changeArticlePrivacy(isPublic, userId, articleId);
-    dispatch(collectionsActions.fetchMyArticles());
+    const privacy = isPublic === 'Public';
+    await LinkBookAPI.changeArticlePrivacy(privacy, userId, articleId);
+    dispatch(fetchMyArticles());
     dispatch(collectionsActions.fetchMyCollections());
   } catch (error) {
     // TODO: create a component to render error messages.

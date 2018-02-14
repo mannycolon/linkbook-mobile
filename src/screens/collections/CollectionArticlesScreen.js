@@ -42,6 +42,7 @@ class CollectionArticlesScreen extends Component {
       navigation,
       closeCollectionSettingsModal,
       deleteCollection,
+      changeArticlePrivacy,
     } = this.props;
     const collectionImageUrl = articles && articles[0] && articles[0].imageURL ? articles[0].imageURL : null;
 
@@ -53,6 +54,8 @@ class CollectionArticlesScreen extends Component {
           refreshing={this.state.refreshing}
           onRefresh={this._onRefresh}
           onCollectionIconClick={() => console.log('missing function')}
+          changeArticlePrivacy={changeArticlePrivacy}
+          noCardButtons
         />
         <CollectionSettingsModal
           navigation={navigation}
@@ -76,6 +79,7 @@ const mapDispatchToProps = (dispatch) => ({
   closeCollectionSettingsModal: () => dispatch(ModalActions.closeCollectionSettingsModal()),
   deleteCollection: (collectionName) => dispatch(CollectionsActions.deleteCollection(collectionName)),
   fetchMyArticles: () => dispatch(ArticlesActions.fetchMyArticles()),
+  changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionArticlesScreen);

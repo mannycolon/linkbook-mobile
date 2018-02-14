@@ -47,7 +47,8 @@ class CollectionsScreen extends Component {
         items={collections}
         style={{ paddingTop: 10, flex: 1, marginTop: Platform.OS === 'ios' ? 0 : 5 }}
         renderItem={collection => {
-          const imageSource = collection.articles[0] && collection.articles[0].imageURL ? { uri: collection.articles[0].imageURL } : require('../../../assets/images/new-collection-placeholder.jpg');
+          const imageSource = collection.articles[0] && collection.articles[0].imageURL ?
+            { uri: collection.articles[0].imageURL } : require('../../../assets/images/new-collection-placeholder.jpg');
           return (
             <View>
               <Tile

@@ -3,7 +3,6 @@
    ### Frontend
    - Add ability to remove article from a collection. (Frontend)
    - Add ability to add an article to a collection. (Frontend)
-   - Add ability to change an article's privacy setting. (frontend)
    - Fix bug with article collection selection. (Frontend)
 
   #### Last
@@ -22,3 +21,4 @@
    - Added ability to add an article to a collection. (Backend)
    - Add ability to delete a collection. (Frontend)
    - Add ability to edit a collection name in its settings. (Backend and Frontend)
+   - Add ability to change an article's privacy setting. (frontend)

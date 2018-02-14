@@ -36,10 +36,7 @@ ExternalShareButton.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: 'flex-end',
+    bottom: '0%',
     marginHorizontal: 5,
-    position: 'absolute',
-    right: 0,
-    bottom: '2%',
   },
 });

@@ -29,22 +29,28 @@ const ArticleCard = ({
   navigate,
   onCollectionIconClick,
   changeArticlePrivacy,
+  noCardButtons,
 }) => (
   <BoxShadow key={index.toString()} onPress={() => navigate('WebView', article)}>
     <Image source={imageSrc} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }} />
-    <View style={{ width: 0, flexGrow: 1 }}>
+    <View style={{ width: 0, flexGrow: 1, display: 'flex', justifyContent: 'space-between' }}>
       <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={3}>
         {article.title}
       </Text>
-      <CollectionIconButton
-        collectionNames={article.collectionNames}
-        onCollectionIconClick={(actionType) => onCollectionIconClick(actionType, article._id, article.collectionNames)}
-      />
-      <PrivacyIconButton
-        article={article}
-        changeArticlePrivacy={changeArticlePrivacy}
-      />
-      <ExternalShareButton contentToBeShared={article.articleUrl} />
+      {
+        noCardButtons ? null :
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+            <PrivacyIconButton
+              article={article}
+              changeArticlePrivacy={changeArticlePrivacy}
+            />
+            <CollectionIconButton
+              collectionNames={article.collectionNames}
+              onCollectionIconClick={(actionType) => onCollectionIconClick(actionType, article._id, article.collectionNames)}
+            />
+            <ExternalShareButton contentToBeShared={article.articleUrl} />
+          </View>
+      }
     </View>
   </BoxShadow>
 );
@@ -61,6 +67,7 @@ ArticleCard.propTypes = {
   navigate: PropTypes.func.isRequired,
   onCollectionIconClick: PropTypes.func.isRequired,
   changeArticlePrivacy: PropTypes.func.isRequired,
+  noCardButtons: PropTypes.bool,
 };
 
 export default ArticleCard;

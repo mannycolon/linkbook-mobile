@@ -25,11 +25,8 @@ PrivacyIconButton.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    alignSelf: 'flex-end',
-    marginHorizontal: 6,
-    position: 'absolute',
-    right: 60,
     bottom: '0%',
+    marginHorizontal: 5,
   },
 });
 

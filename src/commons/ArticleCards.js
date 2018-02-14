@@ -13,6 +13,7 @@ const ArticleCards = ({
   onRefresh,
   onCollectionIconClick,
   changeArticlePrivacy,
+  noCardButtons,
 }) => (
   <FlatList
     key={'flatlistexample'}
@@ -33,6 +34,7 @@ const ArticleCards = ({
           navigate={navigate}
           onCollectionIconClick={onCollectionIconClick}
           changeArticlePrivacy={changeArticlePrivacy}
+          noCardButtons={noCardButtons}
         />
       );
     }}
@@ -46,6 +48,7 @@ ArticleCards.propTypes = {
   onRefresh: PropTypes.func,
   onCollectionIconClick: PropTypes.func.isRequired,
   changeArticlePrivacy: PropTypes.func.isRequired,
+  noCardButtons: PropTypes.bool,
 };
 
 export default ArticleCards;

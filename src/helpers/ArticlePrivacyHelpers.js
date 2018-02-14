@@ -18,7 +18,7 @@ export const changeArticlePrivacy = (callback, userId, articleId) => {
       title: 'Select the privacy setting for your article',
     },
     buttonIndex => {
-      callback(BUTTONS[buttonIndex].text, userId, articleId);
+      if (BUTTONS[buttonIndex].text !== 'Cancel') callback(BUTTONS[buttonIndex].text, userId, articleId);
     }
   );
 };
