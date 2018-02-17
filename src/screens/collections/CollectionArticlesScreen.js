@@ -6,7 +6,7 @@ import ArticleCards from '../../commons/ArticleCards';
 import CollectionSettingsModal from './CollectionSettingsModal';
 // actions
 import * as ModalActions from '../../actions/ModalActions';
-import * as CollectionsActions from '../../actions/collectionsActions';
+import * as CollectionsActions from '../../actions/CollectionsActions';
 import * as ArticlesActions from '../../actions/ArticlesActions';
 
 class CollectionArticlesScreen extends Component {
@@ -30,20 +30,24 @@ class CollectionArticlesScreen extends Component {
 
   render() {
     const {
-      collection: {
-        articles,
-        name,
-      },
-    } = this.props.navigation.state.params;
-    const {
       ModalReducer: {
         isCollectionSettingsModalVisible,
+      },
+      collectionsReducer: {
+        collections,
       },
       navigation,
       closeCollectionSettingsModal,
       deleteCollection,
       changeArticlePrivacy,
+      addArticlesToCollection,
     } = this.props;
+    const {
+      collectionId,
+      collectionName,
+    } = this.props.navigation.state.params;
+    const currentCollection = collections.filter((collection) => collection._id === collectionId)[0];
+    const articles = currentCollection.articles;
     const collectionImageUrl = articles && articles[0] && articles[0].imageURL ? articles[0].imageURL : null;
 
     return (
@@ -62,8 +66,9 @@ class CollectionArticlesScreen extends Component {
           isCollectionSettingsModalVisible={isCollectionSettingsModalVisible}
           closeCollectionSettingsModal={closeCollectionSettingsModal}
           imageURL={collectionImageUrl}
-          collectionName={name}
+          collectionName={collectionName}
           deleteCollection={deleteCollection}
+          addArticlesToCollection={addArticlesToCollection}
         />
       </ScrollView>
     );
@@ -72,6 +77,7 @@ class CollectionArticlesScreen extends Component {
 
 const mapStateToProps = (state) => ({
   ModalReducer: state.ModalReducer,
+  collectionsReducer: state.collectionsReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -80,6 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
   deleteCollection: (collectionName) => dispatch(CollectionsActions.deleteCollection(collectionName)),
   fetchMyArticles: () => dispatch(ArticlesActions.fetchMyArticles()),
   changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
+  addArticlesToCollection: () => dispatch(CollectionsActions.addArticlesToCollection()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionArticlesScreen);

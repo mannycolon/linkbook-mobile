@@ -6,7 +6,7 @@ import AddNewArticle from './components/AddNewArticle';
 import CollectionNameModal from './components/CollectionNameModal';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
-import * as CollectionsActions from '../../actions/collectionsActions';
+import * as CollectionsActions from '../../actions/CollectionsActions';
 
 class AddNewArticleScreen extends Component {
   state = {

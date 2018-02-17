@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import MyArticlesList from './MyArticlesList';
 import * as ArticlesActions from '../../actions/ArticlesActions';
-import * as CollectionsActions from '../../actions/collectionsActions';
+import * as CollectionsActions from '../../actions/CollectionsActions';
 
 const mapStateToProps = (state) => ({
   collectionsReducer: state.collectionsReducer,

@@ -59,7 +59,7 @@ const ModalBodyContent = ({
                             position: 'absolute',
                             padding: 5,
                           }}
-                          onClick={() => {}}
+                          onClick={() => onCollectionNameSelected(collection.name)}
                         />
                       }
                     </View>

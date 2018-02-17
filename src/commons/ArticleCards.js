@@ -8,18 +8,21 @@ import ArticleCard from './ArticleCard';
 
 const ArticleCards = ({
   articles,
-  navigate,
+  articleCardsReducer,
   refreshing,
+  noCardButtons,
+  selectableArticlesMode,
+  navigate,
   onRefresh,
   onCollectionIconClick,
   changeArticlePrivacy,
-  noCardButtons,
+  selectArticleCard,
 }) => (
   <FlatList
     key={'flatlistexample'}
     style={{ flex: 1 }}
     data={articles}
-    refreshing={refreshing}
+    refreshing={refreshing || false}
     onRefresh={() => onRefresh()}
     keyExtractor={(item, index) => index}
     renderItem={({ item, index }) => {
@@ -35,6 +38,9 @@ const ArticleCards = ({
           onCollectionIconClick={onCollectionIconClick}
           changeArticlePrivacy={changeArticlePrivacy}
           noCardButtons={noCardButtons}
+          articleCardsReducer={articleCardsReducer}
+          selectableArticlesMode={selectableArticlesMode}
+          selectArticleCard={selectArticleCard}
         />
       );
     }}
@@ -43,12 +49,17 @@ const ArticleCards = ({
 
 ArticleCards.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object).isRequired,
-  navigate: PropTypes.func.isRequired,
+  articleCardsReducer: PropTypes.shape({
+    selectedArticles: PropTypes.array,
+  }),
   refreshing: PropTypes.bool,
-  onRefresh: PropTypes.func,
-  onCollectionIconClick: PropTypes.func.isRequired,
-  changeArticlePrivacy: PropTypes.func.isRequired,
   noCardButtons: PropTypes.bool,
+  selectableArticlesMode: PropTypes.bool,
+  navigate: PropTypes.func.isRequired,
+  onRefresh: PropTypes.func,
+  onCollectionIconClick: PropTypes.func,
+  changeArticlePrivacy: PropTypes.func,
+  selectArticleCard: PropTypes.func,
 };
 
 export default ArticleCards;

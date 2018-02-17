@@ -2,7 +2,7 @@
 import ActionTypes from './ActionTypes';
 import { LinkBookAPI } from '../constants/api';
 // actions
-import * as collectionsActions from './collectionsActions';
+import * as collectionsActions from './CollectionsActions';
 
 export const fetchMyArticles = () => ((dispatch, getState) => {
   const { id } = getState().userReducer.user;

@@ -39,6 +39,7 @@ class CollectionSettingsModal extends Component {
       closeCollectionSettingsModal,
       imageURL,
       collectionName,
+      addArticlesToCollection,
     } = this.props;
     return (
       <Modal
@@ -58,7 +59,12 @@ class CollectionSettingsModal extends Component {
             <Text>Edit Collection</Text>
           </ModalButton>
           <Hr lineStyle={{ backgroundColor: Colors.greyColor, height: 0.9, opacity: 0.4 }} marginLeft={0} marginRight={0} />
-          <ModalButton>
+          <ModalButton
+            onPress={() => {
+              closeCollectionSettingsModal();
+              navigation.navigate('AddToCollection', { finalize: () => addArticlesToCollection() });
+            }}
+          >
             <Text>Add to Collection</Text>
           </ModalButton>
           <Hr lineStyle={{ backgroundColor: Colors.greyColor, height: 0.9, opacity: 0.4 }} marginLeft={0} marginRight={0} />

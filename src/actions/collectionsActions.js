@@ -114,3 +114,13 @@ export const updateArticleCollectionNames = (articleId) => async (dispatch, getS
     // dispatch({ type: })
   }
 };
+
+export const addArticlesToCollection = () => (dispatch, getState) => {
+  try {
+    const { selectedArticleCards } = getState().articleCardsReducer;
+    console.log(selectedArticleCards);
+  } catch (error) {
+    // TODO: create a component to render error messages.
+    console.error(error);
+  }
+};

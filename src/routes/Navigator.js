@@ -11,6 +11,7 @@ import {
   WebViewScreen,
   CollectionArticlesScreen,
   EditCollectionScreen,
+  AddToCollectionScreen,
 } from '../screens';
 
 const CloseButton = styled(TouchableOpacity)`
@@ -98,6 +99,41 @@ export default StackNavigator({
         </CloseButton>,
       headerRight:
         <HeaderRight onPress={() => console.log('check-mark')}>
+          <MaterialIcons
+            name="check"
+            size={30}
+            color="#ffffff"
+          />
+        </HeaderRight>,
+    }),
+  },
+  AddToCollection: {
+    screen: AddToCollectionScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Select articles to add',
+      headerStyle: {
+        backgroundColor: '#bd0826',
+        height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
+        paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
+      },
+      headerLeft:
+        <CloseButton onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="close"
+            size={30}
+            color="#ffffff"
+          />
+        </CloseButton>,
+      headerRight:
+        <HeaderRight
+          onPress={() => {
+            navigation.goBack();
+            navigation.state.params.finalize();
+          }}
+        >
           <MaterialIcons
             name="check"
             size={30}

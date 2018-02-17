@@ -5,7 +5,7 @@ import { View, Dimensions, RefreshControl, Platform } from 'react-native';
 import { Tile } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
 // actions
-import * as CollectionsActions from '../../actions/collectionsActions';
+import * as CollectionsActions from '../../actions/CollectionsActions';
 
 class CollectionsScreen extends Component {
   componentDidMount() {
@@ -52,7 +52,12 @@ class CollectionsScreen extends Component {
           return (
             <View>
               <Tile
-                onPress={() => navigate('CollectionArticles', { title: collection.name, collection })}
+                onPress={() => navigate('CollectionArticles', {
+                  title: collection.name,
+                  collectionId: collection._id,
+                  collectionName: collection.name,
+                  collection,
+                })}
                 imageSrc={imageSource}
                 title={collection.name}
                 featured

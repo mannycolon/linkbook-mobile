@@ -6,6 +6,7 @@ import navigationReducer from './navigationReducer';
 import articlesReducer from './articlesReducer';
 import collectionsReducer from './collectionsReducer';
 import ModalReducer from './ModalReducer';
+import articleCardsReducer from './articleCardsReducer';
 
 export default combineReducers({
   userReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   articlesReducer,
   collectionsReducer,
   ModalReducer,
+  articleCardsReducer,
 });
