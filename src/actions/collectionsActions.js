@@ -124,3 +124,13 @@ export const addArticlesToCollection = () => (dispatch, getState) => {
     console.error(error);
   }
 };
+
+export const removeArticlesFromCollection = () => (dispatch, getState) => {
+  try {
+    const { selectedArticleCards } = getState().articleCardsReducer;
+    console.log(selectedArticleCards);
+  } catch (error) {
+    // TODO: create a component to render error messages.
+    console.error(error);
+  }
+};

@@ -12,6 +12,7 @@ import {
   CollectionArticlesScreen,
   EditCollectionScreen,
   AddToCollectionScreen,
+  RemoveFromCollectionScreen,
 } from '../screens';
 
 const CloseButton = styled(TouchableOpacity)`
@@ -110,7 +111,42 @@ export default StackNavigator({
   AddToCollection: {
     screen: AddToCollectionScreen,
     navigationOptions: ({ navigation }) => ({
-      title: 'Select articles to add',
+      title: 'Select to Add',
+      headerStyle: {
+        backgroundColor: '#bd0826',
+        height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
+        paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
+      },
+      headerLeft:
+        <CloseButton onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="close"
+            size={30}
+            color="#ffffff"
+          />
+        </CloseButton>,
+      headerRight:
+        <HeaderRight
+          onPress={() => {
+            navigation.goBack();
+            navigation.state.params.finalize();
+          }}
+        >
+          <MaterialIcons
+            name="check"
+            size={30}
+            color="#ffffff"
+          />
+        </HeaderRight>,
+    }),
+  },
+  RemoveFromCollection: {
+    screen: RemoveFromCollectionScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Deselect to Remove',
       headerStyle: {
         backgroundColor: '#bd0826',
         height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),

@@ -56,7 +56,6 @@ class CollectionsScreen extends Component {
                   title: collection.name,
                   collectionId: collection._id,
                   collectionName: collection.name,
-                  collection,
                 })}
                 imageSrc={imageSource}
                 title={collection.name}

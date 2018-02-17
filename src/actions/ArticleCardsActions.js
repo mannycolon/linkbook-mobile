@@ -13,3 +13,10 @@ export const selectArticleCard = (articleId) => ((dispacth, getState) => {
     selectedArticleCards: newSelectedArticleCards,
   });
 });
+
+export const setArticleCard = (selectedArticleCards) => ((dispacth) => {
+  dispacth({
+    type: ActionTypes.ADD_ARTICLE_TO_SELECTED_ARTICLE_CARDS,
+    selectedArticleCards,
+  });
+});

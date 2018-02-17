@@ -41,6 +41,7 @@ class CollectionArticlesScreen extends Component {
       deleteCollection,
       changeArticlePrivacy,
       addArticlesToCollection,
+      removeArticlesFromCollection,
     } = this.props;
     const {
       collectionId,
@@ -67,8 +68,10 @@ class CollectionArticlesScreen extends Component {
           closeCollectionSettingsModal={closeCollectionSettingsModal}
           imageURL={collectionImageUrl}
           collectionName={collectionName}
+          collectionId={collectionId}
           deleteCollection={deleteCollection}
           addArticlesToCollection={addArticlesToCollection}
+          removeArticlesFromCollection={removeArticlesFromCollection}
         />
       </ScrollView>
     );
@@ -87,6 +90,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMyArticles: () => dispatch(ArticlesActions.fetchMyArticles()),
   changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
   addArticlesToCollection: () => dispatch(CollectionsActions.addArticlesToCollection()),
+  removeArticlesFromCollection: () => dispatch(CollectionsActions.removeArticlesFromCollection()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionArticlesScreen);
