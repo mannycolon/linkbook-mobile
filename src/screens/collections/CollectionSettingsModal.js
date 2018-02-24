@@ -64,7 +64,7 @@ class CollectionSettingsModal extends Component {
           <ModalButton
             onPress={() => {
               closeCollectionSettingsModal();
-              navigation.navigate('AddToCollection', { finalize: () => addArticlesToCollection() });
+              navigation.navigate('AddToCollection', { finalize: () => addArticlesToCollection(collectionName), collectionName });
             }}
           >
             <Text>Add to Collection</Text>
@@ -73,7 +73,7 @@ class CollectionSettingsModal extends Component {
           <ModalButton
             onPress={() => {
               closeCollectionSettingsModal();
-              navigation.navigate('RemoveFromCollection', { finalize: () => removeArticlesFromCollection(), collectionId });
+              navigation.navigate('RemoveFromCollection', { finalize: () => removeArticlesFromCollection(collectionName), collectionId });
             }}
           >
             <Text>Remove from Collection</Text>

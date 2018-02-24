@@ -89,8 +89,8 @@ const mapDispatchToProps = (dispatch) => ({
   deleteCollection: (collectionName) => dispatch(CollectionsActions.deleteCollection(collectionName)),
   fetchMyArticles: () => dispatch(ArticlesActions.fetchMyArticles()),
   changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
-  addArticlesToCollection: () => dispatch(CollectionsActions.addArticlesToCollection()),
-  removeArticlesFromCollection: () => dispatch(CollectionsActions.removeArticlesFromCollection()),
+  addArticlesToCollection: (collectionName) => dispatch(CollectionsActions.addArticlesToCollection(collectionName)),
+  removeArticlesFromCollection: (collectionName) => dispatch(CollectionsActions.removeArticlesFromCollection(collectionName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionArticlesScreen);

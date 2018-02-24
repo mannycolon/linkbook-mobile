@@ -2,6 +2,7 @@ import ActionTypes from '../actions/ActionTypes';
 
 const INITIAL_STATE = {
   selectedArticleCards: [],
+  deselectedArticleCards: [],
 };
 
 const articleCardsReducer = (state = INITIAL_STATE, action) => {
@@ -10,9 +11,10 @@ const articleCardsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         selectedArticleCards: action.selectedArticleCards,
+        deselectedArticleCards: action.deselectedArticleCards,
       };
     case ActionTypes.RESET_ARTICLE_CARDS_REDUCER:
-      return state;
+      return INITIAL_STATE;
     default:
       return state;
   }

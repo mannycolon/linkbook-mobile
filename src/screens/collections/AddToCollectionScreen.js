@@ -11,18 +11,23 @@ const AddToCollectionScreen = ({
   myArticles,
   articleCardsReducer,
   selectArticleCard,
-}) => (
-  <ScrollView style={{ flex: 1 }}>
-    <ArticleCards
-      articles={myArticles.articles}
-      navigate={navigation.navigate}
-      articleCardsReducer={articleCardsReducer}
-      selectArticleCard={selectArticleCard}
-      selectableArticlesMode
-      noCardButtons
-    />
-  </ScrollView>
-);
+}) => {
+  const currentCollectionName = navigation.state.params.collectionName;
+  // filter out articles from the current collection where new articles will be added.
+  const articles = myArticles.articles.filter((article) => !article.collectionNames.includes(currentCollectionName));
+  return (
+    <ScrollView style={{ flex: 1 }}>
+      <ArticleCards
+        articles={articles}
+        navigate={navigation.navigate}
+        articleCardsReducer={articleCardsReducer}
+        selectArticleCard={selectArticleCard}
+        selectableArticlesMode
+        noCardButtons
+      />
+    </ScrollView>
+  );
+};
 
 const mapStateToProps = (state) => ({
   myArticles: state.articlesReducer.myArticles,

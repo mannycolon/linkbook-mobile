@@ -76,6 +76,25 @@ class LinkBook {
       throw error;
     }
   }
+
+  async addArticlesToCollection(userId, articleIds, collectionName) {
+    try {
+      const res = await axios.post(`/collections/${userId}/update/add`, { articleIds, collectionName });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async removeArticlesFromCollection(userId, articleIds, collectionName) {
+    try {
+      console.log(collectionName);
+      const res = await axios.post(`/collections/${userId}/update/remove`, { articleIds, collectionName });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 class UserApi {

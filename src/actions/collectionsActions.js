@@ -115,22 +115,26 @@ export const updateArticleCollectionNames = (articleId) => async (dispatch, getS
   }
 };
 
-export const addArticlesToCollection = () => (dispatch, getState) => {
+export const addArticlesToCollection = (collectionName) => (dispatch, getState) => {
   try {
     const { selectedArticleCards } = getState().articleCardsReducer;
-    console.log(selectedArticleCards);
+    const userId = getState().userReducer.user.id;
+    LinkBookAPI.addArticlesToCollection(userId, selectedArticleCards, collectionName);
   } catch (error) {
     // TODO: create a component to render error messages.
     console.error(error);
   }
+  dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
 };
 
-export const removeArticlesFromCollection = () => (dispatch, getState) => {
+export const removeArticlesFromCollection = (collectionName) => (dispatch, getState) => {
   try {
-    const { selectedArticleCards } = getState().articleCardsReducer;
-    console.log(selectedArticleCards);
+    const { deselectedArticleCards } = getState().articleCardsReducer;
+    const userId = getState().userReducer.user.id;
+    LinkBookAPI.removeArticlesFromCollection(userId, deselectedArticleCards, collectionName);
   } catch (error) {
     // TODO: create a component to render error messages.
     console.error(error);
   }
+  dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
 };

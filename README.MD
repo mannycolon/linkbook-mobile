@@ -1,9 +1,9 @@
 
   # Todo List
    ### Frontend
-   - Add ability to remove article from a collection. (Frontend)
-   - Add ability to add an article to a collection. (Frontend)
    - Fix bug with article collection selection. (Frontend)
+   - Fix bug with adding/removing article from a collection. (Frontend)
+   - create a component to render error messages. (Frontend)
 
   #### Last
   - Share article urls from other apps into link-book.
@@ -22,3 +22,5 @@
    - Add ability to delete a collection. (Frontend)
    - Add ability to edit a collection name in its settings. (Backend and Frontend)
    - Add ability to change an article's privacy setting. (frontend)
+   - Add ability to remove article from a collection. (Frontend)
+   - Add ability to add an article to a collection. (Frontend)
