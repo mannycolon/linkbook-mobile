@@ -98,12 +98,8 @@ export const deleteCollection = (collectionName) => async (dispatch, getState) =
 export const updateArticleCollectionNames = (articleId) => async (dispatch, getState) => {
   const userId = getState().userReducer.user.id;
   const collectionNames = getState().collectionsReducer.selectedCollectionNames;
-  const { tempCollectionName } = getState().collectionsReducer;
 
   try {
-    if (tempCollectionName && !collectionNames.includes(tempCollectionName)) {
-      collectionNames.push(tempCollectionName);
-    }
     if (collectionNames) {
       await LinkBookAPI.updateArticleCollectionNames(userId, collectionNames, articleId);
       dispatch(ArticlesActions.fetchMyArticles());
@@ -115,11 +111,12 @@ export const updateArticleCollectionNames = (articleId) => async (dispatch, getS
   }
 };
 
-export const addArticlesToCollection = (collectionName) => (dispatch, getState) => {
+export const addArticlesToCollection = (collectionName) => async (dispatch, getState) => {
   try {
     const { selectedArticleCards } = getState().articleCardsReducer;
     const userId = getState().userReducer.user.id;
-    LinkBookAPI.addArticlesToCollection(userId, selectedArticleCards, collectionName);
+    await LinkBookAPI.addArticlesToCollection(userId, selectedArticleCards, collectionName);
+    dispatch(fetchMyCollections());
   } catch (error) {
     // TODO: create a component to render error messages.
     console.error(error);
@@ -127,14 +124,19 @@ export const addArticlesToCollection = (collectionName) => (dispatch, getState) 
   dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
 };
 
-export const removeArticlesFromCollection = (collectionName) => (dispatch, getState) => {
+export const removeArticlesFromCollection = (collectionName) => async (dispatch, getState) => {
   try {
     const { deselectedArticleCards } = getState().articleCardsReducer;
     const userId = getState().userReducer.user.id;
-    LinkBookAPI.removeArticlesFromCollection(userId, deselectedArticleCards, collectionName);
+    await LinkBookAPI.removeArticlesFromCollection(userId, deselectedArticleCards, collectionName);
+    dispatch(fetchMyCollections());
   } catch (error) {
     // TODO: create a component to render error messages.
     console.error(error);
   }
   dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
 };
+
+export const clearCollectionsReducer = () => ({
+  type: ActionTypes.CLEAR_COLLECTIONS_REDUCER,
+});

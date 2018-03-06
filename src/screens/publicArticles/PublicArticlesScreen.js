@@ -47,7 +47,6 @@ class PublicArticlesScreen extends Component {
         navigate={navigate}
         refreshing={this.state.refreshing}
         onRefresh={this._onRefresh}
-        onCollectionIconClick={() => console.log('misisng func')}
         changeArticlePrivacy={changeArticlePrivacy}
         noCardButtons
       />

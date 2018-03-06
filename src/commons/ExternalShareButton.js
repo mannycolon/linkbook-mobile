@@ -15,7 +15,7 @@ export default class ExternalShareButton extends Component {
   }
 
   _showResult = (result) => {
-    console.log(result);
+    // console.log(result);
   }
 
   render() {

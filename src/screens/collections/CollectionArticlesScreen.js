@@ -58,7 +58,6 @@ class CollectionArticlesScreen extends Component {
           navigate={navigation.navigate}
           refreshing={this.state.refreshing}
           onRefresh={this._onRefresh}
-          onCollectionIconClick={() => console.log('missing function')}
           changeArticlePrivacy={changeArticlePrivacy}
           noCardButtons
         />

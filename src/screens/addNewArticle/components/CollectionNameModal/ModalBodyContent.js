@@ -24,7 +24,7 @@ const ModalBodyContent = ({
           <FormInput
             autoFocus
             onChangeText={createAndValidateNewCollectionName}
-            style={{ width: 120, textAlign: 'center', margin: 5, padding: 5 }}
+            containerStyle={{ margin: 5, padding: 5, width: 150 }}
           />
           {
             newCollectionNameIsDuplicate &&

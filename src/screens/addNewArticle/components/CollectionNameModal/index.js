@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
 // helpers
 import isArrayEqual from '../../../../helpers/isArrayEqual';
@@ -29,29 +29,20 @@ class CollectionNameModal extends Component {
       newCollectionNameIsDuplicate,
       tempCollectionName,
       onCollectionNameSelected,
-      submitAction,
       selectedCollectionNames,
-      inAddNewArticle,
     } = this.props;
     let { currentArticleCollectionNames } = this.props;
-    let showSubmitButton;
-
     currentArticleCollectionNames = currentArticleCollectionNames || collections.map((collection) => collection.name);
-
-    if (inAddNewArticle) {
-      showSubmitButton = selectedCollectionNames.length > 0 && !isArrayEqual(currentArticleCollectionNames, selectedCollectionNames);
-    } else {
-      showSubmitButton = !isArrayEqual(currentArticleCollectionNames, selectedCollectionNames);
-    }
+    const showSubmitButton = selectedCollectionNames.length > 0 && !isArrayEqual(currentArticleCollectionNames, selectedCollectionNames);
 
     return (
       <Modal
         isVisible={isModalVisible}
         onBackButtonPress={() => hideModal()}
         onBackdropPress={() => hideModal()}
-        style={{ justifyContent: 'flex-end', margin: 0, padding: 0 }}
+        style={styles.modal}
       >
-        <View style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: modalHeight, backgroundColor: 'white', padding: 0, borderRadius: 4, borderColor: 'rgba(0, 0, 0, 0.1)' }}>
+        <View style={styles.container}>
           <ModalTopContainer
             showNewCollectionScreen={showNewCollectionScreen}
             hideNewCollectionScreen={hideNewCollectionScreen}
@@ -70,8 +61,8 @@ class CollectionNameModal extends Component {
             tempCollectionName={tempCollectionName}
             isNewCollectionScreenVisible={isNewCollectionScreenVisible}
             newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
+            onCollectionNameSelected={onCollectionNameSelected}
             selectedCollectionNames={selectedCollectionNames}
-            submitAction={submitAction}
             showSubmitButton={showSubmitButton}
           />
         </View>
@@ -90,9 +81,26 @@ CollectionNameModal.propTypes = {
   createAndValidateNewCollectionName: PropTypes.func.isRequired,
   newCollectionNameIsDuplicate: PropTypes.bool.isRequired,
   tempCollectionName: PropTypes.string.isRequired,
-  submitAction: PropTypes.func.isRequired,
   onCollectionNameSelected: PropTypes.func.isRequired,
   selectedCollectionNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
+const styles = StyleSheet.create({
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+    padding: 0,
+  },
+  container: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    height: modalHeight,
+    backgroundColor: 'white',
+    padding: 0,
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+});
 
 export default CollectionNameModal;

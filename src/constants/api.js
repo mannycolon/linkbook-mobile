@@ -88,7 +88,6 @@ class LinkBook {
 
   async removeArticlesFromCollection(userId, articleIds, collectionName) {
     try {
-      console.log(collectionName);
       const res = await axios.post(`/collections/${userId}/update/remove`, { articleIds, collectionName });
       return res;
     } catch (error) {

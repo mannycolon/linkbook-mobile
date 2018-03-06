@@ -8,9 +8,9 @@ const ModalBottomContainer = ({
   hideModal,
   tempCollectionName,
   newCollectionNameIsDuplicate,
-  submitAction,
   showSubmitButton,
   isNewCollectionScreenVisible,
+  onCollectionNameSelected,
 }) => {
   let condition;
   if (isNewCollectionScreenVisible) {
@@ -21,7 +21,13 @@ const ModalBottomContainer = ({
   return (
     <View>
       {condition ?
-        <TouchableOpacity style={{ alignItems: 'center', backgroundColor: Colors.blueColor }} onPress={() => submitAction()}>
+        <TouchableOpacity
+          style={{ alignItems: 'center', backgroundColor: Colors.blueColor }}
+          onPress={() => {
+            if (isNewCollectionScreenVisible) onCollectionNameSelected(tempCollectionName);
+            hideModal();
+          }}
+        >
           <Hr lineStyle={{ backgroundColor: Colors.greyColor, height: 0.9 }} marginLeft={0} marginRight={0} />
           <Text style={{ margin: 15, fontWeight: 'bold', fontSize: 14, color: '#ffffff' }}>Done</Text>
         </TouchableOpacity>
@@ -39,9 +45,9 @@ ModalBottomContainer.propTypes = {
   hideModal: PropTypes.func.isRequired,
   tempCollectionName: PropTypes.string.isRequired,
   newCollectionNameIsDuplicate: PropTypes.bool.isRequired,
-  submitAction: PropTypes.func.isRequired,
   showSubmitButton: PropTypes.bool.isRequired,
   isNewCollectionScreenVisible: PropTypes.bool.isRequired,
+  onCollectionNameSelected: PropTypes.func.isRequired,
 };
 
 export default ModalBottomContainer;

@@ -13,6 +13,10 @@ class AddNewArticleScreen extends Component {
     isPublic: '',
   }
 
+  componentWillMount() {
+    this.props.clearCollectionsReducer();
+  }
+
   _onPrivacyChange = value => {
     if (value !== 'Cancel') {
       this.setState({
@@ -55,7 +59,6 @@ class AddNewArticleScreen extends Component {
           selectedCollectionNames={selectedCollectionNames}
         />
         <CollectionNameModal
-          inAddNewArticle
           onCollectionNameSelected={onCollectionNameSelected}
           selectedCollectionNames={selectedCollectionNames}
           collections={collections}
@@ -97,6 +100,7 @@ const mapDispatchToProps = (dispatch) => ({
   selectCollectionName: (collectionName) => dispatch(CollectionsActions.selectCollectionName(collectionName)),
   fetchMyCollections: () => dispatch(CollectionsActions.fetchMyCollections()),
   onCollectionNameSelected: (collectionName) => dispatch(CollectionsActions.onCollectionNameSelected(collectionName)),
+  clearCollectionsReducer: () => dispatch(CollectionsActions.clearCollectionsReducer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewArticleScreen);
