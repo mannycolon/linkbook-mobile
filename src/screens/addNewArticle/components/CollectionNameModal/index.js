@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import Modal from 'react-native-modal';
-// helpers
-import isArrayEqual from '../../../../helpers/isArrayEqual';
 // components
 import ModalTopContainer from './ModalTopContainer';
 import ModalBodyContent from './ModalBodyContent';
@@ -31,9 +29,6 @@ class CollectionNameModal extends Component {
       onCollectionNameSelected,
       selectedCollectionNames,
     } = this.props;
-    let { currentArticleCollectionNames } = this.props;
-    currentArticleCollectionNames = currentArticleCollectionNames || collections.map((collection) => collection.name);
-    const showSubmitButton = selectedCollectionNames.length > 0 && !isArrayEqual(currentArticleCollectionNames, selectedCollectionNames);
 
     return (
       <Modal
@@ -63,7 +58,6 @@ class CollectionNameModal extends Component {
             newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
             onCollectionNameSelected={onCollectionNameSelected}
             selectedCollectionNames={selectedCollectionNames}
-            showSubmitButton={showSubmitButton}
           />
         </View>
       </Modal>

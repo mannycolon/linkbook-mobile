@@ -8,7 +8,6 @@ const ModalBottomContainer = ({
   hideModal,
   tempCollectionName,
   newCollectionNameIsDuplicate,
-  showSubmitButton,
   isNewCollectionScreenVisible,
   onCollectionNameSelected,
 }) => {
@@ -16,7 +15,7 @@ const ModalBottomContainer = ({
   if (isNewCollectionScreenVisible) {
     condition = tempCollectionName && !newCollectionNameIsDuplicate;
   } else {
-    condition = (tempCollectionName && !newCollectionNameIsDuplicate) || showSubmitButton;
+    condition = true;
   }
   return (
     <View>
@@ -45,7 +44,6 @@ ModalBottomContainer.propTypes = {
   hideModal: PropTypes.func.isRequired,
   tempCollectionName: PropTypes.string.isRequired,
   newCollectionNameIsDuplicate: PropTypes.bool.isRequired,
-  showSubmitButton: PropTypes.bool.isRequired,
   isNewCollectionScreenVisible: PropTypes.bool.isRequired,
   onCollectionNameSelected: PropTypes.func.isRequired,
 };
