@@ -48,6 +48,7 @@ class AddNewArticleScreen extends Component {
       createAndValidateNewCollectionName,
       fetchMyCollections,
       onCollectionNameSelected,
+      navigationReducer,
     } = this.props;
     return (
       <View style={styles.container}>
@@ -57,6 +58,7 @@ class AddNewArticleScreen extends Component {
           onPrivacyChange={this._onPrivacyChange}
           showModal={showModal}
           selectedCollectionNames={selectedCollectionNames}
+          navigationReducer={navigationReducer}
         />
         <CollectionNameModal
           onCollectionNameSelected={onCollectionNameSelected}
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   articlesReducer: state.articlesReducer,
   collectionsReducer: state.collectionsReducer,
+  navigationReducer: state.navigationReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({

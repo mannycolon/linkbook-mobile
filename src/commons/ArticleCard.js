@@ -56,8 +56,24 @@ const ArticleCard = ({
           }
         </View>
       </Image>
-      <View style={{ width: 0, flexGrow: 1, display: 'flex', justifyContent: 'space-between', backgroundColor: isSelected ? 'rgba(0,0,0,.4)' : 'transparent' }}>
-        <Text style={{ padding: 10, fontWeight: 'bold', opacity: 0.9 }} ellipsizeMode='tail' numberOfLines={3}>
+      <View
+        style={{
+          width: 0,
+          flexGrow: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+          backgroundColor: isSelected ? 'rgba(0,0,0,.4)' : 'transparent',
+        }}
+      >
+        <Text
+          style={{
+            padding: 10,
+            fontWeight: 'bold',
+            opacity: 0.9,
+          }}
+          ellipsizeMode='tail'
+          numberOfLines={3}
+        >
           {article.title}
         </Text>
         {

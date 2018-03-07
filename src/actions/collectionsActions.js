@@ -98,7 +98,7 @@ export const deleteCollection = (collectionName) => async (dispatch, getState) =
 export const updateArticleCollectionNames = (articleId) => async (dispatch, getState) => {
   const userId = getState().userReducer.user.id;
   const collectionNames = getState().collectionsReducer.selectedCollectionNames;
-
+  console.log(collectionNames);
   try {
     if (collectionNames) {
       await LinkBookAPI.updateArticleCollectionNames(userId, collectionNames, articleId);

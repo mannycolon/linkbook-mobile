@@ -28,6 +28,9 @@ class CollectionNameModal extends Component {
       tempCollectionName,
       onCollectionNameSelected,
       selectedCollectionNames,
+      navigationReducer,
+      updateArticleCollectionNames,
+      articleId,
     } = this.props;
 
     return (
@@ -58,6 +61,9 @@ class CollectionNameModal extends Component {
             newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
             onCollectionNameSelected={onCollectionNameSelected}
             selectedCollectionNames={selectedCollectionNames}
+            navigationReducer={navigationReducer}
+            updateArticleCollectionNames={updateArticleCollectionNames}
+            articleId={articleId}
           />
         </View>
       </Modal>
@@ -70,6 +76,7 @@ CollectionNameModal.propTypes = {
   isModalVisible:	PropTypes.bool.isRequired,
   isNewCollectionScreenVisible:	PropTypes.bool.isRequired,
   hideModal: PropTypes.func.isRequired,
+  updateArticleCollectionNames: PropTypes.func.isRequired,
   showNewCollectionScreen: PropTypes.func.isRequired,
   hideNewCollectionScreen: PropTypes.func.isRequired,
   createAndValidateNewCollectionName: PropTypes.func.isRequired,
@@ -77,6 +84,10 @@ CollectionNameModal.propTypes = {
   tempCollectionName: PropTypes.string.isRequired,
   onCollectionNameSelected: PropTypes.func.isRequired,
   selectedCollectionNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  navigationReducer: PropTypes.shape({
+    routes: PropTypes.array.isRequired,
+  }),
+  articleId: PropTypes.string.isRequired,
 };
 
 const styles = StyleSheet.create({

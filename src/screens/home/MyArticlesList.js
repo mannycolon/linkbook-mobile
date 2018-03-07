@@ -39,11 +39,6 @@ export default class MyArticlesList extends Component {
     this.props.showModal();
   }
 
-  _submitAction = () => {
-    const articleId = this.state.articleId;
-    this.props.updateArticleCollectionNames(articleId);
-  }
-
   render() {
     const {
       myArticles: {
@@ -61,6 +56,7 @@ export default class MyArticlesList extends Component {
       fetchMyCollections,
       onCollectionNameSelected,
       changeArticlePrivacy,
+      updateArticleCollectionNames,
     } = this.props;
 
     const {
@@ -103,10 +99,13 @@ export default class MyArticlesList extends Component {
           newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
           tempCollectionName={tempCollectionName}
           onCollectionNameSelected={onCollectionNameSelected}
-          submitAction={() => this._submitAction()}
+          homeSubmitAction={this._submitAction}
           fetchMyCollections={fetchMyCollections}
           selectedCollectionNames={selectedCollectionNames}
           currentArticleCollectionNames={this.state.currentArticleCollectionNames}
+          navigationReducer={this.props.navigationReducer}
+          updateArticleCollectionNames={updateArticleCollectionNames}
+          articleId={this.state.articleId}
         />
       </View>
     );

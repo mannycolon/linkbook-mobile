@@ -10,6 +10,9 @@ const ModalBottomContainer = ({
   newCollectionNameIsDuplicate,
   isNewCollectionScreenVisible,
   onCollectionNameSelected,
+  navigationReducer,
+  updateArticleCollectionNames,
+  articleId,
 }) => {
   let condition;
   if (isNewCollectionScreenVisible) {
@@ -17,6 +20,14 @@ const ModalBottomContainer = ({
   } else {
     condition = true;
   }
+  let isInHomeScreen = false;
+
+  if (navigationReducer) {
+    const routesLength = navigationReducer.routes.length - 1;
+    isInHomeScreen = navigationReducer.routes[routesLength].routeName === 'Home';
+  }
+  console.log(articleId);
+
   return (
     <View>
       {condition ?
@@ -24,6 +35,7 @@ const ModalBottomContainer = ({
           style={{ alignItems: 'center', backgroundColor: Colors.blueColor }}
           onPress={() => {
             if (isNewCollectionScreenVisible) onCollectionNameSelected(tempCollectionName);
+            if (isInHomeScreen) updateArticleCollectionNames(articleId);
             hideModal();
           }}
         >
@@ -46,6 +58,11 @@ ModalBottomContainer.propTypes = {
   newCollectionNameIsDuplicate: PropTypes.bool.isRequired,
   isNewCollectionScreenVisible: PropTypes.bool.isRequired,
   onCollectionNameSelected: PropTypes.func.isRequired,
+  navigationReducer: PropTypes.shape({
+    routes: PropTypes.array.isRequired,
+  }),
+  updateArticleCollectionNames: PropTypes.func.isRequired,
+  articleId: PropTypes.string.isRequired,
 };
 
 export default ModalBottomContainer;
