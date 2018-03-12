@@ -1,7 +1,7 @@
 
   # Todo List
    ### Frontend
-   - Fix bug with adding/removing article from a collection from home screen. (Frontend)
+   - Fix bug related to adding/removing articles from a collection from the home screen. (Frontend)
    - create a component to render error messages. (Frontend)
    - Mark as read feature. (Frontend & Backend)
 
