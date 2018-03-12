@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Platform } from 'react-native';
 import { TabNavigator } from 'react-navigation';
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons, Entypo } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import styled from 'styled-components/native';
 import Colors from '../constants/Colors';
@@ -57,9 +57,9 @@ export default TabNavigator({
         alignSelf: 'center',
       },
       tabBarIcon: ({ tintColor }) => (
-        <MaterialIcons
-          name='library-books'
-          size={25}
+        <Entypo
+          name='magnifying-glass'
+          size={28}
           color={tintColor}
         />
       ),
