@@ -1,9 +1,9 @@
 
   # Todo List
    ### Frontend
-   - Fix bug with article collection selection. (Frontend)
-   - Fix bug with adding/removing article from a collection. (Frontend)
+   - Fix bug with adding/removing article from a collection from home screen. (Frontend)
    - create a component to render error messages. (Frontend)
+   - Mark as read feature. (Frontend & Backend)
 
   #### Last
   - Share article urls from other apps into link-book.

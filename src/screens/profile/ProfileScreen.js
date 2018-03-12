@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { Thumbnail, List, ListItem, Left, Right, Body, Icon } from 'native-base';
-import { MaterialIcons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import Colors from '../../constants/Colors';
 // actions
@@ -11,23 +11,12 @@ import * as LoginActions from '../../actions/LoginActions';
 // constants
 const pkg = require('../../../package.json');
 
-const TopContainer = styled.View`
+const Container = styled.View`
   display: flex;
-  flex: 0.5;
+  height: 100%;
   justify-content: center;
   align-items: center;
   background-color: ${Colors.redColor};
-  shadow-color: #000000;
-  shadow-opacity: 0.6;
-  shadow-radius: 2;
-  shadow-offset: 0px 4px;
-  elevation: 1;
-`;
-
-const BottomContainer = styled.View`
-  display: flex;
-  flex: 0.3;
-  margin-top: 6;
 `;
 
 const ProfileScreen = ({
@@ -38,63 +27,46 @@ const ProfileScreen = ({
   },
   logout,
 }) => (
-  <ScrollView style={{ flex: 1 }}>
-    <TopContainer>
-      <Thumbnail large source={{ uri: avatar }} style={{ margin: 10, borderColor: Colors.whiteColor, borderWidth: 2 }} />
-      <Text style={{ fontWeight: 'bold', margin: 10, color: Colors.whiteColor }}>{fullName}</Text>
-      <Text style={{ fontWeight: 'bold', margin: 10, color: Colors.whiteColor }}>{email}</Text>
-    </TopContainer>
-    <BottomContainer>
-      <List style={{ backgroundColor: '#ffffff' }}>
-        <ListItem icon>
-          <Left>
-            <MaterialCommunityIcons size={23} name='read' />
-          </Left>
-          <Body>
-            <Text>Marked as Read</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <MaterialIcons size={25} name='link' />
-          </Left>
-          <Body>
-            <Text>Linked Accounts</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon>
-          <Left>
-            <Icon name="ios-settings" />
-          </Left>
-          <Body>
-            <Text>Settings</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-        <ListItem icon onPress={() => logout()}>
-          <Left>
-            <FontAwesome size={23} name='sign-out' />
-          </Left>
-          <Body>
-            <Text>Logout</Text>
-          </Body>
-          <Right>
-            <Icon name="arrow-forward" />
-          </Right>
-        </ListItem>
-      </List>
-    </BottomContainer>
-    <Text style={{ textAlign: 'center', fontWeight: 'bold', padding: 5 }}>
-      LinkBook version: {pkg.version}
-    </Text>
+  <ScrollView style={{ height: '100%', backgroundColor: Colors.redColor }}>
+    <View style={{ display: 'flex', flex: 1, justifyContent: 'space-between', height: '100%' }}>
+      <Container>
+        <Thumbnail large source={{ uri: avatar }} style={{ margin: 10, borderColor: Colors.whiteColor, borderWidth: 2 }} />
+        <Text style={{ fontWeight: 'bold', margin: 10, color: Colors.whiteColor }}>{fullName}</Text>
+        <Text style={{ fontWeight: 'bold', margin: 10, color: Colors.whiteColor }}>{email}</Text>
+      </Container>
+
+      <View>
+        <List style={{ backgroundColor: Colors.redColor }}>
+          <ListItem icon style={{ backgroundColor: Colors.redColor }}>
+            <Left>
+              <Icon name="ios-settings" style={{ color: '#ffffff' }} />
+            </Left>
+            <Body>
+              <Text style={{ color: Colors.whiteColor }}>Settings</Text>
+            </Body>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+          <ListItem icon onPress={() => logout()} style={{ backgroundColor: Colors.redColor }}>
+            <Left>
+              <FontAwesome size={23} name='sign-out' color='#ffffff' />
+            </Left>
+            <Body>
+              <Text style={{ color: Colors.whiteColor }}>Logout</Text>
+            </Body>
+            <Right>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+        </List>
+        <View>
+          <Text style={{ textAlign: 'center', fontWeight: 'bold', padding: 5, color: Colors.whiteColor }}>
+            LinkBook version: {pkg.version}
+          </Text>
+        </View>
+      </View>
+    </View>
   </ScrollView>
 );
 
