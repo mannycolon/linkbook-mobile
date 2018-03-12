@@ -11,7 +11,7 @@ import CollectionNameModal from '../addNewArticle/components/CollectionNameModal
 import * as ArticlesActions from '../../actions/ArticlesActions';
 import * as CollectionsActions from '../../actions/CollectionsActions';
 
-class MyArticlesList extends Component {
+class HomeScreen extends Component {
   state = {
     refreshing: false,
     articleId: '',
@@ -103,7 +103,6 @@ class MyArticlesList extends Component {
           newCollectionNameIsDuplicate={newCollectionNameIsDuplicate}
           tempCollectionName={tempCollectionName}
           onCollectionNameSelected={onCollectionNameSelected}
-          homeSubmitAction={this._submitAction}
           fetchMyCollections={fetchMyCollections}
           selectedCollectionNames={selectedCollectionNames}
           currentArticleCollectionNames={this.state.currentArticleCollectionNames}
@@ -116,7 +115,7 @@ class MyArticlesList extends Component {
   }
 }
 
-MyArticlesList.propTypes = {
+HomeScreen.propTypes = {
   articles:	PropTypes.arrayOf(PropTypes.object),
   navigation: PropTypes.shape(),
 };
@@ -142,4 +141,4 @@ const mapDispatchToProps = (dispatch) => ({
   changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyArticlesList);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
