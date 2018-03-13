@@ -1,8 +1,6 @@
 
   # Todo List
    ### Frontend
-   - Fix bug related to adding/removing articles from a collection from the home screen. (Frontend)
-   - create a component to render error messages. (Frontend)
    - Mark as read feature. (Frontend & Backend)
 
   #### Last
@@ -24,3 +22,5 @@
    - Add ability to change an article's privacy setting. (frontend)
    - Add ability to remove article from a collection. (Frontend)
    - Add ability to add an article to a collection. (Frontend)
+   - Fix bug related to adding/removing articles from a collection from the home screen. (Backend and Frontend)
+   - create a component to render error messages. (Frontend)

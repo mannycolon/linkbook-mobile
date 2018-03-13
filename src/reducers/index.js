@@ -7,6 +7,7 @@ import articlesReducer from './articlesReducer';
 import collectionsReducer from './collectionsReducer';
 import ModalReducer from './ModalReducer';
 import articleCardsReducer from './articleCardsReducer';
+import errorsReducer from './errorsReducer';
 
 export default combineReducers({
   userReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   collectionsReducer,
   ModalReducer,
   articleCardsReducer,
+  errorsReducer,
 });

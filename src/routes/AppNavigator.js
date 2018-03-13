@@ -33,12 +33,19 @@ class AppNavigator extends Component {
   };
 
   render() {
+    const {
+      dispatch,
+      navigationReducer,
+      userReducer,
+      errorsReducer: { onError, error },
+    } = this.props;
     const navigation = addNavigationHelpers({
-      dispatch: this.props.dispatch,
-      state: this.props.navigationReducer,
+      dispatch,
+      state: navigationReducer,
     });
 
-    if (this.props.userReducer.isLogged) {
+    if (userReducer.isLogged) {
+      if (onError) Alert.alert(error.title, error.message);
       return <Navigator navigation={navigation} />;
     }
     return <LoginScreen />;
@@ -46,6 +53,7 @@ class AppNavigator extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  errorsReducer: state.errorsReducer,
   navigationReducer: state.navigationReducer,
   userReducer: state.userReducer,
   addArticleErrorMessage: state.articlesReducer.addArticleErrorMessage,

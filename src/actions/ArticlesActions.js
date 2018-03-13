@@ -3,6 +3,7 @@ import ActionTypes from './ActionTypes';
 import { LinkBookAPI } from '../constants/api';
 // actions
 import * as collectionsActions from './CollectionsActions';
+import * as ErrorAlertActions from './ErrorAlertActions';
 
 export const fetchMyArticles = () => ((dispatch, getState) => {
   const { id } = getState().userReducer.user;
@@ -48,7 +49,7 @@ export const changeArticlePrivacy = (isPublic, userId, articleId) => async (disp
     dispatch(fetchMyArticles());
     dispatch(collectionsActions.fetchMyCollections());
   } catch (error) {
-    // TODO: create a component to render error messages.
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
     console.error(error);
   }
 };

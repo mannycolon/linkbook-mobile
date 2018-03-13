@@ -5,6 +5,7 @@ import { LinkBookAPI } from '../constants/api';
 // actions
 import * as ModalActions from './ModalActions';
 import * as ArticlesActions from './ArticlesActions';
+import * as ErrorAlertActions from './ErrorAlertActions';
 
 export const createAndValidateNewCollectionName = (tempCollectionName) => ((dispatch, getState) => {
   const { collections } = getState().collectionsReducer;
@@ -90,15 +91,15 @@ export const deleteCollection = (collectionName) => async (dispatch, getState) =
     dispatch(fetchMyCollections());
     dispatch(NavigationActions.back());
   } catch (error) {
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
     console.error(error);
-    // dispatch({ type: })
   }
 };
 
 export const updateArticleCollectionNames = (articleId) => async (dispatch, getState) => {
   const userId = getState().userReducer.user.id;
   const collectionNames = getState().collectionsReducer.selectedCollectionNames;
-  console.log(collectionNames);
+
   try {
     if (collectionNames) {
       await LinkBookAPI.updateArticleCollectionNames(userId, collectionNames, articleId);
@@ -106,8 +107,7 @@ export const updateArticleCollectionNames = (articleId) => async (dispatch, getS
     }
     dispatch(hideModal());
   } catch (error) {
-    console.error(error);
-    // dispatch({ type: })
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
   }
 };
 
@@ -118,7 +118,7 @@ export const addArticlesToCollection = (collectionName) => async (dispatch, getS
     await LinkBookAPI.addArticlesToCollection(userId, selectedArticleCards, collectionName);
     dispatch(fetchMyCollections());
   } catch (error) {
-    // TODO: create a component to render error messages.
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
     console.error(error);
   }
   dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
@@ -131,7 +131,7 @@ export const removeArticlesFromCollection = (collectionName) => async (dispatch,
     await LinkBookAPI.removeArticlesFromCollection(userId, deselectedArticleCards, collectionName);
     dispatch(fetchMyCollections());
   } catch (error) {
-    // TODO: create a component to render error messages.
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
     console.error(error);
   }
   dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
