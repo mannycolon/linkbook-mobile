@@ -76,7 +76,7 @@ CollectionNameModal.propTypes = {
   isModalVisible:	PropTypes.bool.isRequired,
   isNewCollectionScreenVisible:	PropTypes.bool.isRequired,
   hideModal: PropTypes.func.isRequired,
-  updateArticleCollectionNames: PropTypes.func.isRequired,
+  updateArticleCollectionNames: PropTypes.func,
   showNewCollectionScreen: PropTypes.func.isRequired,
   hideNewCollectionScreen: PropTypes.func.isRequired,
   createAndValidateNewCollectionName: PropTypes.func.isRequired,
@@ -87,7 +87,7 @@ CollectionNameModal.propTypes = {
   navigationReducer: PropTypes.shape({
     routes: PropTypes.array.isRequired,
   }),
-  articleId: PropTypes.string.isRequired,
+  articleId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

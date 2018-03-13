@@ -26,7 +26,6 @@ const ModalBottomContainer = ({
     const routesLength = navigationReducer.routes.length - 1;
     isInHomeScreen = navigationReducer.routes[routesLength].routeName === 'Home';
   }
-  console.log(articleId);
 
   return (
     <View>
@@ -61,8 +60,8 @@ ModalBottomContainer.propTypes = {
   navigationReducer: PropTypes.shape({
     routes: PropTypes.array.isRequired,
   }),
-  updateArticleCollectionNames: PropTypes.func.isRequired,
-  articleId: PropTypes.string.isRequired,
+  updateArticleCollectionNames: PropTypes.func,
+  articleId: PropTypes.string,
 };
 
 export default ModalBottomContainer;
