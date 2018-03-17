@@ -30,6 +30,8 @@ const ActionTypes = {
   RESET_ARTICLE_CARDS_REDUCER: 'RESET_ARTICLE_CARDS_REDUCER',
   // ErrorsReducer
   DISPLAY_ERROR_ALERT: 'DISPLAY_ERROR_ALERT',
+  // editCollectionReducer
+  EDIT_COLLECTION_NAME_LABEL: 'EDIT_COLLECTION_NAME_LABEL',
 };
 
 export default ActionTypes;

@@ -94,6 +94,15 @@ class LinkBook {
       throw error;
     }
   }
+
+  async updateCollectionNameText(oldCollectionName, newCollectionName, userId) {
+    try {
+      const res = await axios.post(`/collections/${userId}/update/name`, { oldCollectionName, newCollectionName });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 class UserApi {

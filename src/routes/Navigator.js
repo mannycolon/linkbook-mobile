@@ -99,7 +99,11 @@ export default StackNavigator({
           />
         </CloseButton>,
       headerRight:
-        <HeaderRight onPress={() => console.log('check-mark')}>
+        <HeaderRight onPress={() => {
+          navigation.goBack();
+          navigation.state.params.updateCollectionNameText();
+        }}
+        >
           <MaterialIcons
             name="check"
             size={30}

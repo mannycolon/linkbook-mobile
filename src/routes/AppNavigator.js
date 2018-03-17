@@ -60,12 +60,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatch: (value) => {
-    dispatch(value);
-  },
-  clearAddArticleErrorMessage: () => {
-    dispatch(ArticlesActions.clearAddArticleErrorMessage());
-  },
+  dispatch: (value) => dispatch(value),
+  clearAddArticleErrorMessage: () => dispatch(ArticlesActions.clearAddArticleErrorMessage()),
 });
 
 export const router = Navigator.router;

@@ -42,6 +42,7 @@ class CollectionArticlesScreen extends Component {
       changeArticlePrivacy,
       addArticlesToCollection,
       removeArticlesFromCollection,
+      updateCollectionNameText,
     } = this.props;
     const {
       collectionId,
@@ -69,6 +70,7 @@ class CollectionArticlesScreen extends Component {
           collectionName={collectionName}
           collectionId={collectionId}
           deleteCollection={deleteCollection}
+          updateCollectionNameText={updateCollectionNameText}
           addArticlesToCollection={addArticlesToCollection}
           removeArticlesFromCollection={removeArticlesFromCollection}
         />
@@ -90,6 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
   addArticlesToCollection: (collectionName) => dispatch(CollectionsActions.addArticlesToCollection(collectionName)),
   removeArticlesFromCollection: (collectionName) => dispatch(CollectionsActions.removeArticlesFromCollection(collectionName)),
+  updateCollectionNameText: () => dispatch(CollectionsActions.updateCollectionNameText()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionArticlesScreen);

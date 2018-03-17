@@ -140,3 +140,32 @@ export const removeArticlesFromCollection = (collectionName) => async (dispatch,
 export const clearCollectionsReducer = () => ({
   type: ActionTypes.CLEAR_COLLECTIONS_REDUCER,
 });
+
+export const updateCollectionNameText = () => async (dispatch, getState) => {
+  try {
+    const { oldCollectionName, newCollectionName } = getState().editCollectionReducer;
+    const userId = getState().userReducer.user.id;
+    const { index, routes } = getState().navigationReducer;
+    const screenKey = routes[index].key;
+
+    await LinkBookAPI.updateCollectionNameText(oldCollectionName, newCollectionName, userId);
+    const setParamsAction = NavigationActions.setParams({
+      params: { title: newCollectionName },
+      key: screenKey,
+    });
+    dispatch(setParamsAction);
+    dispatch(fetchMyCollections());
+  } catch (error) {
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
+  }
+};
+
+/**
+ * Edits the the collection name label in the edit collection reducer.
+ * @param {String} newCollectionName
+ */
+export const editCollectionNameLabel = (oldCollectionName, newCollectionName) => ({
+  type: ActionTypes.EDIT_COLLECTION_NAME_LABEL,
+  oldCollectionName,
+  newCollectionName,
+});

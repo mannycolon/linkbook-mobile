@@ -42,6 +42,7 @@ class CollectionSettingsModal extends Component {
       collectionId,
       addArticlesToCollection,
       removeArticlesFromCollection,
+      updateCollectionNameText,
     } = this.props;
     return (
       <Modal
@@ -55,7 +56,7 @@ class CollectionSettingsModal extends Component {
           <ModalButton
             onPress={() => {
               closeCollectionSettingsModal();
-              navigation.navigate('EditCollection', { title: 'Edit Collection', imageURL, collectionName });
+              navigation.navigate('EditCollection', { title: 'Edit Collection', imageURL, collectionName, updateCollectionNameText });
             }}
           >
             <Text>Edit Collection</Text>

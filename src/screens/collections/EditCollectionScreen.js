@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { View, Text, TextInput, Image } from 'react-native';
 import Hr from 'react-native-hr';
 import Colors from '../../constants/Colors';
+// actions
+import * as CollectionsActions from '../../actions/CollectionsActions';
 
 class EditCollectionScreen extends Component {
-  state = {
-    text: '',
-  }
-
   componentWillMount() {
     const { collectionName } = this.props.navigation.state.params;
-    this.setState({ text: collectionName });
+    this.props.editCollectionNameLabel(collectionName, collectionName);
   }
 
   componentDidMount() {
@@ -20,7 +18,10 @@ class EditCollectionScreen extends Component {
   }
 
   render() {
+    const { collectionName } = this.props.navigation.state.params;
     const { imageURL } = this.props.navigation.state.params;
+    const { newCollectionName } = this.props.editCollectionReducer;
+    const { editCollectionNameLabel } = this.props;
     const imageSource = imageURL ? { uri: imageURL } : require('../../../assets/images/new-collection-placeholder.jpg');
 
     return (
@@ -32,8 +33,8 @@ class EditCollectionScreen extends Component {
           ref={(input) => { this.textInput = input; }}
           autoFocus
           style={{ height: 45, borderBottomColor: Colors.blueColor, borderBottomWidth: 1, margin: 15 }}
-          onChangeText={(text) => this.setState({ text })}
-          value={this.state.text}
+          onChangeText={(editedName) => editCollectionNameLabel(collectionName, editedName)}
+          value={newCollectionName}
         />
       </View>
     );
@@ -42,6 +43,13 @@ class EditCollectionScreen extends Component {
 
 const mapStateToProps = (state) => ({
   navigationReducer: state.navigationReducer,
+  editCollectionReducer: state.editCollectionReducer,
 });
 
-export default connect(mapStateToProps)(EditCollectionScreen);
+const mapDispatchToProps = (dispatch) => ({
+  editCollectionNameLabel: (oldCollectionName, newCollectionName) => {
+    dispatch(CollectionsActions.editCollectionNameLabel(oldCollectionName, newCollectionName));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditCollectionScreen);
