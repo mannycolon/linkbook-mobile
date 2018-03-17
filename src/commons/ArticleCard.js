@@ -77,7 +77,11 @@ const ArticleCard = ({
           {article.title}
         </Text>
         {
-          noCardButtons ? null :
+          noCardButtons ? 
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+              <ExternalShareButton contentToBeShared={article.articleUrl} /> 
+            </View>
+          :
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
               <PrivacyIconButton
                 article={article}

@@ -1,7 +1,6 @@
 
   # Todo List
    ### Frontend
-   - Allow to share public articles.
    - Add ability to add public articles to your articles list.
    - Add settings feature. (Frontend & Backend)
    - Mark as read feature. (Frontend & Backend)
@@ -28,6 +27,7 @@
    - Fix bug related to adding/removing articles from a collection from the home screen. (Backend and Frontend)
    - create a component to render error messages. (Frontend)
    - Add edit collection name feature. (Frontend & Backend)
+   - Allow to share public articles.
 
 
   # Building Standalone Apps
