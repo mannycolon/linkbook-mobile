@@ -10,12 +10,7 @@ export default class ExternalShareButton extends Component {
       title: 'Share This Article',
       message: text,
     })
-      .then(this._showResult)
       .catch(err => console.log(err));
-  }
-
-  _showResult = (result) => {
-    // console.log(result);
   }
 
   render() {

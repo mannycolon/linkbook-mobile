@@ -38,7 +38,7 @@ export default StackNavigator({
         color: '#ffffff',
       },
       headerLeft:
-        <CloseButton onPress={() => navigation.goBack()}>
+        <CloseButton onPress={() => navigation.goBack(null)}>
           <MaterialIcons
             name="close"
             size={30}

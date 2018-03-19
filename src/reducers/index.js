@@ -9,6 +9,7 @@ import ModalReducer from './ModalReducer';
 import articleCardsReducer from './articleCardsReducer';
 import errorsReducer from './errorsReducer';
 import editCollectionReducer from './editCollectionReducer';
+import addNewArticleReducer from './addNewArticleReducer';
 
 export default combineReducers({
   userReducer,
@@ -20,4 +21,5 @@ export default combineReducers({
   articleCardsReducer,
   errorsReducer,
   editCollectionReducer,
+  addNewArticleReducer,
 });

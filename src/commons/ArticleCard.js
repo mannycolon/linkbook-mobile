@@ -9,6 +9,7 @@ import Colors from '../constants/Colors';
 import ExternalShareButton from './ExternalShareButton';
 import PrivacyIconButton from './PrivacyIconButton';
 import CollectionIconButton from './CollectionIconButton';
+import AddArticleIconButton from './AddArticleIconButton';
 
 const BoxShadow = styled.TouchableOpacity`
   display: flex;
@@ -35,6 +36,7 @@ const ArticleCard = ({
   articleCardsReducer,
   selectableArticlesMode,
   selectArticleCard,
+  addPublicArticleToMyArticles,
 }) => {
   const onCardPress = selectableArticlesMode ? () => selectArticleCard(article._id) : () => navigate('WebView', article);
   const isSelected = selectableArticlesMode ? articleCardsReducer.selectedArticleCards.includes(article._id) : false;
@@ -77,11 +79,15 @@ const ArticleCard = ({
           {article.title}
         </Text>
         {
-          noCardButtons ? 
+          noCardButtons ?
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <ExternalShareButton contentToBeShared={article.articleUrl} /> 
+              <AddArticleIconButton
+                articleUrl={article.articleUrl}
+                addPublicArticleToMyArticles={addPublicArticleToMyArticles}
+              />
+              <ExternalShareButton contentToBeShared={article.articleUrl} />
             </View>
-          :
+            :
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
               <PrivacyIconButton
                 article={article}
@@ -117,6 +123,7 @@ ArticleCard.propTypes = {
   }),
   selectableArticlesMode: PropTypes.bool,
   selectArticleCard: PropTypes.func,
+  addPublicArticleToMyArticles: PropTypes.func,
 };
 
 export default ArticleCard;

@@ -17,6 +17,7 @@ const ArticleCards = ({
   onCollectionIconClick,
   changeArticlePrivacy,
   selectArticleCard,
+  addPublicArticleToMyArticles,
 }) => (
   <FlatList
     key={'flatlistexample'}
@@ -41,6 +42,7 @@ const ArticleCards = ({
           articleCardsReducer={articleCardsReducer}
           selectableArticlesMode={selectableArticlesMode}
           selectArticleCard={selectArticleCard}
+          addPublicArticleToMyArticles={addPublicArticleToMyArticles}
         />
       );
     }}
@@ -60,6 +62,7 @@ ArticleCards.propTypes = {
   onCollectionIconClick: PropTypes.func,
   changeArticlePrivacy: PropTypes.func,
   selectArticleCard: PropTypes.func,
+  addPublicArticleToMyArticles: PropTypes.func,
 };
 
 export default ArticleCards;

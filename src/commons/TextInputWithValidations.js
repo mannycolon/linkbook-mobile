@@ -9,6 +9,7 @@ const TextInputWithValidations = ({
   containerStyle,
   labelStyle,
   label,
+  fieldValue,
   meta: { touched, error },
   ...custom
 }) => (
@@ -19,6 +20,7 @@ const TextInputWithValidations = ({
     <FormInput
       {...input}
       {...custom}
+      value={fieldValue}
     />
     {error && touched &&
       <FormValidationMessage fontFamily="montserrat" labelStyle={{ color: Colors.redColor }}>

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ArticleCards from '../../commons/ArticleCards';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
+import * as PublicArticleActions from '../../actions/PublicArticleActions';
 
 class PublicArticlesScreen extends Component {
   state = {
@@ -39,6 +40,7 @@ class PublicArticlesScreen extends Component {
         navigate,
       },
       changeArticlePrivacy,
+      addPublicArticleToMyArticles,
     } = this.props;
 
     return (
@@ -48,6 +50,7 @@ class PublicArticlesScreen extends Component {
         refreshing={this.state.refreshing}
         onRefresh={this._onRefresh}
         changeArticlePrivacy={changeArticlePrivacy}
+        addPublicArticleToMyArticles={addPublicArticleToMyArticles}
         noCardButtons
       />
     );
@@ -73,6 +76,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchPublicArticles: () => dispatch(ArticlesActions.fetchPublicArticles()),
   changeArticlePrivacy: () => dispatch(ArticlesActions.changeArticlePrivacy()),
+  addPublicArticleToMyArticles: (articleUrl) => dispatch(PublicArticleActions.addPublicArticleToMyArticles(articleUrl)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicArticlesScreen);

@@ -15,6 +15,7 @@ const AddNewArticle = ({
   isPublic,
   showModal,
   selectedCollectionNames,
+  newArticleUrl,
   handleSubmit, // comes from reduxForm
   invalid, // comes from reduxForm
   submitting, // comes from reduxForm
@@ -25,6 +26,7 @@ const AddNewArticle = ({
       component={TextInputWithValidations}
       name="articleUrl"
       label="Article's URL"
+      fieldValue={newArticleUrl || ''}
       labelStyle={{ fontWeight: 'bold', fontSize: 16, color: Colors.blackColor }}
       selectionColor={Colors.redColor}
       containerStyle={{ marginVertical: '2%', marginTop: 40 }}
@@ -55,6 +57,7 @@ AddNewArticle.propTypes = {
   onPrivacyChange: PropTypes.func.isRequired,
   isPublic: PropTypes.string.isRequired,
   selectedCollectionNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  newArticleUrl: PropTypes.string,
   handleSubmit: PropTypes.func.isRequired, // comes from reduxForm
   invalid: PropTypes.bool.isRequired, // comes from reduxForm
   submitting: PropTypes.bool.isRequired, // comes from reduxForm

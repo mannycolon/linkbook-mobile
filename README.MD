@@ -1,7 +1,7 @@
 
   # Todo List
    ### Frontend
-   - Add ability to add public articles to your articles list.
+   - Add feature to delete articles. (Frontend & Backend)
    - Add settings feature. (Frontend & Backend)
    - Mark as read feature. (Frontend & Backend)
 
@@ -28,6 +28,7 @@
    - create a component to render error messages. (Frontend)
    - Add edit collection name feature. (Frontend & Backend)
    - Allow to share public articles.
+   - Add feature to add public articles to user article list.
 
 
   # Building Standalone Apps

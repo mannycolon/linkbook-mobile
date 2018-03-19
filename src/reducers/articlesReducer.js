@@ -23,7 +23,17 @@ const INITIAL_STATE = {
 const articlesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case `${ActionTypes.FETCH_MY_ARTICLES}_PENDING`:
-      return INITIAL_STATE;
+      return {
+        ...state,
+        myArticles: {
+          articles: [],
+          isFetched: false,
+          error: {
+            on: false,
+            message: '',
+          },
+        },
+      };
     case `${ActionTypes.FETCH_MY_ARTICLES}_FULFILLED`:
       return {
         ...state,

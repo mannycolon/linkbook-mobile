@@ -32,6 +32,8 @@ const ActionTypes = {
   DISPLAY_ERROR_ALERT: 'DISPLAY_ERROR_ALERT',
   // editCollectionReducer
   EDIT_COLLECTION_NAME_LABEL: 'EDIT_COLLECTION_NAME_LABEL',
+  // AddNewArticleReducer
+  ADD_NEW_ARTICLE_URL: 'ADD_NEW_ARTICLE_URL',
 };
 
 export default ActionTypes;

@@ -28,7 +28,7 @@ class AddNewArticleScreen extends Component {
   _addNewArticle = async (values) => {
     const isPublic = this.state.isPublic === 'Public';
     await this.props.addNewArticle(values.articleUrl, isPublic);
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
   }
 
   render() {
@@ -49,6 +49,7 @@ class AddNewArticleScreen extends Component {
       fetchMyCollections,
       onCollectionNameSelected,
       navigationReducer,
+      addNewArticleReducer,
     } = this.props;
     return (
       <View style={styles.container}>
@@ -59,6 +60,7 @@ class AddNewArticleScreen extends Component {
           showModal={showModal}
           selectedCollectionNames={selectedCollectionNames}
           navigationReducer={navigationReducer}
+          newArticleUrl={addNewArticleReducer.newArticleUrl}
         />
         <CollectionNameModal
           onCollectionNameSelected={onCollectionNameSelected}
@@ -91,6 +93,7 @@ const mapStateToProps = (state) => ({
   articlesReducer: state.articlesReducer,
   collectionsReducer: state.collectionsReducer,
   navigationReducer: state.navigationReducer,
+  addNewArticleReducer: state.addNewArticleReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
