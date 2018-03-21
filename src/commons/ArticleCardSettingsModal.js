@@ -27,7 +27,13 @@ class ArticleCardSettingsModal extends Component {
       'Delete this article?',
       [
         { text: 'Cancel', style: 'cancel' },
-        { text: 'Delete', onPress: () => this.props.deleteArticle(settingsArticleId) },
+        {
+          text: 'Delete',
+          onPress: () => {
+            this.props.closeArticleCardSettingsModal();
+            this.props.deleteArticle(settingsArticleId);
+          },
+        },
       ],
       { cancelable: false }
     );
