@@ -7,9 +7,11 @@ import { connect } from 'react-redux';
 import LoadingScreen from '../../commons/LoadingScreen';
 import ArticleCards from '../../commons/ArticleCards';
 import CollectionNameModal from '../addNewArticle/components/CollectionNameModal';
+import ArticleCardSettingsModal from '../../commons/ArticleCardSettingsModal';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
 import * as CollectionsActions from '../../actions/CollectionsActions';
+import * as ArticleCardsActions from '../../actions/ArticleCardsActions';
 
 class HomeScreen extends Component {
   state = {
@@ -61,7 +63,15 @@ class HomeScreen extends Component {
       onCollectionNameSelected,
       changeArticlePrivacy,
       updateArticleCollectionNames,
+      openArticleCardSettingsModal,
+      closeArticleCardSettingsModal,
+      deleteArticle,
     } = this.props;
+
+    const {
+      isArticleCardSettingsModalVisible,
+      settingsArticleId,
+    } = this.props.articleCardsReducer;
 
     const {
       collections,
@@ -91,6 +101,7 @@ class HomeScreen extends Component {
           onRefresh={this._onRefresh}
           onCollectionIconClick={this._onCollectionIconClick}
           changeArticlePrivacy={changeArticlePrivacy}
+          openArticleCardSettingsModal={openArticleCardSettingsModal}
         />
         <CollectionNameModal
           collections={collections}
@@ -110,6 +121,12 @@ class HomeScreen extends Component {
           updateArticleCollectionNames={updateArticleCollectionNames}
           articleId={this.state.articleId}
         />
+        <ArticleCardSettingsModal
+          deleteArticle={deleteArticle}
+          settingsArticleId={settingsArticleId}
+          isArticleCardSettingsModalVisible={isArticleCardSettingsModalVisible}
+          closeArticleCardSettingsModal={closeArticleCardSettingsModal}
+        />
       </View>
     );
   }
@@ -124,6 +141,7 @@ const mapStateToProps = (state) => ({
   collectionsReducer: state.collectionsReducer,
   navigationReducer: state.navigationReducer,
   myArticles: state.articlesReducer.myArticles,
+  articleCardsReducer: state.articleCardsReducer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -139,6 +157,9 @@ const mapDispatchToProps = (dispatch) => ({
   updateArticleCollectionNames: (articleId) => dispatch(CollectionsActions.updateArticleCollectionNames(articleId)),
   updateSelectedCollectionNames: (collectionNames) => dispatch(CollectionsActions.updateSelectedCollectionNames(collectionNames)),
   changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
+  openArticleCardSettingsModal: (articleId) => dispatch(ArticleCardsActions.openArticleCardSettingsModal(articleId)),
+  closeArticleCardSettingsModal: () => dispatch(ArticleCardsActions.closeArticleCardSettingsModal()),
+  deleteArticle: (articleId) => dispatch(ArticlesActions.deleteArticle(articleId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

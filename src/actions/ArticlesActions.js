@@ -53,3 +53,14 @@ export const changeArticlePrivacy = (isPublic, userId, articleId) => async (disp
     console.error(error);
   }
 };
+
+export const deleteArticle = (articleId) => async (dispatch, getState) => {
+  try {
+    const userId = getState().userReducer.user.id;
+
+    await LinkBookAPI.deleteArticle(userId, articleId);
+    dispatch(fetchMyArticles());
+  } catch (error) {
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
+  }
+};

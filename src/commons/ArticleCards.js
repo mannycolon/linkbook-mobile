@@ -18,6 +18,7 @@ const ArticleCards = ({
   changeArticlePrivacy,
   selectArticleCard,
   addPublicArticleToMyArticles,
+  openArticleCardSettingsModal,
 }) => (
   <FlatList
     key={'flatlistexample'}
@@ -43,6 +44,7 @@ const ArticleCards = ({
           selectableArticlesMode={selectableArticlesMode}
           selectArticleCard={selectArticleCard}
           addPublicArticleToMyArticles={addPublicArticleToMyArticles}
+          openArticleCardSettingsModal={openArticleCardSettingsModal}
         />
       );
     }}
@@ -63,6 +65,7 @@ ArticleCards.propTypes = {
   changeArticlePrivacy: PropTypes.func,
   selectArticleCard: PropTypes.func,
   addPublicArticleToMyArticles: PropTypes.func,
+  openArticleCardSettingsModal: PropTypes.func,
 };
 
 export default ArticleCards;

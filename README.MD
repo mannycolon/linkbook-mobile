@@ -1,9 +1,9 @@
 
   # Todo List
    ### Frontend
-   - Add feature to delete articles. (Frontend & Backend)
-   - Add settings feature. (Frontend & Backend)
+   - Add feature to delete articles. (Backend)
    - Mark as read feature. (Frontend & Backend)
+   - Add settings feature. (Frontend & Backend)
 
   #### Last
   - Share article urls from other apps into link-book.
@@ -29,6 +29,7 @@
    - Add edit collection name feature. (Frontend & Backend)
    - Allow to share public articles.
    - Add feature to add public articles to user article list.
+   - Add feature to delete articles. (Frontend)
 
 
   # Building Standalone Apps

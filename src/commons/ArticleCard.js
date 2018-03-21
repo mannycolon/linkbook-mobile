@@ -10,12 +10,13 @@ import ExternalShareButton from './ExternalShareButton';
 import PrivacyIconButton from './PrivacyIconButton';
 import CollectionIconButton from './CollectionIconButton';
 import AddArticleIconButton from './AddArticleIconButton';
+import ThreeDotIconButton from './ThreeDotIconButton';
 
 const BoxShadow = styled.TouchableOpacity`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 100px;
+  height: 110px;
   background-color: #FFFFFF;
   shadow-color: #000000;
   shadow-opacity: 0.5;
@@ -37,6 +38,7 @@ const ArticleCard = ({
   selectableArticlesMode,
   selectArticleCard,
   addPublicArticleToMyArticles,
+  openArticleCardSettingsModal,
 }) => {
   const onCardPress = selectableArticlesMode ? () => selectArticleCard(article._id) : () => navigate('WebView', article);
   const isSelected = selectableArticlesMode ? articleCardsReducer.selectedArticleCards.includes(article._id) : false;
@@ -67,17 +69,27 @@ const ArticleCard = ({
           backgroundColor: isSelected ? 'rgba(0,0,0,.4)' : 'transparent',
         }}
       >
-        <Text
-          style={{
-            padding: 10,
-            fontWeight: 'bold',
-            opacity: 0.9,
-          }}
-          ellipsizeMode='tail'
-          numberOfLines={3}
-        >
-          {article.title}
-        </Text>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ flex: 1 }}>
+            <Text
+              style={{
+                padding: 10,
+                fontWeight: 'bold',
+                opacity: 0.9,
+              }}
+              ellipsizeMode='tail'
+              numberOfLines={3}
+            >
+              {article.title}
+            </Text>
+          </View>
+          {
+            noCardButtons ? null :
+              <View style={{ flex: 0.1, marginRight: 5, marginTop: 5 }}>
+                <ThreeDotIconButton articleId={article._id} openArticleCardSettingsModal={openArticleCardSettingsModal} />
+              </View>
+          }
+        </View>
         {
           noCardButtons ?
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
@@ -124,6 +136,7 @@ ArticleCard.propTypes = {
   selectableArticlesMode: PropTypes.bool,
   selectArticleCard: PropTypes.func,
   addPublicArticleToMyArticles: PropTypes.func,
+  openArticleCardSettingsModal: PropTypes.func,
 };
 
 export default ArticleCard;

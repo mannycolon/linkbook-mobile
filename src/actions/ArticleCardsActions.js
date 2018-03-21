@@ -24,3 +24,12 @@ export const setArticleCard = (selectedArticleCards) => ((dispacth) => {
     selectedArticleCards,
   });
 });
+
+export const openArticleCardSettingsModal = (settingsArticleId) => ({
+  type: ActionTypes.SHOW_ARTICLE_SETTINGS_MODAL,
+  settingsArticleId,
+});
+
+export const closeArticleCardSettingsModal = () => ({
+  type: ActionTypes.HIDE_ARTICLE_SETTINGS_MODAL,
+});

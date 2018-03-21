@@ -103,6 +103,15 @@ class LinkBook {
       throw error;
     }
   }
+
+  async deleteArticle(userId, articleId) {
+    try {
+      const res = await axios.delete(`/articles/${userId}/delete`, { articleId });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 class UserApi {
