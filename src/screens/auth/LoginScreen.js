@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Facebook, Google } from 'expo';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import { LoadingScreen } from '../../commons';
 import Colors from '../../constants/Colors';
@@ -39,7 +39,12 @@ const Button = styled.TouchableOpacity`
 `;
 
 class LoginScreen extends Component {
+  state = {
+    loading: false,
+  }
+
   _onLoginPress = provider => {
+    this.setState({ loading: true });
     if (provider === 'facebook') {
       this._loginWithFacebook();
     } else {
@@ -52,13 +57,15 @@ class LoginScreen extends Component {
       const { type, token } = await Facebook.logInWithReadPermissionsAsync(fbConfig.APP_ID, {
         permissions: ['public_profile', 'email'],
       });
-      
+
       if (type === 'success') {
         this.props.login(token, 'facebook');
       } else {
+        this.setState({ loading: false });
         throw new Error('Something went wrong with the Facebook authentication');
       }
     } catch (error) {
+      this.setState({ loading: false });
       throw error;
     }
   }
@@ -76,21 +83,24 @@ class LoginScreen extends Component {
       if (result.type === 'success') {
         this.props.login(result.accessToken, 'google');
       } else {
+        this.setState({ loading: false });
         return { cancellled: true };
       }
     } catch (error) {
+      this.setState({ loading: false });
       throw error;
     }
   }
 
   render() {
-    if (this.props.userReducer.isLoading) {
+    if (this.props.userReducer.isLoading || this.state.loading) {
       return <LoadingScreen color={Colors.redColor} />;
     }
     return (
       <FlexContainer>
         <FlexContainer>
-          <Text style={Fonts.authTitle}>Link Book</Text>
+          <FontAwesome name='book' size={100} color={Colors.redColor} />
+          <Text style={Fonts.authTitle}>LinkBook</Text>
         </FlexContainer>
         <FlexContainer>
           <FlexContainer>
