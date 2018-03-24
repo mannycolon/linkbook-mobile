@@ -54,6 +54,7 @@ const ArticleCards = ({
             selectArticleCard={selectArticleCard}
             addPublicArticleToMyArticles={addPublicArticleToMyArticles}
             openArticleCardSettingsModal={openArticleCardSettingsModal}
+            isPublicArticleScreen={isPublicArticleScreen}
           />
         );
       }}

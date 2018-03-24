@@ -39,9 +39,40 @@ const ArticleCard = ({
   selectArticleCard,
   addPublicArticleToMyArticles,
   openArticleCardSettingsModal,
+  isPublicArticleScreen,
 }) => {
   const onCardPress = selectableArticlesMode ? () => selectArticleCard(article._id) : () => navigate('WebView', article);
   const isSelected = selectableArticlesMode ? articleCardsReducer.selectedArticleCards.includes(article._id) : false;
+  let cardButtons = <View />;
+
+  if (noCardButtons && isPublicArticleScreen) {
+    cardButtons = (
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+        <AddArticleIconButton
+          articleUrl={article.articleUrl}
+          addPublicArticleToMyArticles={addPublicArticleToMyArticles}
+        />
+        <ExternalShareButton contentToBeShared={article.articleUrl} />
+      </View>
+    );
+  } else if (noCardButtons) {
+    cardButtons = <View />;
+  } else {
+    cardButtons = (
+      <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
+        <PrivacyIconButton
+          article={article}
+          changeArticlePrivacy={changeArticlePrivacy}
+        />
+        <CollectionIconButton
+          collectionNames={article.collectionNames}
+          onCollectionIconClick={(actionType) => onCollectionIconClick(actionType, article._id, article.collectionNames)}
+        />
+        <ExternalShareButton contentToBeShared={article.articleUrl} />
+      </View>
+    );
+  }
+
   return (
     <BoxShadow key={index.toString()} onPress={onCardPress}>
       <Image source={imageSrc} style={{ height: '100%', width: '45%', padding: 0, margin: 0 }}>
@@ -90,28 +121,7 @@ const ArticleCard = ({
               </View>
           }
         </View>
-        {
-          noCardButtons ?
-            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <AddArticleIconButton
-                articleUrl={article.articleUrl}
-                addPublicArticleToMyArticles={addPublicArticleToMyArticles}
-              />
-              <ExternalShareButton contentToBeShared={article.articleUrl} />
-            </View>
-            :
-            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <PrivacyIconButton
-                article={article}
-                changeArticlePrivacy={changeArticlePrivacy}
-              />
-              <CollectionIconButton
-                collectionNames={article.collectionNames}
-                onCollectionIconClick={(actionType) => onCollectionIconClick(actionType, article._id, article.collectionNames)}
-              />
-              <ExternalShareButton contentToBeShared={article.articleUrl} />
-            </View>
-        }
+        {cardButtons}
       </View>
     </BoxShadow>
   );
@@ -137,6 +147,7 @@ ArticleCard.propTypes = {
   selectArticleCard: PropTypes.func,
   addPublicArticleToMyArticles: PropTypes.func,
   openArticleCardSettingsModal: PropTypes.func,
+  isPublicArticleScreen: PropTypes.any,
 };
 
 export default ArticleCard;
