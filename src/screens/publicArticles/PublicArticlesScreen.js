@@ -51,6 +51,7 @@ class PublicArticlesScreen extends Component {
         onRefresh={this._onRefresh}
         changeArticlePrivacy={changeArticlePrivacy}
         addPublicArticleToMyArticles={addPublicArticleToMyArticles}
+        isPublicArticleScreen
         noCardButtons
       />
     );

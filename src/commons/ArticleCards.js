@@ -5,6 +5,8 @@ import { FlatList } from 'react-native';
 import * as stringHelpers from '../helpers/stringHelpers';
 // components
 import ArticleCard from './ArticleCard';
+import EmptyArticleListScreen from './EmptyArticleListScreen';
+import EmptyPublicArticleScreen from './EmptyPublicArticleScreen';
 
 const ArticleCards = ({
   articles,
@@ -19,37 +21,45 @@ const ArticleCards = ({
   selectArticleCard,
   addPublicArticleToMyArticles,
   openArticleCardSettingsModal,
-}) => (
-  <FlatList
-    key={'flatlistexample'}
-    style={{ flex: 1 }}
-    data={articles}
-    refreshing={refreshing || false}
-    onRefresh={() => onRefresh()}
-    keyExtractor={(item, index) => index}
-    renderItem={({ item, index }) => {
-      const article = item;
-      const validImageType = stringHelpers.isPathAImageExtension(article.imageURL);
-      const imageSrc = article.imageURL && validImageType ? { uri: article.imageURL } : require('../../assets/images/no-image.jpg');
-      return (
-        <ArticleCard
-          index={index}
-          article={article}
-          imageSrc={imageSrc}
-          navigate={navigate}
-          onCollectionIconClick={onCollectionIconClick}
-          changeArticlePrivacy={changeArticlePrivacy}
-          noCardButtons={noCardButtons}
-          articleCardsReducer={articleCardsReducer}
-          selectableArticlesMode={selectableArticlesMode}
-          selectArticleCard={selectArticleCard}
-          addPublicArticleToMyArticles={addPublicArticleToMyArticles}
-          openArticleCardSettingsModal={openArticleCardSettingsModal}
-        />
-      );
-    }}
-  />
-);
+  isPublicArticleScreen,
+}) => {
+  // home article screen
+  if (articles.length === 0 && !isPublicArticleScreen) return <EmptyArticleListScreen />;
+  // public article screen
+  if (articles.length === 0 && isPublicArticleScreen) return <EmptyPublicArticleScreen />;
+
+  return (
+    <FlatList
+      key={'flatlistexample'}
+      style={{ flex: 1 }}
+      data={articles}
+      refreshing={refreshing || false}
+      onRefresh={() => onRefresh()}
+      keyExtractor={(item, index) => index}
+      renderItem={({ item, index }) => {
+        const article = item;
+        const validImageType = stringHelpers.isPathAImageExtension(article.imageURL);
+        const imageSrc = article.imageURL && validImageType ? { uri: article.imageURL } : require('../../assets/images/no-image.jpg');
+        return (
+          <ArticleCard
+            index={index}
+            article={article}
+            imageSrc={imageSrc}
+            navigate={navigate}
+            onCollectionIconClick={onCollectionIconClick}
+            changeArticlePrivacy={changeArticlePrivacy}
+            noCardButtons={noCardButtons}
+            articleCardsReducer={articleCardsReducer}
+            selectableArticlesMode={selectableArticlesMode}
+            selectArticleCard={selectArticleCard}
+            addPublicArticleToMyArticles={addPublicArticleToMyArticles}
+            openArticleCardSettingsModal={openArticleCardSettingsModal}
+          />
+        );
+      }}
+    />
+  );
+};
 
 ArticleCards.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -66,6 +76,7 @@ ArticleCards.propTypes = {
   selectArticleCard: PropTypes.func,
   addPublicArticleToMyArticles: PropTypes.func,
   openArticleCardSettingsModal: PropTypes.func,
+  isPublicArticleScreen: PropTypes.bool,
 };
 
 export default ArticleCards;

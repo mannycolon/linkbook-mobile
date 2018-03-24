@@ -3,7 +3,7 @@
    ### Frontend
    - Mark as read feature. (Frontend & Backend)
    - Add settings feature. (Frontend & Backend)
-   - Add place holders for empty home screen, public screen, collections screen. (Frontend)
+   - react-native-app-intro-slider
 
   #### Last
   - Share article urls from other apps into link-book.
@@ -30,6 +30,8 @@
    - Allow to share public articles.
    - Add feature to add public articles to user article list.
    - Add feature to delete articles. (Frontend & Backend)
+   - Add place holders for empty home screen, public screen, collections screen. (Frontend)
+
 
 
   # Building Standalone Apps

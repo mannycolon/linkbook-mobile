@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { View, Dimensions, RefreshControl, Platform } from 'react-native';
 import { Tile } from 'react-native-elements';
 import GridView from 'react-native-super-grid';
+// components
+import EmptyCollectionsScreen from '../../commons/EmptyCollectionsScreen';
 // actions
 import * as CollectionsActions from '../../actions/CollectionsActions';
 
@@ -31,6 +33,8 @@ class CollectionsScreen extends Component {
       },
       fetchMyCollections,
     } = this.props;
+    if (collections.length === 0) return <EmptyCollectionsScreen />;
+
     const { width } = Dimensions.get('window');
     const tileWidth = (width - 20) / 2;
 
