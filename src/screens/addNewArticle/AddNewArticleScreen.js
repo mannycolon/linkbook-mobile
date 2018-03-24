@@ -7,6 +7,7 @@ import CollectionNameModal from './components/CollectionNameModal';
 // actions
 import * as ArticlesActions from '../../actions/ArticlesActions';
 import * as CollectionsActions from '../../actions/CollectionsActions';
+import * as AddNewArticleActions from '../../actions/AddNewArticleActions';
 
 class AddNewArticleScreen extends Component {
   state = {
@@ -15,6 +16,10 @@ class AddNewArticleScreen extends Component {
 
   componentWillMount() {
     this.props.clearCollectionsReducer();
+    const currentScreenIndex = this.props.navigationReducer.routes[0].index;
+    if (currentScreenIndex === 0) {
+      this.props.clearAddNewArticleReducer();
+    }
   }
 
   _onPrivacyChange = value => {
@@ -107,6 +112,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMyCollections: () => dispatch(CollectionsActions.fetchMyCollections()),
   onCollectionNameSelected: (collectionName) => dispatch(CollectionsActions.onCollectionNameSelected(collectionName)),
   clearCollectionsReducer: () => dispatch(CollectionsActions.clearCollectionsReducer()),
+  clearAddNewArticleReducer: () => dispatch(AddNewArticleActions.clearAddNewArticleReducer()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewArticleScreen);

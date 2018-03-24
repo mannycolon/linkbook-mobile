@@ -11,6 +11,8 @@ const addNewArticleReducer = (state = INITIAL_STATE, action) => {
         ...state,
         newArticleUrl: action.newArticleUrl,
       };
+    case ActionTypes.CLEAR_ADD_NEW_ARTICLE_REDUCER:
+      return INITIAL_STATE;
     default:
       return state;
   }

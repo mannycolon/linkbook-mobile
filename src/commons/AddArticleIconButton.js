@@ -24,7 +24,7 @@ const AddArticleIconButton = ({
 AddArticleIconButton.propTypes = {
   iconSize: PropTypes.number,
   articleUrl: PropTypes.string.isRequired,
-  addPublicArticleToMyArticles: PropTypes.func.isRequired,
+  addPublicArticleToMyArticles: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

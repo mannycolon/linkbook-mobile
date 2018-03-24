@@ -1,9 +1,9 @@
 
   # Todo List
    ### Frontend
+   - react-native-app-intro-slider
    - Mark as read feature. (Frontend & Backend)
    - Add settings feature. (Frontend & Backend)
-   - react-native-app-intro-slider
 
   #### Last
   - Share article urls from other apps into link-book.
