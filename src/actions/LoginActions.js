@@ -42,3 +42,9 @@ export function logout() {
     dispatch({ type: ActionTypes.LOGOUT });
   });
 }
+
+export function finalizeAppIntroSlider() {
+  return {
+    type: ActionTypes.FINALIZE_APP_INTRO_SLIDER,
+  };
+}

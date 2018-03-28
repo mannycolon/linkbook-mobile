@@ -1,8 +1,8 @@
 
   # Todo List
    ### Frontend
-   - react-native-app-intro-slider
    - Mark as read feature. (Frontend & Backend)
+   - Filtering feature to filter read and not read articles. (Frontend)
    - Add settings feature. (Frontend & Backend)
 
   #### Last
@@ -31,7 +31,7 @@
    - Add feature to add public articles to user article list.
    - Add feature to delete articles. (Frontend & Backend)
    - Add place holders for empty home screen, public screen, collections screen. (Frontend)
-
+   - Add app intro slider for first fresh install
 
 
   # Building Standalone Apps

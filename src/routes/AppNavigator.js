@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { Alert, BackHandler } from 'react-native';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+// components
 import Navigator from './Navigator';
+import AppIntroSlider from '../commons/AppIntroSlider';
 import { LoginScreen } from '../screens';
 // actions
 import * as ArticlesActions from '../actions/ArticlesActions';
+import * as LoginActions from '../actions/LoginActions';
 
 class AppNavigator extends Component {
   componentDidMount() {
@@ -37,6 +40,7 @@ class AppNavigator extends Component {
       dispatch,
       navigationReducer,
       userReducer,
+      finalizeAppIntroSlider,
       errorsReducer: { onError, error },
     } = this.props;
     const navigation = addNavigationHelpers({
@@ -46,6 +50,7 @@ class AppNavigator extends Component {
 
     if (userReducer.isLogged) {
       if (onError) Alert.alert(error.title, error.message);
+      if (userReducer.showAppIntroSlider) return <AppIntroSlider finalizeAppIntroSlider={finalizeAppIntroSlider} />;
       return <Navigator navigation={navigation} />;
     }
     return <LoginScreen />;
@@ -62,6 +67,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   dispatch: (value) => dispatch(value),
   clearAddArticleErrorMessage: () => dispatch(ArticlesActions.clearAddArticleErrorMessage()),
+  finalizeAppIntroSlider: () => dispatch(LoginActions.finalizeAppIntroSlider()),
 });
 
 export const router = Navigator.router;

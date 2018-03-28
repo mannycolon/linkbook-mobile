@@ -1,6 +1,7 @@
 import ActionTypes from '../actions/ActionTypes';
 
 const initialState = {
+  showAppIntroSlider: true,
   isLogged: false,
   isLoading: false,
   token: null,
@@ -34,8 +35,16 @@ const userReducer = (state = initialState, action) => {
         isLoading: false,
         error: action.error,
       };
+    case ActionTypes.FINALIZE_APP_INTRO_SLIDER:
+      return {
+        ...state,
+        showAppIntroSlider: false,
+      };
     case ActionTypes.LOGOUT:
-      return initialState;
+      return {
+        ...initialState,
+        showAppIntroSlider: state.showAppIntroSlider,
+      };
     default:
       return state;
   }
