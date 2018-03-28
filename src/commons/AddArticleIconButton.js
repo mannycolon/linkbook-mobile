@@ -29,8 +29,7 @@ AddArticleIconButton.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    bottom: '0%',
-    marginHorizontal: 5,
+    margin: 5,
   },
 });
 
