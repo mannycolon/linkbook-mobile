@@ -12,6 +12,7 @@ import PrivacyIconButton from './PrivacyIconButton';
 import CollectionIconButton from './CollectionIconButton';
 import AddArticleIconButton from './AddArticleIconButton';
 import ThreeDotIconButton from './ThreeDotIconButton';
+import ReadButtonIcon from './ReadButtonIcon';
 
 const BoxShadow = styled.TouchableOpacity`
   display: flex;
@@ -53,6 +54,7 @@ const ArticleCard = ({
   addPublicArticleToMyArticles,
   openArticleCardSettingsModal,
   isPublicArticleScreen,
+  updateArticleReadSetting,
 }) => {
   const onCardPress = selectableArticlesMode ? () => selectArticleCard(article._id) : () => navigate('WebView', article);
   const isSelected = selectableArticlesMode ? articleCardsReducer.selectedArticleCards.includes(article._id) : false;
@@ -73,6 +75,12 @@ const ArticleCard = ({
   } else {
     cardButtons = (
       <BottomContainer>
+        <View style={{ marginRight: 'auto' }}>
+          <ReadButtonIcon
+            article={article}
+            updateArticleReadSetting={updateArticleReadSetting}
+          />
+        </View>
         <PrivacyIconButton
           article={article}
           changeArticlePrivacy={changeArticlePrivacy}
@@ -163,6 +171,7 @@ ArticleCard.propTypes = {
   selectArticleCard: PropTypes.func,
   addPublicArticleToMyArticles: PropTypes.func,
   openArticleCardSettingsModal: PropTypes.func,
+  updateArticleReadSetting: PropTypes.func,
   isPublicArticleScreen: PropTypes.any,
 };
 

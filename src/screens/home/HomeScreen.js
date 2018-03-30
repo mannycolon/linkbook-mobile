@@ -66,6 +66,7 @@ class HomeScreen extends Component {
       openArticleCardSettingsModal,
       closeArticleCardSettingsModal,
       deleteArticle,
+      updateArticleReadSetting,
     } = this.props;
 
     const {
@@ -102,6 +103,7 @@ class HomeScreen extends Component {
           onCollectionIconClick={this._onCollectionIconClick}
           changeArticlePrivacy={changeArticlePrivacy}
           openArticleCardSettingsModal={openArticleCardSettingsModal}
+          updateArticleReadSetting={updateArticleReadSetting}
         />
         <CollectionNameModal
           collections={collections}
@@ -160,6 +162,7 @@ const mapDispatchToProps = (dispatch) => ({
   openArticleCardSettingsModal: (articleId) => dispatch(ArticleCardsActions.openArticleCardSettingsModal(articleId)),
   closeArticleCardSettingsModal: () => dispatch(ArticleCardsActions.closeArticleCardSettingsModal()),
   deleteArticle: (articleId) => dispatch(ArticlesActions.deleteArticle(articleId)),
+  updateArticleReadSetting: (articleId, isRead) => dispatch(ArticlesActions.updateArticleReadSetting(articleId, isRead)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

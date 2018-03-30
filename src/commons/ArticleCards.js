@@ -22,6 +22,7 @@ const ArticleCards = ({
   addPublicArticleToMyArticles,
   openArticleCardSettingsModal,
   isPublicArticleScreen,
+  updateArticleReadSetting,
 }) => {
   // home article screen
   if (articles.length === 0 && !isPublicArticleScreen) return <EmptyArticleListScreen />;
@@ -55,6 +56,7 @@ const ArticleCards = ({
             addPublicArticleToMyArticles={addPublicArticleToMyArticles}
             openArticleCardSettingsModal={openArticleCardSettingsModal}
             isPublicArticleScreen={isPublicArticleScreen}
+            updateArticleReadSetting={updateArticleReadSetting}
           />
         );
       }}
@@ -77,6 +79,7 @@ ArticleCards.propTypes = {
   selectArticleCard: PropTypes.func,
   addPublicArticleToMyArticles: PropTypes.func,
   openArticleCardSettingsModal: PropTypes.func,
+  updateArticleReadSetting: PropTypes.func,
   isPublicArticleScreen: PropTypes.bool,
 };
 

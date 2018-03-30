@@ -64,3 +64,19 @@ export const deleteArticle = (articleId) => async (dispatch, getState) => {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
   }
 };
+
+/**
+ * Updates the articles read setting. Either setting it as read or unread (bool).
+ * @param {String} articleId
+ * @param {bool} isRead
+ */
+export const updateArticleReadSetting = (articleId, isRead) => async (dispatch, getState) => {
+  try {
+    const userId = getState().userReducer.user.id;
+
+    await LinkBookAPI.updateArticleReadSetting(userId, articleId, isRead);
+    dispatch(fetchMyArticles());
+  } catch (error) {
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
+  }
+};

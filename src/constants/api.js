@@ -112,6 +112,15 @@ class LinkBook {
       throw error;
     }
   }
+
+  async updateArticleReadSetting(userId, articleId, isRead) {
+    try {
+      const res = await axios.post(`/articles/${userId}/update/read`, { articleId, isRead });
+      return res;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 class UserApi {
