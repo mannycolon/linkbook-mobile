@@ -1,7 +1,6 @@
 
   # Todo List
    ### Frontend
-   - Design settings screen (Frontend)
    - Add delete account function to API (Frontend)
    - Create delete account function (Backend)
 
@@ -34,6 +33,7 @@
    - Add app intro slider for first fresh install
    - Added feature to mark articles as read/unread. (Frontend & Backend)
    - Now filtering read and not read articles. (Frontend)
+   - Designed the settings screen (Frontend)
 
   # Building Standalone Apps
   ## 1. Start the build
