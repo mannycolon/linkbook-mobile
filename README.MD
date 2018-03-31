@@ -1,7 +1,6 @@
 
   # Todo List
    ### Frontend
-   - Filtering feature to filter read and not read articles. (Frontend)
    - Add settings feature. (Frontend & Backend)
 
   #### Last
@@ -32,6 +31,7 @@
    - Add place holders for empty home screen, public screen, collections screen. (Frontend)
    - Add app intro slider for first fresh install
    - Added feature to mark articles as read/unread. (Frontend & Backend)
+   - Filtering feature to filter read and not read articles. (Frontend)
 
   # Building Standalone Apps
   ## 1. Start the build

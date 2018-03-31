@@ -10,7 +10,7 @@ const EmptyArticleListScreen = () => (
       Welcome to linkBook!
     </Text>
     <Text style={{ opacity: 0.7, color: Colors.blackColor, padding: 20, textAlign: 'center', fontSize: 16 }}>
-      Tap the <MaterialIcons name='add-circle' size={30} /> icon to add a new article to your article list.
+      In the home screen tap the <MaterialIcons name='add-circle' size={30} /> icon to add a new article to your article list.
     </Text>
   </View>
 );
