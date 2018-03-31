@@ -1,6 +1,8 @@
 import { NavigationActions } from 'react-navigation';
 import ActionTypes from './ActionTypes';
 import { User } from '../constants/api';
+// actions
+import * as ErrorAlertActions from './ErrorAlertActions';
 
 function loginSuccess(data) {
   return {
@@ -48,3 +50,14 @@ export function finalizeAppIntroSlider() {
     type: ActionTypes.FINALIZE_APP_INTRO_SLIDER,
   };
 }
+
+export const deleteAccount = () => async (dispatch, getState) => {
+  try {
+    const userId = getState().userReducer.user.id;
+
+    await User.deleteAccount(userId);
+    dispatch(logout());
+  } catch (error) {
+    dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
+  }
+};

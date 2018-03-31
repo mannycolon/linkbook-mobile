@@ -136,6 +136,15 @@ class UserApi {
       throw error;
     }
   }
+
+  async deleteAccount(userId) {
+    try {
+      // const res = await axios.post(`${this.path}/auth0`);
+      // return res;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const User = new UserApi();

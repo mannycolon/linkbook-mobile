@@ -13,6 +13,7 @@ import {
   EditCollectionScreen,
   AddToCollectionScreen,
   RemoveFromCollectionScreen,
+  SettingsScreen,
 } from '../screens';
 
 const CloseButton = styled(TouchableOpacity)`
@@ -180,6 +181,28 @@ export default StackNavigator({
             color="#ffffff"
           />
         </HeaderRight>,
+    }),
+  },
+  AccountSettings: {
+    screen: SettingsScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Settings',
+      headerStyle: {
+        backgroundColor: '#bd0826',
+        height: Constants.statusBarHeight + (Platform.OS === 'ios' ? 44 : 56),
+        paddingTop: Platform.OS === 'ios' ? 20 : Constants.statusBarHeight,
+      },
+      headerTitleStyle: {
+        color: '#ffffff',
+      },
+      headerLeft:
+        <CloseButton onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="arrow-back"
+            size={30}
+            color="#ffffff"
+          />
+        </CloseButton>,
     }),
   },
   WebView: {
