@@ -53,9 +53,9 @@ export function finalizeAppIntroSlider() {
 
 export const deleteAccount = () => async (dispatch, getState) => {
   try {
-    const userId = getState().userReducer.user.id;
+    const { user: { id }, token } = getState().userReducer;
 
-    await User.deleteAccount(userId);
+    await User.deleteAccount(id, token);
     dispatch(logout());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));

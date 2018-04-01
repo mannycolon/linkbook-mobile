@@ -169,10 +169,14 @@ class UserApi {
     }
   }
 
-  async deleteAccount() {
+  async deleteAccount(userId, token) {
     try {
-      // const res = await axios.post(`${this.path}/auth0`);
-      // return res;
+      const res = await axios.delete(
+        `${this.path}/auth0/account/delete`,
+        { userId },
+        { headers: { Authorization: token } }
+      );
+      return res;
     } catch (error) {
       throw error;
     }
