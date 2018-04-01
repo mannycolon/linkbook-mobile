@@ -1,8 +1,5 @@
 
   # Todo List
-   ### Frontend
-
-  #### Last
   - Share article urls from other apps into link-book.
     - https://github.com/alinz/react-native-share-extension
 
