@@ -54,18 +54,26 @@ class LinkBook {
     }
   }
 
-  async deleteCollection(userId, collectionName) {
+  async deleteCollection(userId, collectionName, token) {
     try {
-      const res = await axios.post(`/collections/${userId}/delete`, { collectionName });
+      const res = await axios.post(
+        `/collections/${userId}/delete`,
+        { collectionName },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
     }
   }
 
-  async updateArticleCollectionNames(userId, collectionNames, articleId) {
+  async updateArticleCollectionNames(userId, collectionNames, articleId, token) {
     try {
-      const res = await axios.post(`/collections/${userId}/update`, { collectionNames, articleId });
+      const res = await axios.post(
+        `/collections/${userId}/update`,
+        { collectionNames, articleId },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
@@ -85,27 +93,39 @@ class LinkBook {
     }
   }
 
-  async addArticlesToCollection(userId, articleIds, collectionName) {
+  async addArticlesToCollection(userId, articleIds, collectionName, token) {
     try {
-      const res = await axios.post(`/collections/${userId}/update/add`, { articleIds, collectionName });
+      const res = await axios.post(
+        `/collections/${userId}/update/add`,
+        { articleIds, collectionName },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
     }
   }
 
-  async removeArticlesFromCollection(userId, articleIds, collectionName) {
+  async removeArticlesFromCollection(userId, articleIds, collectionName, token) {
     try {
-      const res = await axios.post(`/collections/${userId}/update/remove`, { articleIds, collectionName });
+      const res = await axios.post(
+        `/collections/${userId}/update/remove`,
+        { articleIds, collectionName },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
     }
   }
 
-  async updateCollectionNameText(oldCollectionName, newCollectionName, userId) {
+  async updateCollectionNameText(oldCollectionName, newCollectionName, userId, token) {
     try {
-      const res = await axios.post(`/collections/${userId}/update/name`, { oldCollectionName, newCollectionName });
+      const res = await axios.post(
+        `/collections/${userId}/update/name`,
+        { oldCollectionName, newCollectionName },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;

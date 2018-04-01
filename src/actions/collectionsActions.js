@@ -84,10 +84,11 @@ export const fetchMyCollections = () => async (dispatch, getState) => {
 };
 
 export const deleteCollection = (collectionName) => async (dispatch, getState) => {
-  const userId = getState().userReducer.user.id;
   try {
+    const { user: { id }, token } = getState().userReducer;
+
     dispatch(ModalActions.closeCollectionSettingsModal());
-    await LinkBookAPI.deleteCollection(userId, collectionName);
+    await LinkBookAPI.deleteCollection(id, collectionName, token);
     dispatch(fetchMyCollections());
     dispatch(NavigationActions.back());
   } catch (error) {
@@ -96,12 +97,12 @@ export const deleteCollection = (collectionName) => async (dispatch, getState) =
 };
 
 export const updateArticleCollectionNames = (articleId) => async (dispatch, getState) => {
-  const userId = getState().userReducer.user.id;
-  const collectionNames = getState().collectionsReducer.selectedCollectionNames;
-
   try {
+    const { user: { id }, token } = getState().userReducer;
+    const collectionNames = getState().collectionsReducer.selectedCollectionNames;
+
     if (collectionNames) {
-      await LinkBookAPI.updateArticleCollectionNames(userId, collectionNames, articleId);
+      await LinkBookAPI.updateArticleCollectionNames(id, collectionNames, articleId, token);
       dispatch(ArticlesActions.fetchMyArticlesWithNoRefresh());
     }
     dispatch(hideModal());
@@ -112,9 +113,10 @@ export const updateArticleCollectionNames = (articleId) => async (dispatch, getS
 
 export const addArticlesToCollection = (collectionName) => async (dispatch, getState) => {
   try {
+    const { user: { id }, token } = getState().userReducer;
     const { selectedArticleCards } = getState().articleCardsReducer;
-    const userId = getState().userReducer.user.id;
-    await LinkBookAPI.addArticlesToCollection(userId, selectedArticleCards, collectionName);
+
+    await LinkBookAPI.addArticlesToCollection(id, selectedArticleCards, collectionName, token);
     dispatch(fetchMyCollections());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
@@ -124,9 +126,10 @@ export const addArticlesToCollection = (collectionName) => async (dispatch, getS
 
 export const removeArticlesFromCollection = (collectionName) => async (dispatch, getState) => {
   try {
+    const { user: { id }, token } = getState().userReducer;
     const { deselectedArticleCards } = getState().articleCardsReducer;
-    const userId = getState().userReducer.user.id;
-    await LinkBookAPI.removeArticlesFromCollection(userId, deselectedArticleCards, collectionName);
+
+    await LinkBookAPI.removeArticlesFromCollection(id, deselectedArticleCards, collectionName, token);
     dispatch(fetchMyCollections());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
@@ -140,12 +143,12 @@ export const clearCollectionsReducer = () => ({
 
 export const updateCollectionNameText = () => async (dispatch, getState) => {
   try {
+    const { user: { id }, token } = getState().userReducer;
     const { oldCollectionName, newCollectionName } = getState().editCollectionReducer;
-    const userId = getState().userReducer.user.id;
     const { index, routes } = getState().navigationReducer;
     const screenKey = routes[index].key;
 
-    await LinkBookAPI.updateCollectionNameText(oldCollectionName, newCollectionName, userId);
+    await LinkBookAPI.updateCollectionNameText(oldCollectionName, newCollectionName, id, token);
     const setParamsAction = NavigationActions.setParams({
       params: { title: newCollectionName },
       key: screenKey,

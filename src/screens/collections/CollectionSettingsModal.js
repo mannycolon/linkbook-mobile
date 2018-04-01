@@ -80,7 +80,12 @@ class CollectionSettingsModal extends Component {
             <Text>Remove from Collection</Text>
           </ModalButton>
           <Hr lineStyle={{ backgroundColor: Colors.greyColor, height: 0.9, opacity: 0.4 }} marginLeft={0} marginRight={0} />
-          <ModalButton onPress={() => this._onDeletePress()}>
+          <ModalButton
+            onPress={() => {
+              closeCollectionSettingsModal();
+              this._onDeletePress();
+            }}
+          >
             <Text style={{ color: Colors.redColor }}>Delete Collection</Text>
           </ModalButton>
           <Hr lineStyle={{ backgroundColor: Colors.greyColor, height: 0.9, opacity: 0.4 }} marginLeft={0} marginRight={0} />
