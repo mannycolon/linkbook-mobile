@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { ScrollView, View } from 'react-native';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { Container, Tab, Tabs, TabHeading, Text } from 'native-base';
+import { Badge } from 'react-native-elements';
 import Colors from '../../constants/Colors';
 // components
 import ArticleCards from '../../commons/ArticleCards';
@@ -54,13 +55,14 @@ class CollectionArticlesScreen extends Component {
     const currentCollection = collections.filter((collection) => collection._id === collectionId)[0];
     const articles = currentCollection.articles;
     const collectionImageUrl = articles && articles[0] && articles[0].imageURL ? articles[0].imageURL : null;
-    const unreadArticles = articles.filter((article) => article.isRead === false);
+    const unreadArticles = articles.filter((article) => article.isRead === false || !article.isRead);
     const readArticles = articles.filter((article) => article.isRead);
 
     const unreadTab = (
       <TabHeading>
         <Entypo name="unread" size={25} />
         <Text style={{ color: Colors.blackColor }}>Unread</Text>
+        <Badge value={unreadArticles.length} />
       </TabHeading>
     );
 
@@ -68,6 +70,7 @@ class CollectionArticlesScreen extends Component {
       <TabHeading>
         <MaterialCommunityIcons name="read" size={25} />
         <Text style={{ color: Colors.blackColor }}>Read</Text>
+        <Badge value={readArticles.length} />
       </TabHeading>
     );
 
@@ -86,8 +89,8 @@ class CollectionArticlesScreen extends Component {
                     changeArticlePrivacy={changeArticlePrivacy}
                     noCardButtons
                   />
-                :
-                <View />
+                  :
+                  <View />
               }
             </Tab>
             <Tab heading={readTab} style={{ backgroundColor: '#F7F7F8', marginTop: 2 }}>
@@ -101,8 +104,8 @@ class CollectionArticlesScreen extends Component {
                     changeArticlePrivacy={changeArticlePrivacy}
                     noCardButtons
                   />
-                :
-                <View />
+                  :
+                  <View />
               }
             </Tab>
           </Tabs>
@@ -134,7 +137,7 @@ const mapDispatchToProps = (dispatch) => ({
   closeCollectionSettingsModal: () => dispatch(ModalActions.closeCollectionSettingsModal()),
   deleteCollection: (collectionName) => dispatch(CollectionsActions.deleteCollection(collectionName)),
   fetchMyArticles: () => dispatch(ArticlesActions.fetchMyArticles()),
-  changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
+  changeArticlePrivacy: (isPublic, articleId) => dispatch(ArticlesActions.changeArticlePrivacy(isPublic, articleId)),
   addArticlesToCollection: (collectionName) => dispatch(CollectionsActions.addArticlesToCollection(collectionName)),
   removeArticlesFromCollection: (collectionName) => dispatch(CollectionsActions.removeArticlesFromCollection(collectionName)),
   updateCollectionNameText: () => dispatch(CollectionsActions.updateCollectionNameText()),

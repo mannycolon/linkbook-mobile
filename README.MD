@@ -34,6 +34,7 @@
    - Added feature to mark articles as read/unread. (Frontend & Backend)
    - Now filtering read and not read articles. (Frontend)
    - Designed the settings screen (Frontend)
+   - Showing number of items in the read and unread tabs.
 
   # Building Standalone Apps
   ## 1. Start the build
