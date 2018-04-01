@@ -13,6 +13,16 @@ export const fetchMyArticles = () => ((dispatch, getState) => {
   });
 });
 
+export const fetchMyArticlesWithNoRefresh = () => async (dispatch, getState) => {
+  const { user: { id }, token } = getState().userReducer;
+  const payload = await LinkBookAPI.fetchMyArticles(id, token);
+
+  dispatch({
+    type: ActionTypes.FETCH_MY_ARTICLES_NO_REFRESH,
+    payload,
+  });
+};
+
 export const fetchPublicArticles = () => ((dispatch, getState) => {
   const { id } = getState().userReducer.user;
   dispatch({
@@ -48,7 +58,7 @@ export const changeArticlePrivacy = (isPublic, articleId) => async (dispatch, ge
     const privacy = isPublic === 'Public';
     console.log(privacy, id, articleId, token);
     await LinkBookAPI.changeArticlePrivacy(privacy, id, articleId, token);
-    dispatch(fetchMyArticles());
+    dispatch(fetchMyArticlesWithNoRefresh());
     dispatch(collectionsActions.fetchMyCollections());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
@@ -60,7 +70,7 @@ export const deleteArticle = (articleId) => async (dispatch, getState) => {
     const { user: { id }, token } = getState().userReducer;
 
     await LinkBookAPI.deleteArticle(id, articleId, token);
-    dispatch(fetchMyArticles());
+    dispatch(fetchMyArticlesWithNoRefresh());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
   }
@@ -76,7 +86,7 @@ export const updateArticleReadSetting = (articleId, isRead) => async (dispatch, 
     const { user: { id }, token } = getState().userReducer;
 
     await LinkBookAPI.updateArticleReadSetting(id, articleId, isRead, token);
-    dispatch(fetchMyArticles());
+    dispatch(fetchMyArticlesWithNoRefresh());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
   }

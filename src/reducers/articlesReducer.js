@@ -3,7 +3,7 @@ import ActionTypes from '../actions/ActionTypes';
 const INITIAL_STATE = {
   myArticles: {
     articles: [],
-    isFetched: false,
+    isFetched: true,
     error: {
       on: false,
       message: '',
@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   },
   publicArticles: {
     articles: [],
-    isFetched: false,
+    isFetched: true,
     error: {
       on: false,
       message: '',
@@ -22,11 +22,23 @@ const INITIAL_STATE = {
 
 const articlesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case ActionTypes.FETCH_MY_ARTICLES_NO_REFRESH:
+      return {
+        ...state,
+        myArticles: {
+          articles: action.payload,
+          isFetched: true,
+          error: {
+            on: false,
+            message: '',
+          },
+        },
+      };
     case `${ActionTypes.FETCH_MY_ARTICLES}_PENDING`:
       return {
         ...state,
         myArticles: {
-          articles: [],
+          articles: state.myArticles.articles,
           isFetched: false,
           error: {
             on: false,
@@ -50,7 +62,7 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         myMeetups: {
-          articles: [],
+          articles: state.myArticles.articles,
           isFetched: true,
           error: {
             on: true,
@@ -59,7 +71,17 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
         },
       };
     case `${ActionTypes.FETCH_PUBLIC_ARTICLES}_PENDING`:
-      return INITIAL_STATE;
+      return {
+        ...state,
+        publicArticles: {
+          articles: state.myArticles.articles,
+          isFetched: false,
+          error: {
+            on: false,
+            message: '',
+          },
+        },
+      };
     case `${ActionTypes.FETCH_PUBLIC_ARTICLES}_FULFILLED`:
       return {
         ...state,
@@ -76,7 +98,7 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         publicArticles: {
-          articles: [],
+          articles: state.publicArticles.articles,
           isFetched: true,
           error: {
             on: true,

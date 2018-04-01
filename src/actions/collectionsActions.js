@@ -102,7 +102,7 @@ export const updateArticleCollectionNames = (articleId) => async (dispatch, getS
   try {
     if (collectionNames) {
       await LinkBookAPI.updateArticleCollectionNames(userId, collectionNames, articleId);
-      dispatch(ArticlesActions.fetchMyArticles());
+      dispatch(ArticlesActions.fetchMyArticlesWithNoRefresh());
     }
     dispatch(hideModal());
   } catch (error) {
