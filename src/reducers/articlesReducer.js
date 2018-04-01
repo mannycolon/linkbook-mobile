@@ -61,7 +61,7 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
     case `${ActionTypes.FETCH_MY_ARTICLES}_REJECTED`:
       return {
         ...state,
-        myMeetups: {
+        myArticles: {
           articles: state.myArticles.articles,
           isFetched: true,
           error: {
@@ -74,7 +74,7 @@ const articlesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         publicArticles: {
-          articles: state.myArticles.articles,
+          articles: state.publicArticles.articles,
           isFetched: false,
           error: {
             on: false,
