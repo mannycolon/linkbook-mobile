@@ -1,8 +1,6 @@
 
   # Todo List
    ### Frontend
-   - Add delete account function to API (Frontend)
-   - Create delete account function (Backend)
 
   #### Last
   - Share article urls from other apps into link-book.
@@ -35,6 +33,8 @@
    - Now filtering read and not read articles. (Frontend)
    - Designed the settings screen (Frontend)
    - Showing number of items in the read and unread tabs.
+   - Linked delete account function to API (Frontend)
+   - Create delete account function (Backend)
 
   # Building Standalone Apps
   ## 1. Start the build
