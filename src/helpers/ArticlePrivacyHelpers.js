@@ -9,7 +9,7 @@ const BUTTONS = [
   { text: 'Cancel', icon: 'close', iconColor: Colors.redColor },
 ];
 
-export const changeArticlePrivacy = (callback, userId, articleId) => {
+export const changeArticlePrivacy = (callback, articleId) => {
   ActionSheet.show(
     {
       options: BUTTONS,
@@ -18,7 +18,7 @@ export const changeArticlePrivacy = (callback, userId, articleId) => {
       title: 'Select the privacy setting for your article',
     },
     buttonIndex => {
-      if (BUTTONS[buttonIndex].text !== 'Cancel') callback(BUTTONS[buttonIndex].text, userId, articleId);
+      if (BUTTONS[buttonIndex].text !== 'Cancel') callback(BUTTONS[buttonIndex].text, articleId);
     }
   );
 };

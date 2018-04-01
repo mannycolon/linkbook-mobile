@@ -76,7 +76,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPublicArticles: () => dispatch(ArticlesActions.fetchPublicArticles()),
-  changeArticlePrivacy: () => dispatch(ArticlesActions.changeArticlePrivacy()),
+  changeArticlePrivacy: (isPublic, articleId) => dispatch(ArticlesActions.changeArticlePrivacy(isPublic, articleId)),
   addPublicArticleToMyArticles: (articleUrl) => dispatch(PublicArticleActions.addPublicArticleToMyArticles(articleUrl)),
 });
 

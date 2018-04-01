@@ -158,7 +158,7 @@ const mapDispatchToProps = (dispatch) => ({
   onCollectionNameSelected: (collectionName) => dispatch(CollectionsActions.onCollectionNameSelected(collectionName)),
   updateArticleCollectionNames: (articleId) => dispatch(CollectionsActions.updateArticleCollectionNames(articleId)),
   updateSelectedCollectionNames: (collectionNames) => dispatch(CollectionsActions.updateSelectedCollectionNames(collectionNames)),
-  changeArticlePrivacy: (userId, articleId, isPublic) => dispatch(ArticlesActions.changeArticlePrivacy(userId, articleId, isPublic)),
+  changeArticlePrivacy: (isPublic, articleId) => dispatch(ArticlesActions.changeArticlePrivacy(isPublic, articleId)),
   openArticleCardSettingsModal: (articleId) => dispatch(ArticleCardsActions.openArticleCardSettingsModal(articleId)),
   closeArticleCardSettingsModal: () => dispatch(ArticleCardsActions.closeArticleCardSettingsModal()),
   deleteArticle: (articleId) => dispatch(ArticlesActions.deleteArticle(articleId)),

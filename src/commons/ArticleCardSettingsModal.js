@@ -30,7 +30,6 @@ class ArticleCardSettingsModal extends Component {
         {
           text: 'Delete',
           onPress: () => {
-            this.props.closeArticleCardSettingsModal();
             this.props.deleteArticle(settingsArticleId);
           },
         },
@@ -53,7 +52,12 @@ class ArticleCardSettingsModal extends Component {
         onBackdropPress={() => closeArticleCardSettingsModal()}
       >
         <ModalContent>
-          <ModalButton onPress={() => this._onDeletePress()}>
+          <ModalButton
+            onPress={() => {
+              this.props.closeArticleCardSettingsModal();
+              this._onDeletePress();
+            }}
+          >
             <Text style={{ color: Colors.redColor }}>Delete Article</Text>
           </ModalButton>
           <Hr lineStyle={{ backgroundColor: Colors.greyColor, height: 0.9, opacity: 0.4 }} marginLeft={0} marginRight={0} />

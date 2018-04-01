@@ -13,7 +13,7 @@ const PrivacyIconButton = ({
 }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={() => ArticlePrivacyHelpers.changeArticlePrivacy(changeArticlePrivacy, article.userId, article._id)}
+    onPress={() => ArticlePrivacyHelpers.changeArticlePrivacy(changeArticlePrivacy, article._id)}
   >
     <Ionicons size={iconSize || 26} name='md-globe' color={article.isPublic ? '#000000' : Colors.lightGreyColor} />
   </TouchableOpacity>

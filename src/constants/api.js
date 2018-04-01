@@ -23,27 +23,31 @@ class LinkBook {
     }
   }
 
-  async fetchMyArticles(userId) {
+  async fetchMyArticles(userId, token) {
     try {
-      const { data } = await axios.get(`/users/${userId}/articles`);
+      const { data } = await axios.get(`/users/${userId}/articles`, { headers: { Authorization: token } });
       return data.articles;
     } catch (error) {
       throw error;
     }
   }
 
-  async addArticle(articleUrl, userId, isPublic, collectionNames) {
+  async addArticle(articleUrl, userId, isPublic, collectionNames, token) {
     try {
-      const res = await axios.post(`/users/${userId}/articles/new`, { articleUrl, isPublic, collectionNames });
+      const res = await axios.post(
+        `/users/${userId}/articles/new`,
+        { articleUrl, isPublic, collectionNames },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
     }
   }
 
-  async fetchMyCollections(userId) {
+  async fetchMyCollections(userId, token) {
     try {
-      const { data } = await axios.get(`/users/${userId}/collections`);
+      const { data } = await axios.get(`/users/${userId}/collections`, { headers: { Authorization: token } });
       return data.collections;
     } catch (error) {
       throw error;
@@ -68,9 +72,13 @@ class LinkBook {
     }
   }
 
-  async changeArticlePrivacy(isPublic, userId, articleId) {
+  async changeArticlePrivacy(isPublic, userId, articleId, token) {
     try {
-      const res = await axios.post(`/articles/${userId}/update/privacy`, { articleId, isPublic });
+      const res = await axios.post(
+        `/articles/${userId}/update/privacy`,
+        { articleId, isPublic },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
@@ -104,18 +112,22 @@ class LinkBook {
     }
   }
 
-  async deleteArticle(userId, articleId) {
+  async deleteArticle(userId, articleId, token) {
     try {
-      const res = await axios.delete(`/articles/${userId}/${articleId}/delete`);
+      const res = await axios.delete(`/articles/${userId}/${articleId}/delete`, { headers: { Authorization: token } });
       return res;
     } catch (error) {
       throw error;
     }
   }
 
-  async updateArticleReadSetting(userId, articleId, isRead) {
+  async updateArticleReadSetting(userId, articleId, isRead, token) {
     try {
-      const res = await axios.post(`/articles/${userId}/update/read`, { articleId, isRead });
+      const res = await axios.post(
+        `/articles/${userId}/update/read`,
+        { articleId, isRead },
+        { headers: { Authorization: token } }
+      );
       return res;
     } catch (error) {
       throw error;
@@ -137,7 +149,7 @@ class UserApi {
     }
   }
 
-  async deleteAccount(userId) {
+  async deleteAccount() {
     try {
       // const res = await axios.post(`${this.path}/auth0`);
       // return res;

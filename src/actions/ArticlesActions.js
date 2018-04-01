@@ -6,10 +6,10 @@ import * as collectionsActions from './CollectionsActions';
 import * as ErrorAlertActions from './ErrorAlertActions';
 
 export const fetchMyArticles = () => ((dispatch, getState) => {
-  const { id } = getState().userReducer.user;
+  const { user: { id }, token } = getState().userReducer;
   dispatch({
     type: ActionTypes.FETCH_MY_ARTICLES,
-    payload: LinkBookAPI.fetchMyArticles(id),
+    payload: LinkBookAPI.fetchMyArticles(id, token),
   });
 });
 
@@ -22,12 +22,12 @@ export const fetchPublicArticles = () => ((dispatch, getState) => {
 });
 
 export const addNewArticle = (articleUrl, isPublic) => async (dispatch, getState) => {
-  const userId = getState().userReducer.user.id;
+  const { user: { id }, token } = getState().userReducer;
   const { selectedCollectionNames } = getState().collectionsReducer;
 
   dispatch({ type: ActionTypes.ADD_NEW_ARTICLE });
   try {
-    await LinkBookAPI.addArticle(articleUrl, userId, isPublic, selectedCollectionNames);
+    await LinkBookAPI.addArticle(articleUrl, id, isPublic, selectedCollectionNames, token);
     dispatch({ type: ActionTypes.ADD_NEW_ARTICLE_SUCCESS });
     await dispatch(fetchMyArticles());
   } catch (error) {
@@ -42,23 +42,24 @@ export const clearAddArticleErrorMessage = () => ({
   message: '',
 });
 
-export const changeArticlePrivacy = (isPublic, userId, articleId) => async (dispatch) => {
+export const changeArticlePrivacy = (isPublic, articleId) => async (dispatch, getState) => {
   try {
+    const { user: { id }, token } = getState().userReducer;
     const privacy = isPublic === 'Public';
-    await LinkBookAPI.changeArticlePrivacy(privacy, userId, articleId);
+    console.log(privacy, id, articleId, token);
+    await LinkBookAPI.changeArticlePrivacy(privacy, id, articleId, token);
     dispatch(fetchMyArticles());
     dispatch(collectionsActions.fetchMyCollections());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
-    console.error(error);
   }
 };
 
 export const deleteArticle = (articleId) => async (dispatch, getState) => {
   try {
-    const userId = getState().userReducer.user.id;
+    const { user: { id }, token } = getState().userReducer;
 
-    await LinkBookAPI.deleteArticle(userId, articleId);
+    await LinkBookAPI.deleteArticle(id, articleId, token);
     dispatch(fetchMyArticles());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
@@ -72,9 +73,9 @@ export const deleteArticle = (articleId) => async (dispatch, getState) => {
  */
 export const updateArticleReadSetting = (articleId, isRead) => async (dispatch, getState) => {
   try {
-    const userId = getState().userReducer.user.id;
+    const { user: { id }, token } = getState().userReducer;
 
-    await LinkBookAPI.updateArticleReadSetting(userId, articleId, isRead);
+    await LinkBookAPI.updateArticleReadSetting(id, articleId, isRead, token);
     dispatch(fetchMyArticles());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));

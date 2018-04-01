@@ -35,7 +35,7 @@ class SettingsScreen extends Component {
           </ListItem>
           <ListItem icon onPress={() => this._onDeletePress()}>
             <Left>
-              <Icon name="md-person" />
+              <Icon name="md-person" style={{ color: Colors.redColor }} />
             </Left>
             <Body>
               <Text style={{ color: Colors.redColor }}>Delete your Account</Text>

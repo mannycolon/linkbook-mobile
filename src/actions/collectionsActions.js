@@ -77,9 +77,9 @@ export const updateSelectedCollectionNames = (selectedCollectionNames) => ({
 });
 
 export const fetchMyCollections = () => async (dispatch, getState) => {
-  const { id } = getState().userReducer.user;
+  const { user: { id }, token } = getState().userReducer;
   dispatch({ type: ActionTypes.FETCHING_MY_COLLECTIONS });
-  const collections = await LinkBookAPI.fetchMyCollections(id);
+  const collections = await LinkBookAPI.fetchMyCollections(id, token);
   dispatch({ type: ActionTypes.FETCH_MY_COLLECTIONS, collections });
 };
 
@@ -92,7 +92,6 @@ export const deleteCollection = (collectionName) => async (dispatch, getState) =
     dispatch(NavigationActions.back());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
-    console.error(error);
   }
 };
 
@@ -119,7 +118,6 @@ export const addArticlesToCollection = (collectionName) => async (dispatch, getS
     dispatch(fetchMyCollections());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
-    console.error(error);
   }
   dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
 };
@@ -132,7 +130,6 @@ export const removeArticlesFromCollection = (collectionName) => async (dispatch,
     dispatch(fetchMyCollections());
   } catch (error) {
     dispatch(ErrorAlertActions.displayErrorAlert('Error', error.message));
-    console.error(error);
   }
   dispatch({ type: ActionTypes.RESET_ARTICLE_CARDS_REDUCER });
 };
