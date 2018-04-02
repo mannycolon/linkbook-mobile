@@ -9,6 +9,7 @@ import { LoginScreen } from '../screens';
 // actions
 import * as ArticlesActions from '../actions/ArticlesActions';
 import * as LoginActions from '../actions/LoginActions';
+import * as ErrorAlertActions from '../actions/ErrorAlertActions';
 
 class AppNavigator extends Component {
   componentDidMount() {
@@ -49,7 +50,15 @@ class AppNavigator extends Component {
     });
 
     if (userReducer.isLogged) {
-      if (onError) Alert.alert(error.title, error.message);
+      if (onError) {
+        Alert.alert(
+          error.title,
+          error.message,
+          [
+            { text: 'OK', onPress: () => this.props.clearErrorReducer() },
+          ]
+        );
+      }
       if (userReducer.showAppIntroSlider) return <AppIntroSlider finalizeAppIntroSlider={finalizeAppIntroSlider} />;
       return <Navigator navigation={navigation} />;
     }
@@ -68,6 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
   dispatch: (value) => dispatch(value),
   clearAddArticleErrorMessage: () => dispatch(ArticlesActions.clearAddArticleErrorMessage()),
   finalizeAppIntroSlider: () => dispatch(LoginActions.finalizeAppIntroSlider()),
+  clearErrorReducer: () => dispatch(ErrorAlertActions.clearErrorReducer()),
 });
 
 export const router = Navigator.router;

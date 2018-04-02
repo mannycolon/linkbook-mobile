@@ -12,3 +12,6 @@ export const displayErrorAlert = (errorTitle, errorMessage) => async (dispatch) 
   });
 };
 
+export const clearErrorReducer = () => ({
+  type: ActionTypes.CLEAR_ERRORS_REDUCER,
+});
