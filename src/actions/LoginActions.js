@@ -1,4 +1,5 @@
 import { NavigationActions } from 'react-navigation';
+import { AsyncStorage } from 'react-native';
 import ActionTypes from './ActionTypes';
 import { User } from '../constants/api';
 // actions
@@ -34,6 +35,8 @@ export function login(token, provider) {
 
 export function logout() {
   return (dispatch => {
+    // deleting local storage of userReducer
+    AsyncStorage.removeItem('reduxPersist:userReducer');
     // reset react-naviation state
     dispatch(
       NavigationActions.reset({
