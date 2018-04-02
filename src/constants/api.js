@@ -172,8 +172,7 @@ class UserApi {
   async deleteAccount(userId, token) {
     try {
       const res = await axios.delete(
-        `${this.path}/delete`,
-        { userId },
+        `${this.path}/${userId}/delete`,
         { headers: { Authorization: token } }
       );
       return res;

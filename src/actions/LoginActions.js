@@ -37,6 +37,7 @@ export function logout() {
   return (dispatch => {
     // deleting local storage of userReducer
     AsyncStorage.removeItem('reduxPersist:userReducer');
+    dispatch({ type: ActionTypes.LOGOUT });
     // reset react-naviation state
     dispatch(
       NavigationActions.reset({
@@ -44,7 +45,6 @@ export function logout() {
         actions: [NavigationActions.navigate({ routeName: 'Home' })],
       })
     );
-    dispatch({ type: ActionTypes.LOGOUT });
   });
 }
 
